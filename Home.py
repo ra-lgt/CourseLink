@@ -7,7 +7,9 @@ app=Flask(__name__)
 def Home():
     return render_template('index.html')
 
-
+@app.route('/signup_login')
+def signup_login():
+    return render_template('signup_login.html')
 
 @app.route('/chat')
 def chat():
