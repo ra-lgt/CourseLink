@@ -4,7 +4,8 @@ import random
 from Config import Configurations
 from mail import send_email
 from datetime import datetime
-
+from flask_caching import Cache
+from UserAPI import DataAPI
 
 app=Flask(__name__)
 config=Configurations()
@@ -12,6 +13,8 @@ firebase_db=config.Setup_auth()
 app.secret_key = 'Course-Link'
 mail=send_email()
 mongo_client=config.create_mong_conn()
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+user_dataAPI=DataAPI()
 
 
 #helping functions
@@ -49,6 +52,8 @@ def signup_login():
 def sucess_register():
     return render_template('success.html',data="THANKS FOR REGISTERING")
 
+
+
 @app.route('/login',methods=['POST','GET'])
 def login():
     if(request.method=='POST'):
@@ -57,12 +62,16 @@ def login():
     
     try:
         userauth=firebase_db.sign_in_with_email_and_password(email,password)
+        session['email']=email
+        session['username']=user_dataAPI.get_data_of_specific_user(email)['username']
+  
     except:
         error_url = url_for('error', data="Invalid login", reason="Check your credentials and try again or contact us")
         return redirect(error_url)
     
     cookie=userauth['idToken']
     session['user_id'] = cookie
+    
     
     return redirect(url_for('Home'))
 
@@ -98,6 +107,8 @@ def signup():
             'last_name':"Not Set",
             'City':"Not Set",
             'Country':"Not Set",
+            'Degree':"Not Set",
+            'Experince Level':"Not Set",
             'Level_preparation':"Not Set",
             'language':"Not Set",
             'postal_code':"Not Set",
@@ -179,7 +190,37 @@ def terms():
 @app.route('/blog')
 def blog():
     return render_template('blog.html')
+
+
+@app.route('/find_friends')
+def find_friends():
+    all_user_data=None
+    all_user_data = cache.get('cached_all_user_data')
+    print("cache data",all_user_data)
     
+    if(all_user_data is None):
+        
+        all_user_data=user_dataAPI.get_all_user_data(session['email'])
+        
+        cache.set('cached_all_user_data', all_user_data, timeout=180 * 60)
+    else:
+        print("Cache hit")
+    
+    Course=[]
+        
+    for i in all_user_data['Course']:
+        if(i not in Course and i!="Not Set"):
+            Course.append(i)
+    
+    if not all_user_data:
+        count=0
+    else:
+        count=len(all_user_data['username'])
+    return render_template('find_friends.html',all_user_data=all_user_data,count=count,Course=Course)
+
+@app.route('/send_friend_request')
+def send_friend_request():
+    return "hi"
 
 if __name__=="__main__":
     app.run(debug=True)
