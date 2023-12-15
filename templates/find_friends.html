@@ -27,7 +27,7 @@
 
 </head>
 
-<body style="background-color:rgb(255, 0, 221);">
+<body style="background-color:#F9FAFF;">
 
 
 {% for i in range(count) %}
@@ -159,18 +159,22 @@
       </div>
     </div>
      </div>
-    <div class="listb" style="background-color: aqua;">
-      <ul class="list" id="list">
+     <div class="listb"style="margin-top:30px;height:20%;margin-left:50px;width:70%;">
+      <ul class="list" id="list" style="list-style-type: none;padding:0;">
       </ul>
       <div class="lpagignate"><span class="jPaginateBack page-arrow"><</span>
         <ul class="pagination"></ul><span class="jPaginateNext page-arrow">></span></div>
     </div>
   </div>
-  
   </html>
   <style>
     .image{
-      width: 20%;
+      width:12%;
+      height:55%;
+      margin-left:15px;
+      margin-top:10px;
+      border-radius:65%;
+      overflow:hidden;
     }
   </style>
 
@@ -188,18 +192,18 @@ var options = {
       { attr: "data-target", name: "jobType" } 
     ],
     item:
-'<li>' +
+'<li style="margin-bottom:20px;border-radius:50px;background-color:light;border:2px solid #e449ad">' +
   '<img class="image">' +
   '<a class="applyLink">' +
-    '<h3 class="jobTitle"></h3>' +
+    '<h3 class="jobTitle"style="color:black;margin-left:37px"></h3>' +
   '</a>' +
   '<div class="bottomBox">' +
     '<div class="left-part">' +
-      '<button type="button" class="jobType" data-toggle="modal">View More' +
+      '<button type="button" class="jobType" style="margin-left=500px" data-toggle="modal">View More' +
         '</button>' +
       '<p class="jobLocation"></p>' +
     '</div>' +
-    '<div class="dateBox">' +
+    '<div class="dateBox" style="margin-right:20px">' +
       '<h5>Joined Date</h5>' +
       '<p class="datePosted"></p>' +
     '</div>' +
@@ -236,6 +240,59 @@ var options = {
 
 
     },
+     {
+      jobTitle: "{{all_user_data['username'][i]}}",
+      jobType:  "#learnMore{{i}}",
+      datePosted: "{{all_user_data['Joined_date'][i]}}",
+      jobLocation:"{{all_user_data['Course'][i]}}",
+      applyLink: "#",
+      
+
+      image: "{{url_for('static',filename='images/work-8.jpg')}}",
+
+
+
+
+    }, {
+      jobTitle: "{{all_user_data['username'][i]}}",
+      jobType:  "#learnMore{{i}}",
+      datePosted: "{{all_user_data['Joined_date'][i]}}",
+      jobLocation:"{{all_user_data['Course'][i]}}",
+      applyLink: "#",
+      
+
+      image: "{{url_for('static',filename='images/work-8.jpg')}}",
+
+
+
+
+    }, {
+      jobTitle: "{{all_user_data['username'][i]}}",
+      jobType:  "#learnMore{{i}}",
+      datePosted: "{{all_user_data['Joined_date'][i]}}",
+      jobLocation:"{{all_user_data['Course'][i]}}",
+      applyLink: "#",
+      
+
+      image: "{{url_for('static',filename='images/work-8.jpg')}}",
+
+
+
+
+    }, {
+      jobTitle: "{{all_user_data['username'][i]}}",
+      jobType:  "#learnMore{{i}}",
+      datePosted: "{{all_user_data['Joined_date'][i]}}",
+      jobLocation:"{{all_user_data['Course'][i]}}",
+      applyLink: "#",
+      
+
+      image: "{{url_for('static',filename='images/work-8.jpg')}}",
+
+
+
+
+    }
     {% endfor %}
 
   ];
