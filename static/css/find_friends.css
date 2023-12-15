@@ -5,7 +5,8 @@ input,
 .sort {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
-  background: #a005a0;
+  background: white;
+
 }
 
 #sandbox {
@@ -21,7 +22,7 @@ input,
 
 input {
   border: solid 1px #ccc;
-  border-radius: 5px;
+  border-radius: 20px;
   padding: 7px 14px;
   margin-bottom: 10px;
   width: 100%;
@@ -43,7 +44,7 @@ input:focus {
   color: #fff;
   vertical-align: top;
   text-decoration: none;
-  background-color: #28a8e0;
+  background-color: #e449ad;
   height: 36px;
   margin: 5px 5px;
 }
@@ -111,11 +112,9 @@ input:focus {
 }
 
 .list li .jobType {
-  margin: 0;
-  background: rgb(19,175,240);
-  background: linear-gradient(105deg, rgba(91,104,235,1) 0%, rgba(40,225,253,1) 100%);
-  color: #ffffff;
-  ;
+  margin-left:20px;
+  background:#e449ad;
+  color: #ffffff;;
   border: 1 ps solid #00bde5;
   font-size: 12px;
   border-radius: 30px;
@@ -228,8 +227,10 @@ select.location,
 }
 
 .lpagignate {
+
   display: flex;
   align-items: center;
+  margin-left:470px;
 }
 
 ul.pagination {
@@ -295,7 +296,12 @@ ul.pagination li.active a {
   }
 
   .listb {
-    margin-left: 0px;
+    display:flex;
+    flex-direction:column;
+    background-color:white;
+    margin-top:30px;height:20%;border-radius:50px;
+    margin-left:50px;
+    width:70%;
   }
 
   .porpSection.activeMob {
