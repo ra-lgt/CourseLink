@@ -1,0 +1,646 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/find_friends.css')}}"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+</head>
+
+<div id="sandbox">
+
+    <div class="sideb">
+      <h2 class="theme-color">We’re Hiring</h2>
+      <p class="text-large theme-color">Excited to work with us? Join Our Team</p>
+      <input class="search" placeholder="Search" />
+      <div class="mobFilter"><i class="fas fa-sliders-h"></i></div>
+      <div class="porpSection">
+        <button class="xbutton">X</button>
+        <div class="sortSection">
+        <h3>Sort By:</h3>
+        <button class="sort" data-sort="jobTitle">
+      Sort by User Name
+    </button>
+        <button class="sort" data-sort="datePosted">
+      Sort by Joined Date
+    </button>
+      </div>
+      <div class="filterSection">
+        <div class="filter">
+          <h3>Filter by Country</h3>
+          <select id="location-filter" class="location selectlist">
+        <option selected="selected" value="">All Locations</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Bengaluru">Bengaluru</option>
+        <option value="Seattle">Seattle</option>
+        <option value="Dubai">Dubai</option>
+        <option value="London">London</option>
+      </select>
+        </div>
+        <!-- <div class="filter">
+          <h3>Filter Opening by Job Type</h3>
+          <select id="type-filter" class="jobtypefilter selectlist">
+        <option selected="selected" value="">All Job Types</option>
+        <option value="Full Time">Full Time</option>
+        <option value="Permanent">Permanent</option>
+        <option value="Part Time">Part Time</option>
+      </select>
+        </div> -->
+      </div>
+    </div>
+     </div>
+    <div class="listb">
+      <ul class="list" id="list">
+
+      </ul>
+      <div class="lpagignate"><span class="jPaginateBack page-arrow"><</span>
+        <ul class="pagination"></ul><span class="jPaginateNext page-arrow">></span></div>
+    </div>
+  </div>
+  
+  </html>
+
+  <script>
+    // List.js set-up and initialisation
+
+var options = {
+    valueNames: [
+      "jobTitle",
+      "jobType",
+      "datePosted",
+      "jobLocation",
+      { attr: "href", name: "applyLink" },
+      { attr: "src", name: "image" }
+    ],
+    item:
+    //'<li> <div class="container"><div class="card-container"><span class="pro">PRO</span><img class="round" src="https://randomuser.me/api/portraits/women/79.jpg" alt="user" /><h3 class="jobTitle" >Ricky Park</h3><h6>New York</h6><p>User interface designer and <br/> front-end developer</p><div class="buttons"><button class="primary">Message</button><button class="primary ghost">Following</button></div><div class="skills"><h6>Skills</h6><ul><li>UI / UX</li><li>Front End Development</li><li>HTML</li><li>CSS</li><li>JavaScript</li><li>React</li><li>Node</li></ul></div></div></div></div></li>',
+    '<li><div class="plx-card gold"><div class="pxc-bg" style="background-image:url("https://i.gyazo.com/a846fc87cca5ebd3942ae1e038bb5083.png")"> </div><div class="pxc-avatar"><img src="https://store.playstation.com/store/api/chihiro/00_09_000/container/GB/en/999/EP4312-CUSA07658_00-AV00000000000049/1536930670000/image?w=240&amp;h=240&amp;bg_color=000000&amp;opacity=100&amp;_version=00_09_000"/></div><div class="pxc-stopper"></div><div class="pxc-subcard"><div class="pxc-title">Super Awesome Long-named Serverrrrrrr</div><div class="jobTitle"></div><div class="pxc-feats"><span>Feat One</span><span> Feat Two</span><span> Feat One Hundred and Seventy Three</span><span> Feat Forty Five</span><span>Feat Feat One</span><span> Feat Two</span><span> Feat One Hundred and Seventy Three</span><span> Feat Forty Five</span><span>Feat Feat One</span><span> Feat Two</span><span> Feat One Hundred and Seventy Three</span><span> Feat Forty Five</span><span>Feat Feat One</span><span> Feat Two</span><span> Feat One Hundred and Seventy Three</span><span> Feat Forty Five</span><span>Feat </span></div><div class="pxc-tags"><div>Feat Two</div></div><div class="bottom-row"> <div class="pxc-info"><div class="flags"><span><img src="http://pollux.fun/images/flags/EN.png"/></span><span><img src="http://pollux.fun/images/flags/BR.png"/></span><span><img src="http://pollux.fun/images/flags/FR.png"/></span><span><img src="http://pollux.fun/images/flags/TR.png"/></span><span><img src="http://pollux.fun/images/flags/JP.png"/></span></div><div class="region">Global</div></div><div class="links"><a class="site" uk-tooltip="WEBSITE"><i class="fas fa-globe-americas"> </i></a><a class="link discordLink" uk-tooltip="DISCORD SERVER"><i class="fab fa-discord"></i></a><a class="shop" uk-tooltip="EXCLUSIVE POLLUX SHOP"><i class="fas fa-shopping-bag"> </i></a></div></div></div></div></li>',
+
+    page: 6,
+    pagination: {
+      innerWindow: 2,
+      left: 1,
+      right: 1,
+      paginationClass: "pagination"
+    }
+  };
+  
+  var values = [
+  {% for i in range(count) %}
+ 
+    {
+      jobTitle: "{{all_user_data['username'][i]}}",
+      jobType: "View More",
+      datePosted: "2016-08-19",
+      jobLocation:"Hyderabad",
+      applyLink: "#",
+      image: "{{url_for('static',filename='images/client-image.png')}}"
+    },
+    {% endfor %}
+
+  ];
+  
+  var userList = new List("sandbox", options, values);
+  userList.sort("datePosted", {
+    order: "desc"
+  });
+  
+  $(".jPaginateNext").on("click", function() {
+    var list = $(".pagination").find("li");
+    $.each(list, function(position, element) {
+      if ($(element).is(".active")) {
+        $(list[position + 1]).trigger("click");
+      }
+    });
+  });
+  
+  $(".jPaginateBack").on("click", function() {
+    var list = $(".pagination").find("li");
+    $.each(list, function(position, element) {
+      if ($(element).is(".active")) {
+        $(list[position - 1]).trigger("click");
+      }
+    });
+  });
+  
+  $('#type-filter').change(function () {
+      var selection = this.value;
+      if (selection) {
+          userList.filter(function(item) {
+              return (item.values().jobType == selection);
+          });
+      } else {
+          userList.filter();
+      }
+  });
+  
+  $('#location-filter').change(function () {
+      var selection = this.value;
+      if (selection) {
+          userList.filter(function(item) {
+              return (item.values().jobLocation == selection);
+          });
+      } else {
+          userList.filter();
+      }
+  });
+  
+  $('.mobFilter').click(function() {
+     $('.porpSection').addClass('activeMob');
+     $('body').addClass('filterActive')
+      
+  });
+  
+  $('.xbutton').click(function(){
+     $('.porpSection').removeClass('activeMob');
+     $('body').removeClass('filterActive')
+  });
+  
+  $('.selectlist').change(function(){
+        $('.porpSection').removeClass('activeMob');
+     $('body').removeClass('filterActive')           
+  });
+  </script>
+
+<style>
+  .container {
+      display: flex;
+      flex-direction: row; /* This makes the children align from left to right */
+    }
+
+  @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #28223F;
+  font-family: Montserrat, sans-serif;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  min-height: 100vh;
+  margin: 0;
+}
+
+h3 {
+  margin: 10px 0;
+}
+
+h6 {
+  margin: 5px 0;
+  text-transform: uppercase;
+}
+
+p {
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.card-container {
+  background-color: #231E39;
+  border-radius: 5px;
+  box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
+  color: #B3B8CD;
+  padding-top: 30px;
+  position: relative;
+  width: 350px;
+  max-width: 100%;
+  text-align: center;
+}
+
+.card-container .pro {
+  color: #231E39;
+  background-color: #FEBB0B;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 3px 7px;
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+.card-container .round {
+  border: 1px solid #03BFCB;
+  border-radius: 50%;
+  padding: 7px;
+}
+
+button.primary {
+  background-color: #03BFCB;
+  border: 1px solid #03BFCB;
+  border-radius: 3px;
+  color: #231E39;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  padding: 10px 25px;
+}
+
+button.primary.ghost {
+  background-color: transparent;
+  color: #02899C;
+}
+
+.skills {
+  background-color: #1F1A36;
+  text-align: left;
+  padding: 15px;
+  margin-top: 30px;
+}
+
+.skills ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.skills ul li {
+  border: 1px solid #2D2747;
+  border-radius: 2px;
+  display: inline-block;
+  font-size: 12px;
+  margin: 0 7px 7px 0;
+  padding: 7px;
+}
+
+footer {
+    background-color: #222;
+    color: #fff;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer i {
+    color: red;
+}
+
+footer a {
+    color: #3c97bf;
+    text-decoration: none;
+}
+</style>
+
+<style>
+	@charset "UTF-8";
+
+
+.plx-card {
+  transition: all 600ms ease;
+  max-width: 1100px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  margin: 30px 0;
+  filter: drop-shadow(0 2px 1rem #112);
+  border-radius: 4px;
+}
+
+
+
+@media screen and (min-width: 700px) {
+  .plx-card.gold {
+    height: 280px;
+  }
+
+
+}
+@media screen and (max-width: 700px) {
+  .plx-card {
+    height: auto;
+    width: auto;
+    flex-direction: column;
+    border-radius: 2px;
+    margin: 25px 15px;
+  }
+
+}
+
+.pxc-avatar {
+  transition: all 600ms ease;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 150px;
+  justify-content: space-around;
+}
+
+@media screen and (max-width: 700px) {
+  .pxc-avatar {
+    width: 100%;
+    height: 100px;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+
+}
+.pxc-avatar img {
+  transition: all 600ms ease;
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  box-shadow: 0 1px 1rem rgba(10, 10, 25, 0.5);
+  position: relative;
+  z-index: 1;
+}
+@media screen and (max-width: 900px) {
+  .pxc-avatar img {
+    width: 125px;
+    height: 125px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .pxc-avatar img {
+    margin-top: 100px;
+  }
+}
+
+.pxc-bg {
+  transition: all 600ms ease;
+  border-radius: 2px;
+  height: 100%;
+  width: calc(100% - 75px);
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  left: 75px;
+  background-size: cover;
+  background-position: right;
+  background-color: #2b2b95;
+}
+
+
+@media screen and (max-width: 900px) {
+  .pxc-bg {
+    left: 50px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .pxc-bg {
+    left: 0;
+    top: 0;
+    height: 200px;
+    width: 100%;
+    border-radius: 0;
+  }
+
+}
+
+.pxc-subcard {
+  transition: all 600ms ease;
+  border-radius: 3px;
+  background: #1D1D2B;
+  width: 650px;
+  margin: 25px 200px 25px -25px;
+  z-index: 0;
+  padding: 15px 25px 15px 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 1rem rgba(10, 10, 25, 0.3);
+}
+@media screen and (min-width: 700px) {
+
+}
+@media screen and (max-width: 700px) {
+
+}
+
+@media screen and (max-width: 900px) {
+  .pxc-subcard {
+    margin-right: 120px;
+    margin-left: -32px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .pxc-subcard {
+    margin: 25px 15px 30px 15px;
+    padding: 60px 25px 20px;
+    width: auto;
+    height: auto;
+    flex: 1 0 auto;
+  }
+
+}
+
+.pxc-stopper {
+  transition: all 600ms ease;
+  height: 100%;
+  width: calc(60%);
+  background: #FFF8;
+  display: block;
+  position: absolute;
+  z-index: 0;
+  left: 75px;
+}
+
+@media screen and (max-width: 900px) {
+  .pxc-stopper {
+    left: 50px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .pxc-stopper {
+    left: 0;
+    width: 100%;
+    top: 200px;
+    height: calc(100% - 200px);
+    background: white;
+    border-radius: 0;
+  }
+
+}
+
+.pxc-tags {
+  position: absolute;
+  bottom: -15px;
+  right: 10px;
+  height: 32px;
+  overflow: hidden;
+  text-align: right;
+}
+
+.pxc-tags div {
+  color: white;
+  display: inline-block;
+  background: #8855DD;
+  border-radius: 12px;
+  padding: 2px 10px;
+  line-height: 1.7;
+  margin: 4px 4px;
+  font-size: 12px;
+  height: 20px;
+}
+@media screen and (max-width: 700px) {
+  .pxc-tags {
+    height: 64px;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 10px;
+  }
+  .pxc-tags div {
+    color: #8855DD;
+    border: solid 1px #8855DD;
+    background: transparent;
+  }
+}
+
+.pxc-title {
+  font-size: 24px;
+  margin-bottom: 4px;
+  color: white;
+  width: calc(100% - 50px);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex: 0 0 auto;
+}
+
+@media screen and (max-width: 700px) {
+  .pxc-title {
+    font-size: 16px;
+    white-space: initial;
+    overflow: initial;
+    text-overflow: initial;
+  }
+}
+
+.pxc-sub {
+  font-size: 14px;
+  margin: 2px 0 8px 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(black 80%, transparent 100%);
+  color: #a6aad1;
+}
+
+@media screen and (max-width: 700px) {
+  .pxc-sub {
+    font-size: 13px;
+  }
+}
+
+.pxc-feats {
+  font-size: 13px;
+  color: #5f5f80;
+  flex: 1 1 auto;
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  line-height: 1.3;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(black 50%, transparent 100%);
+}
+
+@media screen and (max-width: 700px) {
+  .pxc-feats {
+    font-size: 12px;
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+.pxc-feats span:not(:first-child):before {
+  content: " • ";
+  margin: 3px;
+}
+
+.bottom-row {
+  flex: 0 1 auto;
+  margin-top: 10px;
+  display: flex;
+  justify-items: space-around;
+  align-items: center;
+}
+@media screen and (max-width: 700px) {
+  .bottom-row {
+    border-top: solid 1px rgba(255, 255, 255, 0.05);
+    padding-top: 5px;
+  }
+}
+.bottom-row .pxc-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 700px) {
+  .bottom-row .pxc-info {
+    position: absolute;
+    bottom: -28px;
+    left: -10px;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .bottom-row .pxc-info .region {
+    color: #112;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+}
+.bottom-row .links {
+  display: flex;
+  align-content: flex-end;
+  flex: 1 0 auto;
+  justify-content: flex-end;
+}
+.bottom-row .links a {
+  color: #99D;
+  font-size: 28px;
+  text-align: center;
+  width: 48px;
+  height: 48px;
+  display: inline-block;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.bottom-row .links a:hover {
+  color: #EEF;
+}
+@media screen and (max-width: 700px) {
+  .bottom-row .links {
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: -10px;
+  }
+  .bottom-row .links a {
+    color: #a6aad1;
+  }
+}
+.bottom-row .flags {
+  overflow: hidden;
+  height: 23px;
+}
+.bottom-row .flags span {
+  margin: 2px 6px;
+  background: white;
+  border-radius: 3px;
+  width: 24px;
+  height: 16px;
+  display: inline-block;
+}
+.bottom-row .region {
+  color: white;
+  margin-left: 8px;
+}
+
+
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js"></script>

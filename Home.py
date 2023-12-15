@@ -100,6 +100,7 @@ def signup():
             'Country':"Not Set",
             'Level_preparation':"Not Set",
             'language':"Not Set",
+            'postal_code':"Not Set",
             'Joined_date':current_date.strftime("%Y-%m-%d")
             })
     
@@ -117,6 +118,9 @@ def signup():
 
     return jsonify(response_data), 200 
 
+@app.route('/profile')
+def profile():
+    return render_template('Profile.html')
 
 @app.route('/send_otp',methods=['GET','POST'])
 def send_otp():

@@ -34,11 +34,12 @@
        <ul class="navbar-nav ml-auto">
         {% if session_bool %}
          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-         <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+         
          <li class="nav-item"><a href="course.html" class="nav-link">Course</a></li>
          <li class="nav-item"><a href="{{url_for('chat')}}" class="nav-link">Message</a></li>
          <li class="nav-item"><a href="{{url_for('blog')}}" class="nav-link">Blog</a></li>
          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+         <li class="nav-item"><a href="{{url_for('profile')}}" class="nav-link">Profile</a></li>
          {% else %}
          <li class="nav-item"><a href="{{url_for('signup_login')}}" class="nav-link">Signup/Login</a></li>
          {% endif %}
