@@ -59,20 +59,40 @@ class Chat:
         return user_chat
     
     def get_specific_chat(self,chat_id,email):
-        db=self.mongo_conn['ChatDB']
-        # collection=db[email]
-        return "hi"
+        db=self.mongo_conn['all_chats']
+        collection=db[chat_id]
+        
+        cursor=collection.find({})
+        
+        chat={}
+        chat['_id']=list()
+        for doc in cursor:
+            for key,value in doc.items():
+                if key not in chat:
+                    chat[key]=list()
+                chat[key].append(value)
+        
+        
+        return chat
     
     def push_data_specific_chat(self,sender_email,reciever_email,message,chat_id):
         
         db=self.mongo_conn['all_chats']
         collection=db[chat_id]
         
+        current_time = datetime.now().time()
+
+        hours = current_time.hour
+        minutes = current_time.minute
+
+  
+        formatted_time = "{:02d}:{:02d}".format(hours, minutes)
+        
         data={
             'sender_email':sender_email,
             'reciever_email':reciever_email,
             'chat_id':chat_id,
-            'time':datetime.now().strftime("%y%m%d"),
+            'time':formatted_time,
             'message':message
         }
         try:
@@ -80,6 +100,7 @@ class Chat:
             return True
         except:
             return False
+        
         
         
         

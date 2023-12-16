@@ -1,5 +1,6 @@
 import pyrebase
 import pymongo
+import ssl
 
 class Configurations:
     def __init__(self):

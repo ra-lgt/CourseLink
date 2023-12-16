@@ -1,3 +1,5 @@
+
+
 from flask import Flask,render_template,request,jsonify,session,url_for,redirect
 import json
 import random
@@ -9,11 +11,11 @@ from UserAPI import DataAPI
 from chat import Chat
 from flask_socketio import SocketIO, emit,join_room,leave_room,send
 from flask_cors import CORS
+import threading
 
+app = Flask(__name__)
+socketio = SocketIO(app)
 
-
-app=Flask(__name__)
-socketio = SocketIO(app,cors_allowed_origins="*")
 config=Configurations()
 firebase_db=config.Setup_auth()
 app.secret_key = 'Course-Link'
@@ -78,8 +80,6 @@ def login():
     
     cookie=userauth['idToken']
     session['user_id'] = cookie
-    
-    
     return redirect(url_for('Home'))
 
 @app.route('/signup',methods=['GET','POST'])
@@ -229,6 +229,8 @@ def chat_page(chat_id):
     
     user_specific_chats=None
     user_specific_chats=cache.get('users_chats')
+    history_chat={}
+    len_chat=0
     
     user_specific_data=[]
     
@@ -247,6 +249,9 @@ def chat_page(chat_id):
         selected_chat=user_specific_data[index]
         selected_chat['chat_id']=user_specific_chats['chat_id'][index]
         
+        history_chat=user_chat.get_specific_chat(chat_id,session['email'])
+        len_chat=len(history_chat['_id'])
+        
     
     print(selected_chat)    
     print("-"*10)
@@ -256,7 +261,7 @@ def chat_page(chat_id):
     print("-"*10)
     
         
-    return render_template('chat.html',user_specific_data=user_specific_data,user_specific_chats=user_specific_chats,count=len(user_specific_data),chat_id=chat_id,selected_chat=selected_chat,email=session['email'])
+    return render_template('chat.html',user_specific_data=user_specific_data,user_specific_chats=user_specific_chats,count=len(user_specific_data),chat_id=chat_id,selected_chat=selected_chat,email=session['email'],history_chat=history_chat,len_chat=len_chat,username=session['username'])
 
 @app.route('/change_chat/<chat_id>')
 def change_chat(chat_id):
@@ -278,23 +283,32 @@ def on_leave(data):
     session.pop('chat_id', None)
 
 
+
+
 @socketio.on('message')
 def handle_message(message):
-    return_code=user_chat.push_data_specific_chat(message['sender_email'],message['reciever_email'],message['message'],message['room'])
+    # Run the background thread
     
-    if(return_code==True):
+    
+    
+    return_code = user_chat.push_data_specific_chat(message['sender_email'], message['receiver_email'], str(session['username']+':'+message['message']), message['room'])
+    print(message['sender_email'])
+    print("-" * 30)
+    print(message['receiver_email'])
+    
+    if return_code:
         current_time = datetime.now().time()
-
-        hours = current_time.hour
-        minutes = current_time.minute
-
-  
+        hours, minutes = current_time.hour, current_time.minute
         formatted_time = "{:02d}:{:02d}".format(hours, minutes)
-        
-        emit('response', {'data': message['message'],'isYou':True,'time':formatted_time},broadcast=True,room=message['room'])
-        
-	
 
+        # Emitting from within a socket event handler
+        emit('response', {
+            'data': str(session['username']+':'+message['message']),
+            'sender_email': message['sender_email'],
+            'receiver_email': message['receiver_email'],
+            'email':session['email'],
+            'time': formatted_time
+        }, broadcast=True, room=message['room'])
 
 @app.route('/terms')
 def terms():
@@ -379,5 +393,5 @@ def logout():
     cache.clear()
     return redirect(url_for('Home'))
 
-if __name__=="__main__":
+if __name__ == '__main__':
     socketio.run(app,debug=True)
