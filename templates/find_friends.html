@@ -68,7 +68,7 @@
         </div>  
       </div>
       <button id='cbtn' class="{{i}}" onclick="send_request('{{ all_user_data['username'][i] }}', '{{ all_user_data['email'][i] }}')" style="background: rgb(19,175,240); margin-left: 460px;
-      background: linear-gradient(105deg, rgba(91,104,235,1) 0%, rgba(40,225,253,1) 100%);color:white; padding:5px 20px; font-size: 15; border: 1px solid  rgb(19,175,240);border-radius:30px;">Send Friend Request</button>
+      background: linear-gradient(105deg, rgba(91,104,235,1) 0%, rgba(40,225,253,1) 100%);color:white; padding:5px 20px; font-size: 15; border: 1px solid  rgb(19,175,240);border-radius:30px;">Message</button>
       
       </div>
       
@@ -84,7 +84,7 @@
       email: email
   };
 
-  fetch('/send_friend_request', {
+  fetch('/create_chat', {
     method: 'POST', // or 'GET' depending on your backend
     headers: {
         'Content-Type': 'application/json',
@@ -95,7 +95,7 @@
 .then(data => {
     // Handle the response data
     if(data['status']==200){
-      var url="{{url_for('sucess_register',data='Request Sent')}}"
+      var url="{{url_for('chat_page',chat_id='None')}}"
       window.location.href = url;
     }
     else{
@@ -147,15 +147,14 @@
        {% endfor %}
       </select>
         </div>
-        <!-- <div class="filter">
-          <h3>Filter Opening by Job Type</h3>
+        <div class="filter">
+          <h3>Filter by Degree</h3>
           <select id="type-filter" class="jobtypefilter selectlist">
-        <option selected="selected" value="">All Job Types</option>
-        <option value="Full Time">Full Time</option>
-        <option value="Permanent">Permanent</option>
-        <option value="Part Time">Part Time</option>
+       {% for i in degree %}
+        <option value="Part Time">{{i}}</option>
+        {% endfor %}
       </select>
-        </div> -->
+        </div>
       </div>
     </div>
      </div>
@@ -187,6 +186,7 @@ var options = {
       "jobTitle",
       "datePosted",
       "jobLocation",
+      "jobtypefilter",
       { attr: "href", name: "applyLink" },
       { attr: "src", name: "image" },
       { attr: "data-target", name: "jobType" } 
@@ -195,8 +195,10 @@ var options = {
 '<li style="margin-bottom:20px;border-radius:50px;background-color:light;border:2px solid #e449ad">' +
   '<img class="image">' +
   '<a class="applyLink">' +
-    '<h3 class="jobTitle"style="color:black;margin-left:37px"></h3>' +
+    '<h4 class="jobTitle"style="color:black;margin-left:37px"></h4>' +
+    '<h3 class="jobtypefilter"style="color:black;margin-left:37px"></h3>'+
   '</a>' +
+ 
   '<div class="bottomBox">' +
     '<div class="left-part">' +
       '<button type="button" class="jobType" style="margin-left=500px" data-toggle="modal">View More' +
@@ -227,7 +229,8 @@ var options = {
   {% for i in range(count) %}
  
     {
-      jobTitle: "{{all_user_data['username'][i]}}",
+      jobTitle: "User Name : {{all_user_data['username'][i]}}",
+      jobtypefilter:"Degree : {{all_user_data['Degree'][i]}}",
       jobType:  "#learnMore{{i}}",
       datePosted: "{{all_user_data['Joined_date'][i]}}",
       jobLocation:"{{all_user_data['Course'][i]}}",
@@ -240,59 +243,7 @@ var options = {
 
 
     },
-     {
-      jobTitle: "{{all_user_data['username'][i]}}",
-      jobType:  "#learnMore{{i}}",
-      datePosted: "{{all_user_data['Joined_date'][i]}}",
-      jobLocation:"{{all_user_data['Course'][i]}}",
-      applyLink: "#",
-      
-
-      image: "{{url_for('static',filename='images/work-8.jpg')}}",
-
-
-
-
-    }, {
-      jobTitle: "{{all_user_data['username'][i]}}",
-      jobType:  "#learnMore{{i}}",
-      datePosted: "{{all_user_data['Joined_date'][i]}}",
-      jobLocation:"{{all_user_data['Course'][i]}}",
-      applyLink: "#",
-      
-
-      image: "{{url_for('static',filename='images/work-8.jpg')}}",
-
-
-
-
-    }, {
-      jobTitle: "{{all_user_data['username'][i]}}",
-      jobType:  "#learnMore{{i}}",
-      datePosted: "{{all_user_data['Joined_date'][i]}}",
-      jobLocation:"{{all_user_data['Course'][i]}}",
-      applyLink: "#",
-      
-
-      image: "{{url_for('static',filename='images/work-8.jpg')}}",
-
-
-
-
-    }, {
-      jobTitle: "{{all_user_data['username'][i]}}",
-      jobType:  "#learnMore{{i}}",
-      datePosted: "{{all_user_data['Joined_date'][i]}}",
-      jobLocation:"{{all_user_data['Course'][i]}}",
-      applyLink: "#",
-      
-
-      image: "{{url_for('static',filename='images/work-8.jpg')}}",
-
-
-
-
-    }
+    
     {% endfor %}
 
   ];

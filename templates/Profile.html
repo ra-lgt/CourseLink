@@ -16,11 +16,11 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  {% if user_specific_data['profile_pic']!="" %}
+                  <!-- {% if user_specific_data['profile_pic']!="" %}
                   <img alt="Image placeholder" src="{{user_specific_data['profile_pic']}}">
                   {% else %}
                   <img alt="Image placeholder" src="{{url_for('static',filename='images/default_profile.jpg')}}">
-                  {% endif %}
+                  {% endif %} -->
 
                   
                 </span>
@@ -59,11 +59,11 @@
                 <div class="card-profile-image">
                     <form id="imageForm" action="#" method="post" enctype="multipart/form-data">
     <label for="imageUpload">
-      {% if user_specific_data['profile_pic']!="" %}
+      <!-- {% if user_specific_data['profile_pic']!="" %}
       <img id="previewImage" src="{{user_specific_data['profile_pic']}}" class="rounded-circle" style="cursor: pointer;">
       {% else %}
       <img id="previewImage" src="{{url_for('static',filename='images/default_profile.jpg')}}" class="rounded-circle" style="cursor: pointer;">
-      {% endif %}
+      {% endif %} -->
 
       }
     </label>
@@ -78,7 +78,7 @@
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                     <div>
-                      <span class="heading">{{friend_count}}</span>
+                      <!-- <span class="heading">{{friend_count}}</span> -->
                       <span class="description">Friends</span>
                     </div>
                     <div>
@@ -86,7 +86,7 @@
                       <span class="description"></span>
                     </div>
                     <div>
-                      <span class="heading">{{event_count}}</span>
+                      <!-- <span class="heading">{{event_count}}</span> -->
                       <span class="description">Event Count</span>
                     </div>
                   </div>
@@ -107,7 +107,7 @@
                 </div>
                 <hr class="my-4">
                 <p>{{user_specific_data['About']}}</p>
-                <a href="{{url_for('view_user_friends')}}">Show Friends</a>
+
               </div>
             </div>
           </div>
@@ -125,7 +125,7 @@
               </div>
             </div>
             <div class="card-body">
-              <form method="POST" action="{{url_for('update_profile_data')}}">
+               <form method="POST" action="{{url_for('update_profile_data')}}">
                 <h6 class="heading-small text-muted mb-4">User information</h6>
                 <div class="pl-lg-4">
                   <div class="row">
@@ -212,8 +212,8 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-address">Subject Name</label>
-                        <input id="input-address" name="address" class="form-control form-control-alternative" placeholder="Home Address" value="{{user_specific_data['Address']}}" type="text">
+                        <label class="form-control-label" for="input-address">Course Name</label>
+                        <input id="input-address" name="Course" class="form-control form-control-alternative" placeholder="Eg: Computer Science" value="{{user_specific_data['Course']}}" type="text">
                       </div>
                     </div>
                   </div>
@@ -221,29 +221,33 @@
                     <div class="col-lg-4">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-city">Degree(Studying for)</label>
-                        <input type="text" name="city" id="input-city" class="form-control form-control-alternative" placeholder="City" value="{{user_specific_data['City']}}">
+                        <input type="text" name="Degree" id="input-city" class="form-control form-control-alternative" placeholder="Eg: B.Tech" value="{{user_specific_data['Degree']}}">
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-country">Experince Level</label>
-                        <select id="input-country" class="form-control form-control-alternative">
-                          <option value="option1">Option 1</option>
-  <option value="option2">Option 2</option>
-  <option value="option3">Option 3</option>
+                        <select id="input-country" name="Experince_Level" class="form-control form-control-alternative" >
+                          
+                          <option value="Begineer">Begineer</option>
+  <option value="Intermediate">Intermediate</option>
+  <option value="Experince">Experince</option>
                         </select>
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Preferred Language</label>
-                        <input type="text" name="postal" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" value="{{user_specific_data['Postal_Code']}}">
+                        <input type="text" name="language" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" value="{{user_specific_data['language']}}">
                       </div>
                     </div>
                   </div>
                 </div>
                 
-                
+  <script>
+    document.getElementById("input-country").value = "{{user_specific_data['Experince_Level']}}";
+
+  </script>              
 
                 <hr class="my-4">
                 <!-- Description -->

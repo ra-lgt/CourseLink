@@ -22,7 +22,7 @@
           <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
           <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
           <li class="nav-item"><a href="course.html" class="nav-link">Course</a></li>
-          <li class="nav-item active"><a href="{{url_for('chat')}}" class="nav-link">Message</a></li>
+          <li class="nav-item active"><a href="{{url_for('chat_page',chat_id='None')}}" class="nav-link">Message</a></li>
           <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
           <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
@@ -62,16 +62,18 @@
                                                 <div class="tab-pane fade show active" id="Open" role="tabpanel" aria-labelledby="Open-tab">
                                                     <!-- chat-list -->
                                                     <div class="chat-list">
-                                                        <a href="#" class="d-flex align-items-center">
+                                                        {% for i in range(count) %}
+                                                        <a href="{{url_for('chat_page',chat_id=user_specific_chats['chat_id'][i])}}" class="d-flex align-items-center">
                                                             <div class="flex-shrink-0">
                                                                 <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png" alt="user img">
                                                                 <span class="active"></span>
                                                             </div>
                                                             <div class="flex-grow-1 ms-3">
-                                                                <h3>Mehedi Hasan</h3>
-                                                                <p>front end developer</p>
+                                                                <h3>{{user_specific_data[i]['username']}}</h3>
+                                                                <p>{{user_specific_data[i]['Course']}}</p>
                                                             </div>
                                                         </a>
+                                                        {% endfor %}
                    
                 
 
@@ -94,6 +96,7 @@
                                                                 <p>front end developer</p>
                                                             </div>
                                                         </a>
+                                                       
 
                                                     </div>
                                                     <!-- chat-list -->
@@ -111,9 +114,11 @@
 
 
                         <!-- chatbox -->
+                        {% if chat_id!='None' %}
                         <div class="chatbox">
                             <div class="modal-dialog-scrollable">
                                 <div class="modal-content">
+                                    
                                     <div class="msg-head">
                                         <div class="row">
                                             <div class="col-8">
@@ -123,8 +128,8 @@
                                                         <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png" alt="user img">
                                                     </div>
                                                     <div class="flex-grow-1 ms-3">
-                                                        <h3>Mehedi Hasan</h3>
-                                                        <p>front end developer</p>
+                                                        <h3>{{selected_chat['username']}}</h3>
+                                                        <p>{{selected_chat['Degree']}},{{selected_chat['Course']}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,30 +139,25 @@
                                                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
                                                         <ul class="dropdown-menu">
                                                             <li><a class="dropdown-item" href="#">Action</a></li>
-                                                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                            <li><a class="dropdown-item" href="#">Delete</a></li>
                                                             <li>
                                                                 <hr class="dropdown-divider">
                                                             </li>
-                                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                            <li><a class="dropdown-item" href="#">Block</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
+                                    
 
 
                                     <div class="modal-body">
-                                        <div class="msg-body">
+                                        <div class="msg-body" id="chatList">
                                             <ul>
-                                                <li class="sender">
-                                                    <p> Hey, Are you there? </p>
-                                                    <span class="time">10:06 am</span>
-                                                </li>
-                                                <li class="sender">
-                                                    <p> Hey, Are you there? </p>
-                                                    <span class="time">10:16 am</span>
-                                                </li>
+                                                
+                                                
                                                 <li class="repaly">
                                                     <p>yes!</p>
                                                     <span class="time">10:20 am</span>
@@ -166,28 +166,13 @@
                                                     <p> Hey, Are you there? </p>
                                                     <span class="time">10:26 am</span>
                                                 </li>
-                                                <li class="sender">
-                                                    <p> Hey, Are you there? </p>
-                                                    <span class="time">10:32 am</span>
-                                                </li>
-                                                <li class="repaly">
-                                                    <p>How are you?</p>
-                                                    <span class="time">10:35 am</span>
-                                                </li>
-                                                <li>
+                                             
                                                     <div class="divider">
                                                         <h6>Today</h6>
                                                     </div>
                                                 </li>
 
-                                                <li class="repaly">
-                                                    <p> yes, tell me</p>
-                                                    <span class="time">10:36 am</span>
-                                                </li>
-                                                <li class="repaly">
-                                                    <p>yes... on it</p>
-                                                    <span class="time">junt now</span>
-                                                </li>
+                                               
 
                                             </ul>
                                         </div>
@@ -196,9 +181,9 @@
 
                                     <div class="send-box">
                                         <form action="">
-                                            <input type="text" class="form-control" aria-label="message…" placeholder="Write message…">
+                                            <input id="message" type="text" class="form-control" aria-label="message…" placeholder="Write message…">
 
-                                            <button type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</button>
+                                            <button id="send_message" type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i> Send</button>
                                         </form>
 
                                         <div class="send-btns">
@@ -209,15 +194,13 @@
                                                     </span><input type="file" name="upload" id="upload" class="upload-box" placeholder="Upload File" aria-label="Upload File">
                                                 </div>
 
-                                                <select class="form-control" id="exampleFormControlSelect1">
+                                                <!-- <select class="form-control" id="exampleFormControlSelect1">
                                                     <option>Select template</option>
                                                     <option>Template 1</option>
                                                     <option>Template 2</option>
-                                                </select>
+                                                </select> -->
 
-                                                <div class="add-apoint">
-                                                    <a href="#" data-toggle="modal" data-target="#exampleModal4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16" fill="none"><path d="M8 16C3.58862 16 0 12.4114 0 8C0 3.58862 3.58862 0 8 0C12.4114 0 16 3.58862 16 8C16 12.4114 12.4114 16 8 16ZM8 1C4.14001 1 1 4.14001 1 8C1 11.86 4.14001 15 8 15C11.86 15 15 11.86 15 8C15 4.14001 11.86 1 8 1Z" fill="#7D7D7D"/><path d="M11.5 8.5H4.5C4.224 8.5 4 8.276 4 8C4 7.724 4.224 7.5 4.5 7.5H11.5C11.776 7.5 12 7.724 12 8C12 8.276 11.776 8.5 11.5 8.5Z" fill="#7D7D7D"/><path d="M8 12C7.724 12 7.5 11.776 7.5 11.5V4.5C7.5 4.224 7.724 4 8 4C8.276 4 8.5 4.224 8.5 4.5V11.5C8.5 11.776 8.276 12 8 12Z" fill="#7D7D7D"/></svg> Appoinment</a>
-                                                </div>
+                                                
                                             </div>
                                         </div>
 
@@ -226,6 +209,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                     <!-- chatbox -->
 
 
@@ -235,5 +219,60 @@
         </div>
     </section>
     <!-- char-area -->
+    
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+
+
+<script type="text/javascript">
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    const chatList = document.getElementById('chatList');
+    var chat_id = "{{ chat_id }}";
+     socket.emit('join', { room: chat_id });
+
+     socket.on('connect', function() {
+        console.log('Connected to server');
+    }); 
+
+    window.addEventListener('beforeunload', function () {
+        socket.emit('leave', { room: chat_id });
+    });
+    socket.on('response', function(data) {
+        const li = document.createElement('li');
+        li.className = 'repaly';
+
+        const timespan = document.createElement('span');
+        timespan.className='time';
+
+        const  text= document.createElement('p');
+
+        timespan.textContent = data.time;
+        text.textContent = data.data;
+
+        li.appendChild(timespan);
+        li.appendChild(text);
+        
+        chatList.appendChild(li);
+
+    });
+
+    document.getElementById('send_message').addEventListener('click', function() {
+        var messageInput = document.getElementById('message');
+        var message = messageInput.value;
+        messageInput.value = '';
+        var currentUrl = window.location.href;
+        var sender_email = "{{ email }}"; // Replace with actual username value
+    
+        var data = {
+            message: message,
+            url: currentUrl,
+            room:chat_id,
+            sender_email:sender_email,
+            reciever_email:"{{selected_chat['email']}}"
+            
+        };
+    
+        socket.emit('message', data);
+    });
+</script>

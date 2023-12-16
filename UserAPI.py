@@ -14,14 +14,14 @@ class DataAPI:
         collection=db['user_details']
         
         
-#         query = {
-#     "$and": [
-#         {"email": {"$ne": email}},
+        query = {
+    "$and": [
+        {"email": {"$ne": email}},
         
-#     ]
-# }
+    ]
+}
         
-        cursor = collection.find({})
+        cursor = collection.find(query)
         
         user_all_data={}
         
@@ -59,3 +59,17 @@ class DataAPI:
             break
         
         return data
+    
+    def update_profile(self,updated_data,email):
+        db = self.mongo_conn["User-Data"]
+        collection=db['user_details']
+        
+        filter={"email":email}
+        update={"$set":updated_data}
+        
+        try:
+            collection.update_one(filter, update)
+            return True
+        except Exception as e:
+            print(e)
+            return False
