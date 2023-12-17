@@ -35,9 +35,9 @@
        
           </div>
           </div>
-        <img id="blog_image" height="1000px" width="20" class="w-100 my-3" src="" />
+        <img id="blog_image" height="100px" width="20" class="w-100 my-3" src="" />
         
-        <div style="max-width: 700px; top: -80px;" class="mx-auto text-secondary">
+        <div style="max-width:200px; top: -80px;" class="mx-auto text-secondary">
           <p id="content" class="my-2" style="line-height: 2;"  oninput="handleInput(event)"></p>
           </div>
           
@@ -58,8 +58,8 @@
                     <div class="form-group">
                         <label> Image </label>
                         <div class="input-group">
-                            <span class="input-group-btn">
-                                <span class="btn btn-primary btn-file">
+                            <span class="bts_buttons">
+                                <span class="btn btn-primary btn-file" style="background-color: #992c9e;">
                                     Browse <input type="file" name="bimgs" multiple onchange="updateFileReflection(this)">
                                 </span>
                             </span>
@@ -70,7 +70,7 @@
                         <textarea oninput="update_content_Reflection(this)" name="content" ></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="submit" name="submit" value="Publish" class="btn btn-primary form-control" onclick="submitForm()" />
+                        <input type="submit" name="submit" value="Publish" class="bts_buttons" onclick="submitForm()" />
                     </div>
                 </form>
             </div>
@@ -140,6 +140,10 @@
 </html>
 
   <style>
+    .bts_buttons{
+        background-color: #992c9e;
+        color: white;
+    }
     textarea {
       width: 100%; /* or width: 50vw; */
       height: 30vh; /* or any appropriate height using vh units */

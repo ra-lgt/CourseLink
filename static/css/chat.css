@@ -237,7 +237,7 @@ message-area
     width: auto;
     overflow: hidden;
     height: 100%;
-    border-left: 1px solid #ccc;
+    border-left: 1px solid #e449ad;
 }
 
 .chatbox .modal-dialog,
@@ -259,10 +259,10 @@ message-area
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
-    color: #222;
+    color: #992c9e;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #ccc;
+    border: 1px solid #e449ad;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -328,7 +328,7 @@ a.add img {
 }
 
 .chat-list p {
-    color: #343434;
+    color:#343434;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
@@ -375,7 +375,7 @@ a.add img {
 
 .msg-head {
     padding: 15px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e449ad;
 }
 
 .moreoption {
@@ -476,7 +476,7 @@ a.add img {
     height: 0;
     border-style: solid;
     border-width: 0 12px 15px 12px;
-    border-color: transparent transparent #4b7bec transparent;
+    border-color: transparent transparent #992c9e transparent;
     -webkit-transform: rotate(37deg);
     -ms-transform: rotate(37deg);
     transform: rotate(37deg);
@@ -488,7 +488,7 @@ a.add img {
     line-height: 1.5;
     font-weight: 400;
     padding: 15px;
-    background: #4b7bec;
+    background: #992c9e;
     display: inline-block;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -533,7 +533,8 @@ li.repaly .time {
     font-weight: normal;
     font-size: 14px;
     line-height: 1.5;
-    color: #222;
+    color: #992c9e;
+
     background: #fff;
     display: inline-block;
     padding: 0 5px;
@@ -555,7 +556,7 @@ li.repaly .time {
 
 .send-box {
     padding: 15px;
-    border-top: 1px solid #ccc;
+    border-top: 1px solid #e449ad;
 }
 
 .send-box form {
@@ -572,10 +573,10 @@ li.repaly .time {
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
-    color: #222;
+    color: #992c9e;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #ccc;
+    border: 1px solid #e449ad;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -585,7 +586,7 @@ li.repaly .time {
 
 .send-box button {
     border: none;
-    background: #3867d6;
+    background: #992c9e;
     padding: 0.375rem 5px;
     color: #fff;
     border-radius: 0.25rem;

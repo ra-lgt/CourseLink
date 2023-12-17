@@ -21,13 +21,35 @@
 <link href="{{url_for('static',filename='/css/glightbox.min.css')}}" rel="stylesheet">
 <link href="{{url_for('static',filename='/css/remixicon.css')}}" rel="stylesheet">
 <link href="{{url_for('static',filename='/css/swiper-bundle.min.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 
 
 
 
 </head>
 
-<body style="background-color:#F9FAFF;">
+<body style="background-color:#f9faff;">
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+   <div class="container">
+     <a class="navbar-brand" href="index.html"><span>Study</span>Lab</a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="oi oi-menu"></span> Menu
+   </button>
+
+   <div class="collapse navbar-collapse" id="ftco-nav" style="background-color:white;width:100%;">
+       <ul class="navbar-nav ml-auto">
+         <li class="nav-item active" style=""><a href="index.html" class="nav-link">Home</a></li>
+         
+         <li class="nav-item"><a href="{{url_for('find_friends')}}" class="nav-link">Course</a></li>
+         <li class="nav-item"><a href="{{url_for('chat_page',chat_id='None')}}" class="nav-link">Message</a></li>
+         <li class="nav-item"><a href="{{url_for('blog',page_no=1)}}" class="nav-link">Blog</a></li>
+         <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+         <li class="nav-item"><a href="{{url_for('profile')}}" class="nav-link">Profile</a></li>
+  
+     </ul>
+ </div>
+</div>
+</nav>
 
 
 {% for i in range(count) %}
@@ -41,7 +63,7 @@
         </button>
         </br>
       <div class="container">
-        <p style="font-weight:bold ; padding-bottom: 20px; font-family:'Times New Roman', Times, serif; color:rgb(19,175,240); font-size: 30px ; text-align: center;">User Details</p>
+        <p style="font-weight:bold ; padding-bottom: 20px; font-family:'Times New Roman', Times, serif; color:#e449ad; font-size: 30px ; text-align: center;">User Details</p>
         <div style="    margin-left: 100px;" class="row">
           <div style="width:340" class="col-sm-8">
             
@@ -67,8 +89,8 @@
           </div>          
         </div>  
       </div>
-      <button id='cbtn' class="{{i}}" onclick="send_request('{{ all_user_data['username'][i] }}', '{{ all_user_data['email'][i] }}')" style="background: rgb(19,175,240); margin-left: 460px;
-      background: linear-gradient(105deg, rgba(91,104,235,1) 0%, rgba(40,225,253,1) 100%);color:white; padding:5px 20px; font-size: 15; border: 1px solid  rgb(19,175,240);border-radius:30px;">Message</button>
+      <button id='cbtn' class="{{i}}" onclick="send_request('{{ all_user_data['username'][i] }}', '{{ all_user_data['email'][i] }}')" style="background:#e449ad; margin-left: 460px;
+      background:#e449ad;       color:#ffffff; padding:5px 20px; font-size: 15;border:1px solid #ffffff;border-radius:30px;">Message</button>
       
       </div>
       
@@ -192,7 +214,7 @@ var options = {
       { attr: "data-target", name: "jobType" } 
     ],
     item:
-'<li style="margin-bottom:20px;border-radius:50px;background-color:light;border:2px solid #e449ad">' +
+'<li style="margin-bottom:20px;border-radius:50px;background-color:light;border:2px solid #e449ad;box-shadow: 0 9px 11px rgba(0, 0, 0.5, 0.5);">' +
   '<img class="image">' +
   '<a class="applyLink">' +
     '<h4 class="jobTitle"style="color:black;margin-left:37px"></h4>' +
@@ -201,7 +223,7 @@ var options = {
  
   '<div class="bottomBox">' +
     '<div class="left-part">' +
-      '<button type="button" class="jobType" style="margin-left=500px" data-toggle="modal">View More' +
+      '<button type="button" class="jobType" style="margin-left=500px;" data-toggle="modal">View More' +
         '</button>' +
       '<p class="jobLocation"></p>' +
     '</div>' +
