@@ -106,10 +106,8 @@
 	<input type="checkbox" name="adminToggle" class="adminToggle" />
 	<a class="adminButton" href="#!"><i class="fa fa-cog"></i></a>
 	<div class="adminButtons">
-		<a href="{{url_for('create_blog')}}" title="Create Blog"><i class="fa fa-building"></i></a>
-		<a href="#" title="Edit Company"><i class="fa fa-pen"></i></a>
-		<a href="#" title="Add User"><i class="fa fa-user-plus"></i></a>
-		<a href="#" title="Edit User"><i class="fa fa-user-edit"></i></a>
+		<a href="{{url_for('create_blog')}}" title="Create Blog"><i class="fa fa-pencil fa-fw"></i></a>
+		<a href="#" title="Edit Company"><i class="fa fa-eye"></i></a>
 	</div>
 </div>
 <script>
@@ -129,7 +127,7 @@
   .adminButton {
     height: 60px;
     width: 60px;
-    background-color: rgba(67, 83, 143, .8);
+    background-color: #992c9e;
     border-radius: 50%;
     display: block;
     color: #fff;
