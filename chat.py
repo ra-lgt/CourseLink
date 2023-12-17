@@ -23,6 +23,9 @@ class Chat:
         collection_sender=db[sender_email]
         collection_reciever=db[reciever_email]
         
+        existing_document = collection_sender.find({'chat_reciever_email': reciever_email})
+        if existing_document is not None:
+            return True
         chat_id=self.generate_chat_id(length=6)
         
         try:
