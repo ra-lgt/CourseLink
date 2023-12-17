@@ -1,0 +1,226 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css"/>
+<link rel="stylesheet" href="https://cdn.rawgit.com/bootstrap-wysiwyg/bootstrap3-wysiwyg/master/src/bootstrap3-wysihtml5.css"/>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/bootstrap-wysiwyg/bootstrap3-wysiwyg/master/dist/bootstrap3-wysihtml5.all.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Reflection</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <div style=" top: -80px;" class="mx-auto text-secondary">
+          
+          <h1 id="Heading" class="font-weight-bold text-dark"></h1>
+          <h4 id="Description" class="my-2" style="line-height: 2;"><h4>
+          
+          <div class="my-3 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+            <img  src="{{profile_pic}}" style="width: 50px;"/>
+            <small class="ml-2">
+              <a href="#" class="text-primary d-block">{{username}}</a>
+              <span>{{date}}</span>
+            </small>
+          </div>
+       
+          </div>
+          </div>
+        <img id="blog_image" height="1000px" width="20" class="w-100 my-3" src="" />
+        
+        <div style="max-width: 700px; top: -80px;" class="mx-auto text-secondary">
+          <p id="content" class="my-2" style="line-height: 2;"  oninput="handleInput(event)"></p>
+          </div>
+          
+        </div>
+      </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post" role="form" action="{{url_for('post_blog')}}" id="myForm" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="title" placeholder="Title" oninput="update_heading_Reflection(this)"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="dscription" placeholder="Enter the description" oninput="update_description_Reflection(this)"/>
+                    </div>
+                    <div class="form-group">
+                        <label> Image </label>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    Browse <input type="file" name="bimgs" multiple onchange="updateFileReflection(this)">
+                                </span>
+                            </span>
+                            <input type="text"  class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea oninput="update_content_Reflection(this)" name="content" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" value="Publish" class="btn btn-primary form-control" onclick="submitForm()" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <script>
+     
+        function update_heading_Reflection(element) {
+            console.log('hi')
+            const reflectionElement = document.getElementById("Heading");
+            reflectionElement.textContent = element.value;
+        }
+
+        function update_content_Reflection(element) {
+          const reflectionElement = document.getElementById("content");
+      const textareaValue = event.target.value;
+
+      // Check if the "Enter" key (key code 13) is pressed
+      if (event.keyCode === 13) {
+        // Append a line break to the content
+        reflectionElement.innerHTML += '<br>';
+      } else {
+        // Check for bold text enclosed between triple backticks
+        const formattedText = textareaValue.replace(/```([^`]*)```/g, '<strong>$1</strong>');
+
+        // Update the content with the formatted text
+        reflectionElement.innerHTML = formattedText.replace(/\n/g, '<br>');
+      }
+    }
+
+        
+
+        function update_description_Reflection(element) {
+            console.log('hi')
+            const reflectionElement = document.getElementById("Description");
+            reflectionElement.textContent = element.value;
+        }
+
+        function updateFileReflection(input) {
+            const file = input.files[0];
+            const reflection_image = document.getElementById("blog_image");
+            if (file) {
+                var reader = new FileReader();
+            
+                reader.onload = function(e) {
+                    reflection_image.src = e.target.result;
+                };
+            
+                reader.readAsDataURL(file);
+              } else {
+                // Handle the case where no file is selected or the selected file is not an image
+                preview.src = '#';
+              }
+        }
+
+        function submitForm() {
+            const form = document.getElementById("myForm");
+            const reflectionContainer = document.getElementById("reflection");
+            form.classList.add("hidden");
+            reflectionContainer.classList.remove("hidden");
+        }
+    </script>
+</body>
+</html>
+
+  <style>
+    textarea {
+      width: 100%; /* or width: 50vw; */
+      height: 30vh; /* or any appropriate height using vh units */
+    }
+    
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+    #content {
+      line-height: 2;
+      max-width: 100%; /* Set your desired maximum width */
+      overflow: hidden;
+      word-wrap: break-word; /* Allows long words to be broken and wrap to the next line */
+      white-space: normal; /* Ensures that whitespace is preserved and content wraps as needed */
+    }
+    
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+    
+    input[readonly] {
+      background-color: white !important;
+      cursor: text !important;
+    }
+    
+    /* this is only due to codepen display don't use this outside of codepen */
+    .container {
+      padding-top: 20px;
+    }
+  </style>
+  <script>
+    $(function() {
+      // Initialize wysihtml5 editor
+      var editor = $(".bcontent").wysihtml5({
+        toolbar: {
+          "image": false
+        }
+      });
+      
+      var wysihtml5Editor = editor.data('wysihtml5').editor;
+      
+      if (wysihtml5Editor) {
+        wysihtml5Editor.composer.element.on('input', function() {
+          console.log("hi");
+          update_content_Reflection($(".bcontent").val());
+        });
+      }
+      $(document).on('change', '.btn-file :file', function() {
+        var input = $(this);
+        var numFiles = input.get(0).files ? input.get(0).files.length : 1;
+        console.log(input.get(0).files);
+        var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [numFiles, label]);
+      });
+    
+      $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+        var input = $(this).parents('.input-group').find(':text');
+        var log = numFiles > 1 ? numFiles + ' files selected' : label;
+    
+        if (input.length) {
+          input.val(log);
+        } else {
+          if (log) {
+            alert(log);
+          }
+        }
+      });
+    });
+    
+    
+  </script>

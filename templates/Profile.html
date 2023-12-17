@@ -16,11 +16,11 @@
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
                 <span class="avatar avatar-sm rounded-circle">
-                  <!-- {% if user_specific_data['profile_pic']!="" %}
+                  {% if user_specific_data['profile_pic']!="" %}
                   <img alt="Image placeholder" src="{{user_specific_data['profile_pic']}}">
                   {% else %}
                   <img alt="Image placeholder" src="{{url_for('static',filename='images/default_profile.jpg')}}">
-                  {% endif %} -->
+                  {% endif %}
 
                   
                 </span>
@@ -59,13 +59,13 @@
                 <div class="card-profile-image">
                     <form id="imageForm" action="#" method="post" enctype="multipart/form-data">
     <label for="imageUpload">
-      <!-- {% if user_specific_data['profile_pic']!="" %}
+      {% if user_specific_data['profile_pic']!="" %}
       <img id="previewImage" src="{{user_specific_data['profile_pic']}}" class="rounded-circle" style="cursor: pointer;">
       {% else %}
       <img id="previewImage" src="{{url_for('static',filename='images/default_profile.jpg')}}" class="rounded-circle" style="cursor: pointer;">
-      {% endif %} -->
+      {% endif %}
 
-      }
+      
     </label>
     <input type="file" id="imageUpload" style="display: none;" accept="image/*" onchange="previewFile()">
   </form>
@@ -304,7 +304,7 @@
           processData: false,
           success: function(response) {
             // Handle the response from the Flask server
-            alert(response)          },
+            alert("Profile Updated Successfully")          },
           error: function(error) {
             // Handle any errors that occurred during the request
             console.error('Error:', error);

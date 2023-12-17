@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="{{url_for('static',filename='css/flaticon.css')}}">
   <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 </head>
-<body>
+<body onload="check_page()">
  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
    <div class="container">
      <a class="navbar-brand" href="index.html"><span>Study</span>Lab</a>
@@ -59,134 +59,152 @@
 <section class="ftco-section bg-light">
   <div class="container">
     <div class="row d-flex">
+      {% for i in range(start,end) %}
       <div class="col-lg-4 ftco-animate">
         <div class="blog-entry">
-          <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
+          <a href="blog-single.html" class="block-20" style="background-image: url('{{blog_posts['blog_pic'][i]}}');">
           </a>
           <div class="text d-block">
            <div class="meta">
             <p>
-             <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-             <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-             <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
+             <a href="#"><span class="fa fa-calendar mr-2"></span>{{blog_posts['date'][i]}}</a>
+             <a href="#"><span class="fa fa-user mr-2"></span>{{blog_posts['username'][i]}}</a>
+             <!-- s -->
            </p>
          </div>
-         <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-         <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
+         <h3 class="heading"><a href="#">{{blog_posts['title'][i]}}</a></h3>
+         <p>{{blog_posts['description'][i]}}</p>
          <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
        </div>
      </div>
    </div>
+   {% endfor %}
 
-   <div class="col-lg-4 ftco-animate">
-    <div class="blog-entry">
-      <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
-      </a>
-      <div class="text d-block">
-       <div class="meta">
-        <p>
-         <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-         <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-         <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-       </p>
-     </div>
-     <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
-   </div>
- </div>
-</div>
-<div class="col-lg-4 ftco-animate">
-  <div class="blog-entry">
-    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
-    </a>
-    <div class="text d-block">
-     <div class="meta">
-      <p>
-       <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-       <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-       <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-     </p>
-   </div>
-   <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-   <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-   <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
- </div>
-</div>
-</div>
-<div class="col-lg-4 ftco-animate">
-  <div class="blog-entry">
-    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_4.jpg');">
-    </a>
-    <div class="text d-block">
-     <div class="meta">
-      <p>
-       <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-       <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-       <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-     </p>
-   </div>
-   <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-   <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-   <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
- </div>
-</div>
-</div>
 
-<div class="col-lg-4 ftco-animate">
-  <div class="blog-entry">
-    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_5.jpg');">
-    </a>
-    <div class="text d-block">
-     <div class="meta">
-      <p>
-       <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-       <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-       <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-     </p>
-   </div>
-   <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-   <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-   <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
- </div>
-</div>
-</div>
-<div class="col-lg-4 ftco-animate">
-  <div class="blog-entry">
-    <a href="blog-single.html" class="block-20" style="background-image: url('images/image_6.jpg');">
-    </a>
-    <div class="text d-block">
-     <div class="meta">
-      <p>
-       <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-       <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-       <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-     </p>
-   </div>
-   <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-   <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-   <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
- </div>
-</div>
-</div>
+
+
+
+
 </div>
 <div class="row mt-5">
   <div class="col text-center">
     <div class="block-27">
       <ul>
-        <li><a href="#">&lt;</a></li>
-        <li class="active"><span>1</span></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&gt;</a></li>
+       
+        <li><a href="{{url_for('blog',page_no=page_no-1)}}">&lt;</a></li>
+        {% for i in range(page_no_len) %}
+        <li class="s" id="{{i}}"><a href="{{url_for('blog',page_no=i+1)}}"><span>{{i+1}}</span></a></li>
+        {% endfor %}
+        <li><a href="{{url_for('blog',page_no=page_no+1)}}">&gt;</a></li>
       </ul>
     </div>
   </div>
 </div>
 </div>
 </section>
+<div class="adminActions">
+	<input type="checkbox" name="adminToggle" class="adminToggle" />
+	<a class="adminButton" href="#!"><i class="fa fa-cog"></i></a>
+	<div class="adminButtons">
+		<a href="{{url_for('create_blog')}}" title="Create Blog"><i class="fa fa-building"></i></a>
+		<a href="#" title="Edit Company"><i class="fa fa-pen"></i></a>
+		<a href="#" title="Add User"><i class="fa fa-user-plus"></i></a>
+		<a href="#" title="Edit User"><i class="fa fa-user-edit"></i></a>
+	</div>
+</div>
+<script>
+  function check_page(){
+    console.log("{{page_no}}")
+    curr_page=document.getElementById("{{page_no-1}}").className='active'
+    
+  }
+</script>
+<style>
+  
+.adminActions {
+  position: fixed;
+  bottom: 35px; right: 35px;
+}
+
+  .adminButton {
+    height: 60px;
+    width: 60px;
+    background-color: rgba(67, 83, 143, .8);
+    border-radius: 50%;
+    display: block;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+    .adminButton i {
+      font-size: 22px;
+    }
+
+  .adminButtons {
+    position: absolute;
+    width: 100%;
+    bottom: 120%;
+    text-align: center;
+  }
+
+    .adminButtons a {
+      display: block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      text-decoration: none;
+      margin: 10px auto 0;
+      line-height: 1.15;
+      color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      position: relative;
+      box-shadow: 0 0 5px 1px rgba(51, 51, 51, .3);
+    }
+
+      .adminButtons a:hover {
+        transform: scale(1.05);
+      }
+
+      .adminButtons a:nth-child(1) {background-color: #ff5722; transition: opacity .2s ease-in-out .3s, transform .15s ease-in-out;}
+      .adminButtons a:nth-child(2) {background-color: #03a9f4; transition: opacity .2s ease-in-out .25s, transform .15s ease-in-out;}
+      .adminButtons a:nth-child(3) {background-color: #f44336; transition: opacity .2s ease-in-out .2s, transform .15s ease-in-out;}
+      .adminButtons a:nth-child(4) {background-color: #4CAF50; transition: opacity .2s ease-in-out .15s, transform .15s ease-in-out;}
+
+      .adminActions a i {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+  .adminToggle {
+    -webkit-appearance: none;
+    position: absolute;
+    border-radius: 50%;
+    top: 0; left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    z-index: 2;
+    transition: box-shadow .2s ease-in-out;
+    box-shadow: 0 3px 5px 1px rgba(51, 51, 51, .3);
+  }
+
+    .adminToggle:hover {
+      box-shadow: 0 3px 6px 2px rgba(51, 51, 51, .3);
+    }
+
+    .adminToggle:checked ~ .adminButtons a {
+      opacity: 1;
+      visibility: visible;
+    }
+</style>
 
 <footer class="ftco-footer ftco-no-pt">
   <div class="container">

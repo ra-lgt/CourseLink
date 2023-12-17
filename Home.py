@@ -12,6 +12,7 @@ from chat import Chat
 from flask_socketio import SocketIO, emit,join_room,leave_room,send
 from flask_cors import CORS
 import threading
+from Blog import Blog
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -25,6 +26,7 @@ cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 user_dataAPI=DataAPI()
 user_chat=Chat()
 CORS(app)
+user_blog=Blog()
 
 #helping functions
 def generate_otp():
@@ -57,9 +59,12 @@ def Home():
 def signup_login():
     return render_template('signup_login.html')
 
-@app.route('/sucess_register')
-def sucess_register():
-    return render_template('success.html',data="THANKS FOR REGISTERING")
+
+
+@app.route('/success')
+def success():
+    data=request.args.get('data')
+    return render_template('success.html',data=data)
 
 
 
@@ -74,7 +79,8 @@ def login():
         session['email']=email
         session['username']=user_dataAPI.get_data_of_specific_user(email)['username']
   
-    except:
+    except Exception as e:
+        print(e)
         error_url = url_for('error', data="Invalid login", reason="Check your credentials and try again or contact us")
         return redirect(error_url)
     
@@ -212,7 +218,22 @@ def profile():
 
     # return render_template("profile.html",user_specific_data=user_specific_data,event_count=len(user_specific_event['_id']),friend_count=len(friend_data['_id']))
     return render_template('Profile.html',user_specific_data=user_specific_data)
+@app.route('/save_profile_pic',methods=['POST'])
+def save_profile_pic():
+    
+    if 'file' not in request.files:
+        print("file not found")
+    file = request.files['file']
 
+    return_code=user_dataAPI.save_profile(file,cache.get('profile_data')['username'])
+    
+    if(return_code==True):
+        result = {'message': 'Image uploaded successfully'}
+        return jsonify(result)
+    else:
+        result = {'error': 'Unexpected error occured'}
+        return jsonify(result)
+    
 @app.route('/create_chat',methods=['POST','GET'])
 def create_chat():
     data=request.get_json()
@@ -314,11 +335,63 @@ def handle_message(message):
 def terms():
     return "hello"
 
-@app.route('/blog')
-def blog():
-    return render_template('blog.html')
+@app.route('/create_blog')
+def create_blog():
+    user_specific_data=None
+    user_specific_data=cache.get('profile_data')
+    
+    if(user_specific_data is None):
+        user_specific_data=user_dataAPI.get_data_of_specific_user(session['email'])
+        cache.set('profile_data',user_specific_data,timeout=180*60)
+        
+    return render_template('create_blog.html',username=session['username'],profile_pic=user_specific_data['profile_pic'],date=datetime.now().strftime("%b %d"))
 
+@app.route('/blog/<int:page_no>')
+def blog(page_no):
+    blog_posts=user_blog.get_all_blog_posts()
+    
+    
+    start=(page_no-1)*1
+    
+    end=(page_no)*1
+    
+    if(start>len(blog_posts['_id'])):
+        start=(page_no-1)*1
+    
+    if(end>len(blog_posts['_id'])):
+        end=len(blog_posts['_id'])
+        
+    
+        
+        
+        
+    return render_template('blog.html',blog_posts=blog_posts,end=end,start=start,page_no_len=len(blog_posts['_id'])//1,page_no=page_no)
 
+@app.route('/post_blog',methods=['POST','GET'])
+def post_blog():
+    bimgs=None
+    if(request.method=='POST'):
+        title=request.form['title']
+        description=request.form['dscription']
+        if 'bimgs'  in request.files:
+            bimgs=request.files['bimgs']
+        content=request.form['content']
+        
+        return_code=user_blog.create_new_post(
+            {'title':title,
+             'description':description,
+             'bimgs':bimgs,
+             'content':content,
+             'email':session['email'],
+             'username':session['username']
+             }
+        )
+        if(return_code==True):
+            return redirect(url_for('success',data="Successfully Posted"))
+        else:
+            return redirect(url_for('error',data="Couldn't Upload",reason="Check with admin"))
+        
+    
 @app.route('/find_friends')
 def find_friends():
     all_user_data=None
@@ -347,6 +420,8 @@ def find_friends():
         count=0
     else:
         count=len(all_user_data['username'])
+    print(all_user_data)
+    print("-"*10)
     return render_template('find_friends.html',all_user_data=all_user_data,count=count,Course=Course,degree=degree)
 
 # @app.route('/send_friend_request')
