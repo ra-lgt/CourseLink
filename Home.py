@@ -107,6 +107,13 @@ def signup():
     db=mongo_client['User-Data']
     collection=db['user_details']
     current_date = datetime.now()
+    
+    existing_document = collection.find({'email': data['email']})
+    
+    if existing_document is not None:
+            response_data = {'message': 'Signup successful'}
+
+            return jsonify(response_data), 200 
 
     collection.insert_one({
             'username':data['username'],
@@ -360,11 +367,7 @@ def blog(page_no):
     
     if(end>len(blog_posts['_id'])):
         end=len(blog_posts['_id'])
-        
-    
-        
-        
-        
+
     return render_template('blog.html',blog_posts=blog_posts,end=end,start=start,page_no_len=len(blog_posts['_id'])//1,page_no=page_no)
 
 @app.route('/post_blog',methods=['POST','GET'])
