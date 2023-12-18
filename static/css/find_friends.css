@@ -12,6 +12,7 @@ input,
 #sandbox {
   margin-top:100px;
   display: flex;
+  margin-left: 20px;
 }
 
 .sideb {

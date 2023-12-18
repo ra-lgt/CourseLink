@@ -24,27 +24,62 @@
 <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 
 
+<style>
+  .ftco-navbar-light .container {
+    width: 1500;
+    margin: 0 auto;
+    padding: 0;
+}
+.container-fluid, .container-sm, .container-md, .container-lg, .container-xl {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto; }
 
+@media (min-width: 576px) {
+  .container, .container-sm {
+    max-width: 540px; } }
+
+@media (min-width: 768px) {
+  .container, .container-sm, .container-md {
+    max-width: 720px; } }
+
+@media (min-width: 992px) {
+  .container, .container-sm, .container-md, .container-lg {
+    max-width: 960px; } }
+
+@media (min-width: 1200px) {
+  .container, .container-sm, .container-md, .container-lg, .container-xl {
+    max-width: 1600px; } }
+    .ani{
+      transition: transform 0.10s ease-in-out;
+    }
+   .ani:hover{
+      transform: translateY(-10px);
+    }
+</style>
 
 </head>
 
-<body style="background-color:#f9faff;">
-  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+<body style="background:linear-gradient(105deg, #c5c7c9 0%, rgba(217,142,194,255) 100%)">
+  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar" style="left:19px">
    <div class="container">
-     <a class="navbar-brand" href="index.html"><span>Study</span>Lab</a>
+     <a class="navbar-brand" href="index.html" style="margin-left:177px;"><span>Study</span>Lab</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
        <span class="oi oi-menu"></span> Menu
    </button>
 
-   <div class="collapse navbar-collapse" id="ftco-nav" style="background-color:white;width:100%;">
+   <div class="collapse navbar-collapse" id="ftco-nav" style="background-color: #ffffff;
+    opacity: .4;width:100%;border-radius:20px;margin-left:150px">
        <ul class="navbar-nav ml-auto">
-         <li class="nav-item active" style=""><a href="index.html" class="nav-link">Home</a></li>
+         <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
          
-         <li class="nav-item"><a href="{{url_for('find_friends')}}" class="nav-link">Course</a></li>
-         <li class="nav-item"><a href="{{url_for('chat_page',chat_id='None')}}" class="nav-link">Message</a></li>
-         <li class="nav-item"><a href="{{url_for('blog',page_no=1)}}" class="nav-link">Blog</a></li>
-         <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-         <li class="nav-item"><a href="{{url_for('profile')}}" class="nav-link">Profile</a></li>
+         <li class="nav-item active"><a href="{{url_for('find_friends')}}" class="nav-link">Course</a></li>
+         <li class="nav-item active"><a href="{{url_for('chat_page',chat_id='None')}}" class="nav-link">Message</a></li>
+         <li class="nav-item active"><a href="{{url_for('blog',page_no=1)}}" class="nav-link">Blog</a></li>
+         <li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
+         <li class="nav-item active"><a href="{{url_for('profile')}}" class="nav-link">Profile</a></li>
   
      </ul>
  </div>
@@ -214,7 +249,7 @@ var options = {
       { attr: "data-target", name: "jobType" } 
     ],
     item:
-'<li style="margin-bottom:20px;border-radius:50px;background-color:light;border:2px solid #e449ad;box-shadow: 0 9px 11px rgba(0, 0, 0.5, 0.5);">' +
+'<li class="ani" style="margin-bottom:40px;border-radius:50px;background-color:light;border:2px solid #e449ad;box-shadow: 0 9px 11px rgba(0, 0, 0.5, 0.5);background-color:#f9faff;">' +
   '<img class="image">' +
   '<a class="applyLink">' +
     '<h4 class="jobTitle"style="color:black;margin-left:37px"></h4>' +
