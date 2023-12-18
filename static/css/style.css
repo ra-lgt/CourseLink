@@ -8380,7 +8380,7 @@ h1, h2, h3, h4, h5,
   background: transparent !important;
   position: absolute;
   top: -8px;
-  left: 0;
+  left:0;
   right: 0;
   z-index: 3; }
   @media (max-width: 991.98px) {
