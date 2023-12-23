@@ -219,7 +219,6 @@ message-area
     overflow: hidden;
     width: 300px;
     float: left;
-    padding: 15px;
 }
 
 .chat-area .modal-content {
@@ -237,7 +236,10 @@ message-area
     width: auto;
     overflow: hidden;
     height: 100%;
-    border-left: 1px solid #e449ad;
+    border-radius: 5px;
+background: #FFF;
+box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.10);
+gap:10px;
 }
 
 .chatbox .modal-dialog,
@@ -249,25 +251,26 @@ message-area
 .msg-search {
     display: flex;
     align-items: center;
+    padding-top: 20px;
+    padding-left: 30px;
     justify-content: space-between;
+    background-color: #FAF0E6;;
 }
 
 .chat-area .form-control {
     display: block;
-    width: 80%;
+    width: 90%;
     padding: 0.375rem 0.75rem;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
-    color: #992c9e;
-    background-color: #fff;
+    background-color:#fff;
     background-clip: padding-box;
-    border: 1px solid #e449ad;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     border-radius: 0.25rem;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: border-color .20s ease-in-out, box-shadow .20s ease-in-out;
 }
 
 .chat-area .form-control:focus {
@@ -282,8 +285,10 @@ a.add img {
 .chat-area .nav-tabs {
     border-bottom: 1px solid #dee2e6;
     align-items: center;
+    padding-top: 20px;
     justify-content: space-between;
     flex-wrap: inherit;
+    background-color:#FAF0E6;;
 }
 
 .chat-area .nav-tabs .nav-item {
@@ -307,8 +312,8 @@ a.add img {
 
 .chat-area .nav-tabs .nav-item.show .nav-link,
 .chat-area .nav-tabs .nav-link.active {
-    color: #222;
-    background-color: #fff;
+    color: #F0ECE5;
+    background: linear-gradient(90deg, #161A30 0%, #31304D 100%);
     border-color: transparent transparent #000;
 }
 
@@ -375,7 +380,8 @@ a.add img {
 
 .msg-head {
     padding: 15px;
-    border-bottom: 1px solid #e449ad;
+    background: #FAF0E6;
+box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);;
 }
 
 .moreoption {
@@ -476,19 +482,21 @@ a.add img {
     height: 0;
     border-style: solid;
     border-width: 0 12px 15px 12px;
-    border-color: transparent transparent #992c9e transparent;
+    border-color: transparent transparent #FAF0E6 transparent;
     -webkit-transform: rotate(37deg);
     -ms-transform: rotate(37deg);
     transform: rotate(37deg);
 }
 
 .msg-body ul li.repaly p {
-    color: #fff;
+    color:#31304D;
     font-size: 14px;
     line-height: 1.5;
     font-weight: 400;
     padding: 15px;
-    background: #992c9e;
+    border-radius: 15px;
+background: #FAF0E6;
+box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
     display: inline-block;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -533,8 +541,6 @@ li.repaly .time {
     font-weight: normal;
     font-size: 14px;
     line-height: 1.5;
-    color: #992c9e;
-
     background: #fff;
     display: inline-block;
     padding: 0 5px;
@@ -556,7 +562,7 @@ li.repaly .time {
 
 .send-box {
     padding: 15px;
-    border-top: 1px solid #e449ad;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.40);
 }
 
 .send-box form {
@@ -573,23 +579,23 @@ li.repaly .time {
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
-    color: #992c9e;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #e449ad;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-radius: 0.25rem;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    border-radius: 5px;
+    transition: border-color .15s ease-in-out;
+     box-shadow : 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
 }
 
 .send-box button {
     border: none;
-    background: #992c9e;
+   border-radius: 5px;
+background: linear-gradient(90deg, #161A30 0%, #31304D 100%);
     padding: 0.375rem 5px;
-    color: #fff;
-    border-radius: 0.25rem;
+    color: #F0ECE5;
+    
     font-size: 14px;
     font-weight: 400;
     width: 24%;
