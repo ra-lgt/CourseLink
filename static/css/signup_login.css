@@ -36,7 +36,7 @@ section#formHolder {
   color: #fff;
   min-height: 640px;
   position: relative;
-  box-shadow: 3px 3px 10px rgb(0, 0, 0);
+  box-shadow: 3px 3px 10px #FAF0E6;;
   transition: all 0.6s cubic-bezier(1, -0.375, 0.285, 0.995);
   z-index: 9999;
 }
@@ -134,7 +134,7 @@ section#formHolder {
   background: #fff;
   min-height: 600px;
   margin-top: 30px;
-  box-shadow: 3px 5px 10px 3px rgba(14, 151, 193, 0.749);
+  box-shadow: 3px 5px 10px 3px #31304D;
   color: #bbbbbb;
   padding: 30px 0 60px;
   transition: all 0.9s cubic-bezier(1, -0.375, 0.285, 0.995);
@@ -190,7 +190,7 @@ section#formHolder {
   font-size: 12px;
   text-transform: uppercase;
   padding: 5px 30px;
-  background: #00bde5;
+  background: #161A30;
   text-decoration: none;
   color: #fff;
   border-radius: 30px;
@@ -201,8 +201,8 @@ section#formHolder {
 }
 #button:hover{
   background-color: white;
-  border: 1px solid #00bde5;
-  color: #00bde5;
+  border: 1px solid #161A30;
+  color: #161A30;
 
 }
 .form form input:not([type=submit],[type=checkbox]) {
@@ -240,7 +240,7 @@ section#formHolder {
   font-size: 12px;
   text-transform: uppercase;
   padding: 5px 30px;
-  background: #00bde5;
+  background: #161A30;
   color: #fff;
   border-radius: 30px;
   margin-right: 20px;
@@ -249,8 +249,8 @@ section#formHolder {
 }
 .form form .CTA input:hover{
   background-color: white;
-  border: 1px solid #00bde5;
-  color: #00bde5;
+  border: 1px solid #161A30;
+  color: #161A30;
 }
 .form form .CTA a.switch {
   font-size: 13px;

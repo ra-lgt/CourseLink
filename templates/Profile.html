@@ -1,8 +1,33 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Jolly Jolt | Profile</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <body>
+  <nav class="nav_tempbar">
+      <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
+      <div class="push-left">
+        <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
+          <span class="hamburger-line hamburger-line-top"></span>
+          <span class="hamburger-line hamburger-line-middle"></span>
+          <span class="hamburger-line hamburger-line-bottom"></span>
+        </button>
+    
+        <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
+        <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
+          <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
+          <li class="menu_temp-item dropdown"><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
+          
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Messages</a>
+           
+          </li>
+        </ul>
+    
+    
+      </div>
+    </nav>
   <div class="main-content">
+
     <!-- Top navbar -->
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
@@ -258,7 +283,7 @@
                     <textarea rows="4" class="form-control form-control-alternative" name="about" placeholder="A few words about you ...">{{user_specific_data['About']}}.</textarea>
                   </div>
                 </div>
-                <button><a class="btn btn-info">Save</a></button>
+                <button style="color:white;background-color:#161A30;;"><a class="btn btn-info">Save</a></button>
               </form>
             </div>
           </div>
@@ -803,6 +828,152 @@ a>code {
   .order-xl-2 {
     order: 2;
   }
+}
+
+/* Extra */
+
+
+.logo {
+  max-width: 200px;
+}
+
+.nav_tempbar {
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  font-family: sans-serif;
+  padding: 10px 50px;
+}
+
+.push-left {
+  margin-left: auto;
+}
+
+/* menu_temp */
+.hamburger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: none;
+  outline: none;
+  height: 30px;
+  position: relative;
+  width: 30px;
+  z-index: 1000;
+}
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: inline-block;
+  }
+}
+.hamburger-line {
+  background: #272727;
+  height: 3px;
+  position: absolute;
+  left: 0;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+.hamburger:hover .hamburger-line {
+  background: #777;
+}
+.hamburger-line-top {
+  top: 3px;
+}
+.menu_temp-active .hamburger-line-top {
+  top: 50%;
+  transform: rotate(45deg) translatey(-50%);
+}
+.hamburger-line-middle {
+  top: 50%;
+  transform: translatey(-50%);
+}
+.menu_temp-active .hamburger-line-middle {
+  left: 50%;
+  opacity: 0;
+  width: 0;
+}
+.hamburger-line-bottom {
+  bottom: 3px;
+}
+.menu_temp-active .hamburger-line-bottom {
+  bottom: 50%;
+  transform: rotate(-45deg) translatey(50%);
+}
+
+.nav_temp-menu_temp {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: all 0.25s ease-in;
+}
+@media screen and (max-width: 768px) {
+  .nav_temp-menu_temp {
+    background: #fff;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translatey(-100%);
+    text-align: center;
+  }
+  .menu_temp-active .nav_temp-menu_temp {
+    transform: translatey(0%);
+    opacity: 0;
+  }
+}
+.nav_temp-menu_temp .menu_temp-item a {
+  color: #161A30;
+  display: block;
+  line-height: 30px;
+  margin: 0px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.nav_temp-menu_temp .menu_temp-item a:hover {
+  color:#161A30;
+  font-weight: bold;
+  text-decoration: underline;
+}
+@media screen and (max-width: 768px) {
+  .nav_temp-menu_temp .menu_temp-item a {
+    font-size: 20px;
+    margin: 8px;
+  }
+}
+
+.sub-nav_temp {
+  border: 1px solid #ccc;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  padding: 5px 5px;
+  list-style: none;
+  width: 230px;
+}
+@media screen and (max-width: 768px) {
+  .sub-nav_temp {
+    position: relative;
+    width: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+  }
+}
+
+.nav_temp__link:hover + .sub-nav_temp {
+  display: block;
+}
+
+.sub-nav_temp:hover {
+  display: block;
 }
 
 .form-control {
@@ -2349,3 +2520,15 @@ p {
   margin-bottom: 20px;
 }
 </style>
+<script>$(document).ready(function() {
+  // Toggle menu_temp on click
+  $("#menu_temp-toggler").click(function() {
+    toggleBodyClass("menu_temp-active");
+  });
+
+  function toggleBodyClass(className) {
+    document.body.classList.toggle(className);
+  }
+
+ });
+</script>

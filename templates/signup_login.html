@@ -4,22 +4,12 @@
 <title>Jolly Jolt | Register & Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
-<body>
-
-   <head>
-    <style>
-      body{
-        background-color: #212529;
-      }
-    </style>
       
-      
-      <link href="{{ url_for ('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
+            <link href="{{ url_for ('static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
 
       <script src="{{url_for ('static',filename='js/bootstrap.min.js')}}"></script>
       <script src="{{url_for ('static',filename='js/jquery.min.js')}}"></script>
       <link rel="stylesheet" href="{{ url_for ('static',filename='css/signup_login.css') }}">
-   </head>
    <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtagjs?id=G-C6DX98HT12"></script>
 <script>
@@ -54,7 +44,7 @@
 
             <!-- Login Form -->
             <div class="login form-peice switched">
-               <h1 style="padding-left: 70px; color:#00bde5;">LOGIN</h1>
+               <h1 style="padding-left: 70px; color:#161A30;">LOGIN</h1>
                <form class="login-form" action="/login" method="post">
                   <div class="form-group">
                      <label for="loginemail">Email Adderss</label>
@@ -76,7 +66,7 @@
 
             <!-- Signup Form -->
             <div class="signup form-peice">
-               <h1 style="padding-left: 60px; color:#00bde5;">REGISTER</h1>
+               <h1 style="padding-left: 60px; color:#161A30;">REGISTER</h1>
 
                <form class="signup-form" method="post" id="form">
 
@@ -137,7 +127,7 @@
 <!-- <a href="https://amzn.to/45sXBme"><img src="{{url_for('static',filename='images/offer.jpeg')}}"></a> -->
 
  
-</body>
+
 <div class="popup" id="popup1" style="display: none;">
  <div class="row justify-content-center">
       <div class="col-12 col-md-6 col-lg-4" style="min-width: 500px;">
@@ -155,7 +145,7 @@
               
             </div>
 
-            <button class="btn btn-primary mb-3" id="verify" style="background-color : #0dcaf0; color: white;">
+            <button class="btn btn-primary mb-3" id="verify" style="background-color :#161A30; color: white;">
               Verify
             </button>
 
@@ -563,7 +553,9 @@ $(document).ready(function () {
 .resend {
   font-size: 12px;
 }
-
+body{
+  background-color:#FAF0E6;
+}
 .footer {
   position: absolute;
   bottom: 10px;
@@ -580,5 +572,6 @@ $(document).ready(function () {
 }
 
    </style>
+   </body>
 
 </html>
