@@ -219,14 +219,38 @@ def profile():
     if(user_specific_data is None):
         user_specific_data=user_dataAPI.get_data_of_specific_user(session['email'])
         cache.set('profile_data',user_specific_data,timeout=180*60)
+
+        
     else:
         print("cache Hit")
     
-    
+    if(user_specific_data['Intial_set']=='False'):
+        return render_template('first_user.html')
 
 
     # return render_template("profile.html",user_specific_data=user_specific_data,event_count=len(user_specific_event['_id']),friend_count=len(friend_data['_id']))
     return render_template('Profile.html',user_specific_data=user_specific_data)
+@app.route('/first_user',methods=['POST'])
+def first_user():
+    data=request.get_json()
+    data['Intial_set']='True'
+    db=mongo_client['User-Data']
+    collection=db['user_details']
+    filters = {"email": session['email']}
+    update_operation = {"$set": data}
+    profile_pic=data['profile_pic']
+    del data['profile_pic']
+    
+    try:
+        if(profile_pic!=""):
+            user_dataAPI.save_profile(profile_pic,session['username'])
+        result = collection.update_one(filters, update_operation)
+        cache.delete("profile_data")
+        return jsonify({"status":200}),200
+    except:
+        return jsonify({"status":404}),404
+        
+    
 @app.route('/save_profile_pic',methods=['POST'])
 def save_profile_pic():
     
