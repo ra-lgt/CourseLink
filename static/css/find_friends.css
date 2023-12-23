@@ -16,17 +16,21 @@ input,
 }
 
 .sideb {
-  flex: 0 0 25%;
+  width:350px;
+  height:470px;
+    padding-left: 20px;
+    padding-top:10px;
+flex-shrink: 0;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
 }
 
 
 
 input {
   border: solid 1px #ccc;
-  border-radius: 20px;
   padding: 7px 14px;
   margin-bottom: 10px;
-  width: 100%;
+  width: 70%;
   display: block;
 }
 
@@ -38,22 +42,18 @@ input:focus {
 
 
 .sort {
-  padding: 8px 16px;
+  padding: 0px 16px;
   border-radius: 0px;
   border: none;
   display: inline-block;
   color: #fff;
   vertical-align: top;
   text-decoration: none;
-  background-color: #e449ad;
+  background-color: #31304D;
   height: 36px;
   margin: 5px 5px;
 }
 
-.sort:hover {
-  text-decoration: none;
-  background-color: #1b8aba;
-}
 
 .sort:focus {
   outline: none;
@@ -114,11 +114,10 @@ input:focus {
 
 .list li .jobType {
   margin-left:20px;
-  background:#e449ad;
-  color: #ffffff;;
-  border: 1 ps solid #00bde5;
-  font-size: 12px;
-  border-radius: 30px;
+  background:#31304D;
+  color: #F0ECE5;
+  border: 1 ps solid #31304D;
+  font-size: 15px;
   display: inline-block;
   padding: 5px 10px;
 }
@@ -296,20 +295,12 @@ ul.pagination li.active a {
     display: block;
   }
 
-  .listb {
-    display:flex;
-    flex-direction:column;
-    background-color:white;
-    margin-top:30px;height:20%;border-radius:50px;
-    margin-left:50px;
-    width:70%;
-  }
 
   .porpSection.activeMob {
     position: fixed;
     background: #fff;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-125%, -250%);
     top: 50%;
     padding: 30px;
     box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.2);
@@ -365,8 +356,8 @@ ul.pagination li.active a {
 .activeMob .xbutton {
   display: block;
   position: absolute;
-  top: -35px;
-  right: -35px;
+  top: -40px;
+  right: 20px;
   background: #fff;
   border: none;
   width: 36px;
