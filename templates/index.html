@@ -26,12 +26,7 @@
  
 <style>
 /* Extra */
-body {
-  background: #ccc;
-  color: #272727;
-  font-size: 14px;
-  margin: 0;
-}
+
 
 .logo {
   max-width: 200px;
@@ -175,41 +170,7 @@ body {
   display: block;
 }
 </style>
-<nav_temp class="nav_tempbar">
-  <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
-  <div class="push-left">
-    <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
-      <span class="hamburger-line hamburger-line-top"></span>
-      <span class="hamburger-line hamburger-line-middle"></span>
-      <span class="hamburger-line hamburger-line-bottom"></span>
-    </button>
 
-    <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
-    <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
-      <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="#">Home</a></li>
-      <li class="menu_temp-item dropdown"><a class="nav_temp__link"  href="#">About</a>
-         <ul class="sub-nav_temp" >
-          <li><a class="sub-nav_temp__link" href="#">link 1</a></li>
-          <li><a class="sub-nav_temp__link" href="#">link 2</a></li>
-          <li><a class="sub-nav_temp__link" href="#">link 3 - long link - long link - long link</a></li>
-        </ul>
-
-      </li>
-      <li class="menu_temp-item dropdown"><a class="nav_temp__link"  href="#">Contact</a>
-        <ul class = "sub-nav_temp">
-          <li><a class="sub-nav_temp__link"  href="#">link 1</a></li>
-          <li><a class="sub-nav_temp__link"  href="#">link 2</a></li>
-          <li><a class="sub-nav_temp__link"  href="#">link 3 - long link - long link - long link</a></li>
-        </ul>
-      </li>
-      <li class="menu_temp-item "><a class="nav_temp__link"  href="#">Blog</a>
-       
-      </li>
-    </ul>
-
-
-  </div>
-</nav_temp>
 
 <script>$(document).ready(function() {
   // Toggle menu_temp on click
@@ -227,7 +188,31 @@ body {
 <!-- END nav -->
 
 <div class="hero-wrap js-fullheight" style="background-image: url('{{url_for('static',filename='images/bg_1.jpg')}}');">
-  <div class="overlay"></div>
+  
+  <div class="overlay">
+    <nav class="nav_tempbar">
+      <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
+      <div class="push-left">
+        <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
+          <span class="hamburger-line hamburger-line-top"></span>
+          <span class="hamburger-line hamburger-line-middle"></span>
+          <span class="hamburger-line hamburger-line-bottom"></span>
+        </button>
+    
+        <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
+        <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
+          <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
+          <li class="menu_temp-item dropdown"><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
+          
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Messages</a>
+           
+          </li>
+        </ul>
+    
+    
+      </div>
+    </nav>
+  </div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
       <div class="col-md-7 ftco-animate">

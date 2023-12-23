@@ -91,7 +91,6 @@ def login():
 @app.route('/signup',methods=['GET','POST'])
 def signup():
 
-    
     database=config.Setup_DataBase()
 
 
@@ -108,13 +107,13 @@ def signup():
     collection=db['user_details']
     current_date = datetime.now()
     
-    existing_document = collection.find({'email': data['email']})
+    # existing_document = collection.find({'email': data['email']})
     
-    if existing_document is not None:
-            response_data = {'message': 'Signup successful'}
+    # if existing_document is not None:
+    #         response_data = {'message': 'Signup successful'}
 
-            return jsonify(response_data), 200 
-
+    #         return jsonify(response_data), 200 
+    firebase_db.create_user_with_email_and_password(data['email'],data['password'])
     collection.insert_one({
             'username':data['username'],
             'email':data['email'],
@@ -131,10 +130,11 @@ def signup():
             'Experince_Level':"Not Set",
             'language':"Not Set",
             'postal_code':"Not Set",
-            'Joined_date':current_date.strftime("%Y-%m-%d")
+            'Joined_date':current_date.strftime("%Y-%m-%d"),
+            'Intial_set':'False'
             })
     
-    firebase_db.create_user_with_email_and_password(data['email'],data['password'])
+    
     
 
 
@@ -221,6 +221,8 @@ def profile():
         cache.set('profile_data',user_specific_data,timeout=180*60)
     else:
         print("cache Hit")
+    
+    
 
 
     # return render_template("profile.html",user_specific_data=user_specific_data,event_count=len(user_specific_event['_id']),friend_count=len(friend_data['_id']))
