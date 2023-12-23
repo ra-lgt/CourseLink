@@ -199,7 +199,6 @@ message-area
 .message-area {
     height: 100vh;
     overflow: hidden;
-    padding: 30px 0;
     background: #f5f5f5;
 }
 
@@ -208,8 +207,9 @@ message-area
     width: 100%;
     background-color: #fff;
     border-radius: 0.3rem;
-    height: 90vh;
+    height: 85vh;
     overflow: hidden;
+    margin-top:0.4%;
     min-height: calc(100% - 1rem);
 }
 
@@ -236,10 +236,6 @@ message-area
     width: auto;
     overflow: hidden;
     height: 100%;
-    border-radius: 5px;
-background: #FFF;
-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.10);
-gap:10px;
 }
 
 .chatbox .modal-dialog,
@@ -285,7 +281,6 @@ a.add img {
 .chat-area .nav-tabs {
     border-bottom: 1px solid #dee2e6;
     align-items: center;
-    padding-top: 20px;
     justify-content: space-between;
     flex-wrap: inherit;
     background-color:#FAF0E6;;

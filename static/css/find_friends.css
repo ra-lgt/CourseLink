@@ -16,8 +16,8 @@ input,
 }
 
 .sideb {
-  width: 550px;
-height: 520px;
+  width:350px;
+  height:470px;
     padding-left: 20px;
     padding-top:10px;
 flex-shrink: 0;
@@ -295,21 +295,12 @@ ul.pagination li.active a {
     display: block;
   }
 
-  .listb {
-    display:flex;
-    flex-shrink:0;
-    background-color:white;
-    margin-top:30px;
-    border-radius:5px;
-    margin-left:50px;
-    width:70%;
-  }
 
   .porpSection.activeMob {
     position: fixed;
     background: #fff;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-125%, -250%);
     top: 50%;
     padding: 30px;
     box-shadow: 0px 0px 8px 3px rgba(0, 0, 0, 0.2);
@@ -365,8 +356,8 @@ ul.pagination li.active a {
 .activeMob .xbutton {
   display: block;
   position: absolute;
-  top: -35px;
-  right: -35px;
+  top: -40px;
+  right: 20px;
   background: #fff;
   border: none;
   width: 36px;
