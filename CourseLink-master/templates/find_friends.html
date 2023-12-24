@@ -1,0 +1,608 @@
+<html>
+
+<head>
+  <title>Jolly Jolt | Find</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Chain App Dev - App Landing Page HTML5 Template</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/find_friends.css')}}"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+
+<link href="{{url_for('static',filename='/css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='/css/bootstrap-icons.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='/css/boxicons.min.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='/css/glightbox.min.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='/css/remixicon.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='/css/swiper-bundle.min.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+
+
+<style>
+ 
+
+    .ani{
+      transition: transform 0.10s ease-in-out;
+    }
+   .ani:hover{
+      transform: translateY(-10px);
+    }
+</style>
+
+</head>
+
+<body style="background:#FFFFFF">
+   
+<style>
+/* Extra */
+body {
+  background: #ccc;
+  color: #272727;
+  font-size: 14px;
+  margin: 0;
+}
+
+.logo {
+  max-width: 200px;
+}
+
+.nav_tempbar {
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  font-family: sans-serif;
+  padding: 10px 50px;
+}
+
+.push-left {
+  margin-left: auto;
+}
+
+/* menu_temp */
+.hamburger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: none;
+  outline: none;
+  height: 30px;
+  position: relative;
+  width: 30px;
+  z-index: 1000;
+}
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: inline-block;
+  }
+}
+.hamburger-line {
+  background: #272727;
+  height: 3px;
+  position: absolute;
+  left: 0;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+.hamburger:hover .hamburger-line {
+  background: #777;
+}
+.hamburger-line-top {
+  top: 3px;
+}
+.menu_temp-active .hamburger-line-top {
+  top: 50%;
+  transform: rotate(45deg) translatey(-50%);
+}
+.hamburger-line-middle {
+  top: 50%;
+  transform: translatey(-50%);
+}
+.menu_temp-active .hamburger-line-middle {
+  left: 50%;
+  opacity: 0;
+  width: 0;
+}
+.hamburger-line-bottom {
+  bottom: 3px;
+}
+.menu_temp-active .hamburger-line-bottom {
+  bottom: 50%;
+  transform: rotate(-45deg) translatey(50%);
+}
+
+.nav_temp-menu_temp {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: all 0.25s ease-in;
+}
+@media screen and (max-width: 768px) {
+  .nav_temp-menu_temp {
+    background: #fff;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translatey(-100%);
+    text-align: center;
+  }
+  .menu_temp-active .nav_temp-menu_temp {
+    transform: translatey(0%);
+    opacity: 1;
+  }
+}
+.nav_temp-menu_temp .menu_temp-item a {
+  color: #444444;
+  display: block;
+  line-height: 30px;
+  margin: 0px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.nav_temp-menu_temp .menu_temp-item a:hover {
+  color: #777777;
+  text-decoration: underline;
+}
+@media screen and (max-width: 768px) {
+  .nav_temp-menu_temp .menu_temp-item a {
+    font-size: 20px;
+    margin: 8px;
+  }
+}
+
+.sub-nav_temp {
+  border: 1px solid #ccc;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  padding: 5px 5px;
+  list-style: none;
+  width: 230px;
+}
+@media screen and (max-width: 768px) {
+  .sub-nav_temp {
+    position: relative;
+    width: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+  }
+}
+
+.nav_temp__link:hover + .sub-nav_temp {
+  display: block;
+}
+
+.sub-nav_temp:hover {
+  display: block;
+}
+</style>
+<nav_temp class="nav_tempbar">
+  <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
+  <div class="push-left">
+    <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
+      <span class="hamburger-line hamburger-line-top"></span>
+      <span class="hamburger-line hamburger-line-middle"></span>
+      <span class="hamburger-line hamburger-line-bottom"></span>
+    </button>
+
+    <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
+    <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
+      <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
+      <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
+      
+      <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Message</a></li>
+        <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('blog',page_no=1)}}">Blog</a></li>
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('profile')}}">Profile</a></li>
+    </ul>
+
+
+  </div>
+</nav_temp>
+
+<script>$(document).ready(function() {
+  // Toggle menu_temp on click
+  $("#menu_temp-toggler").click(function() {
+    toggleBodyClass("menu_temp-active");
+  });
+
+  function toggleBodyClass(className) {
+    document.body.classList.toggle(className);
+  }
+
+ });
+</script>
+
+
+
+{% for i in range(count) %}
+<div class="modal fade" id="learnMore{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </br>
+      <div class="container">
+        <p style="font-weight:bold ; padding-bottom: 20px; font-family:'Times New Roman', Times, serif; color:#e449ad; font-size: 30px ; text-align: center;">User Details</p>
+        <div style="    margin-left: 100px;" class="row">
+                    <div style="width:340" class="col-sm-8">
+            {% if all_user_data['profile_url'][i]!="" %}
+             <img height="300" width="300" src="{{all_user_data['profile_url'][i]}}" alt="">
+             {% else %}
+             <img  src="{{url_for('static',filename='images/default_profile.jpg')}}" alt="" />
+             {% endif %}
+          </div>
+
+          <div style="width: 400;" class="col-sm-4 align-self-center"> 
+            <h5 class="intro-title">Username :  {{all_user_data['username'][i]}} </h5>
+            <br>
+            <h5 class="intro-title">First Name :  {{all_user_data['first_name'][i]}} </h5>
+            <br>
+            <h5 class="intro-title">Last Name :  {{all_user_data['last_name'][i]}} </h5>
+            <br>
+            <h5 class="intro-title">Age :  {{all_user_data['Age'][i]}} </h5>
+            <br>
+
+            <h5 class="intro-title">Course :  {{all_user_data['Course'][i]}} </h5>
+            <br>
+            <h5 class="intro-title">Email :  {{all_user_data['email'][i]}} </h5>
+            <!-- <h3> TITLE </h3>
+            <p> some other content, some other, content </p> -->
+            
+          </div>          
+        </div>  
+      </div>
+      <button id='cbtn' class="{{i}}" onclick="send_request('{{ all_user_data['username'][i] }}', '{{ all_user_data['email'][i] }}')" style="background:#e449ad; margin-left: 460px;
+      background:#e449ad;       color:#ffffff; padding:5px 20px; font-size: 15;border:1px solid #ffffff;border-radius:30px;">Message</button>
+      
+      </div>
+      
+
+    </div>
+  </div>
+</div>
+{% endfor %}
+<script>
+  function send_request(username,email){
+    var requestData = {
+      username: username,
+      email: email
+  };
+
+  fetch('/create_chat', {
+    method: 'POST', // or 'GET' depending on your backend
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(requestData),
+})
+.then(response => response.json())
+.then(data => {
+    // Handle the response data
+    if(data['status']==200){
+      var url="{{url_for('chat_page',chat_id='None')}}"
+      window.location.href = url;
+    }
+    else{
+      var url="{{url_for('error',data='Could not send request',reason='Try to send the request again')}}"
+      window.location.href = url;
+    }
+})
+.catch(error => {
+    // Handle errors
+    console.error('Error sending request:', error);
+});
+    
+  }
+</script>
+<style>
+  @media (min-width: 768px) {
+    /* Add your desktop styles here */
+    .image {
+      width: 9%;
+      height: 30%;
+      margin-left: 15px;
+      margin-top: 10px;
+      border-radius: 65%;
+      overflow: hidden;
+    }
+  }
+  
+  /* Styles for Mobile */
+  @media (max-width: 767px) {
+    /* Add your mobile styles here */
+    .image {
+      width: 30%;
+      height: 30%;
+      margin-left: 15px;
+      margin-top: 10px;
+      border-radius: 65%;
+      overflow: hidden;
+    }
+  }
+
+  @media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 950px;
+    }
+  }
+     .list li h3 {
+  font-size: 24px;
+  line-height: 34px;
+  margin: 10px 0 5px 0;
+  font-weight: 600;
+  color: white;
+}
+@media (max-width: 768px) {
+  .ani {
+    margin-top: 20px;
+    margin-left:-14px; /* Adjust the margin-bottom value for smaller screens */
+  }
+}
+/* Responsive styles for screens up to 768px (mobile) */
+@media (max-width: 768px) {
+  .list li h3 {
+    font-size: 17px; /* Adjust font size for mobile devices */
+    line-height: 25px; /* Adjust line height for mobile devices */
+  }
+}
+@media (max-width: 768px) {
+  h4 {
+    padding-top:0.5rem;
+    font-size: 1.0rem; /* Adjust font size for mobile devices */
+    line-height: 1.3; /* Adjust line height for mobile devices */
+  }
+}
+@media (max-width: 768px) {
+  h5 {
+    font-size:0.8rem; 
+    font-weight: bold;/* Adjust font size for mobile devices */
+  }
+}
+@media (max-width: 768px) {
+  p {
+    font-size:0.8rem;
+    font-weight:bold;
+  }
+@media (max-width: 768px) {
+  .list li .jobType {
+    /* Adjust styles for mobile devices */
+    margin-left: 10px;
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+}
+.container {
+    width: 50%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (max-width: 767px) {
+    .container {
+        margin-left: 10px; /* Adjust as needed for smaller screens */
+    }
+}
+
+@media (min-width: 768px) {
+    .col-sm-8 {
+        width: 100%; /* Make col-sm-8 full width on larger screens */
+    }
+
+    .col-sm-4 {
+        width: 100%; /* Make col-sm-4 full width on larger screens */
+        margin-left: 0; /* Reset margin-left for larger screens */
+    }
+}
+@media (min-width: 768px) {
+    .modal-content {
+        max-width: 600px; /* Adjust the max-width as needed for larger screens */
+        margin: 0 auto; /* Center the modal on larger screens */
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-content {
+        max-width: 200px; /* Adjust the max-width as needed for even larger screens */
+    }
+}
+
+</style>
+<div id="sandbox">
+
+    <div class="sideb">
+      <h2 class="theme-color">Find Friends</h2>
+      <p class="text-large theme-color">Join with others and learn together:)</p>
+      <input class="search" placeholder="Search" />
+      <div class="mobFilter"><i class="fas fa-sliders-h"></i></div>
+      <div class="porpSection">
+        <button class="xbutton">X</button>
+        <div class="sortSection">
+        <h3>Sort By:</h3>
+        <button class="sort" data-sort="jobTitle">
+      Sort by User Name
+    </button>
+        <button class="sort" data-sort="datePosted">
+      Sort by Joined Date
+    </button>
+      </div>
+      <div class="filterSection">
+        <div class="filter">
+          <h3>Filter by Course</h3>
+          <select id="location-filter" class="location selectlist">
+            {% for i in Course %}
+            
+        <option selected="selected" value="">{{i}}</option>
+        
+       {% endfor %}
+      </select>
+        </div>
+        <div class="filter">
+          <h3>Filter by Degree</h3>
+          <select id="type-filter" class="jobtypefilter selectlist">
+       {% for i in degree %}
+        <option value="Part Time">{{i}}</option>
+        {% endfor %}
+      </select>
+        </div>
+      </div>
+    </div>
+     </div>
+     <div class="listb"style="height:300px;margin-left:20px;width:80%;">
+      <ul class="list" id="list" style="list-style-type: none;padding:0;">
+      </ul>
+      <div class="lpagignate"><span class="jPaginateBack page-arrow"><</span>
+        <ul class="pagination"></ul><span class="jPaginateNext page-arrow">></span></div>
+    </div>
+  </div>
+  </html>
+ 
+  <script>
+    // List.js set-up and initialisation
+
+var options = {
+    valueNames: [
+      "jobTitle",
+      "datePosted",
+      "jobLocation",
+      "jobtypefilter",
+      { attr: "href", name: "applyLink" },
+      { attr: "src", name: "image" },
+      { attr: "data-target", name: "jobType" } 
+    ],
+    item:
+'<li class="ani" style="margin-bottom:40px;background-color:white;box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);">' +
+  '<img class="image" >' +
+  '<a class="applyLink">' +
+    '<h4 class="jobTitle"style="color:black;margin-left:37px"></h4>' +
+    '<h3 class="jobtypefilter"style="color:black;margin-left:37px"></h3>'+
+  '</a>' +
+ 
+  '<div class="bottomBox">' +
+    '<div class="left-part">' +
+      '<button type="button" class="jobType" style="margin-left=500px;" data-toggle="modal">View More' +
+        '</button>' +
+      '<p class="jobLocation"></p>' +
+    '</div>' +
+    '<div class="dateBox" style="margin-right:20px">' +
+      '<h5>Joined Date</h5>' +
+      '<p class="datePosted"></p>' +
+    '</div>' +
+    // New button added below
+    
+
+    
+  '</div>' +
+'</li>',
+
+    page: 6,
+    pagination: {
+      innerWindow: 2,
+      left: 1,
+      right: 1,
+      paginationClass: "pagination"
+    }
+  };
+  
+  var values = [
+  {% for i in range(count) %}
+ 
+    {
+      jobTitle: "User Name : {{all_user_data['username'][i]}}",
+      jobtypefilter:"Degree : {{all_user_data['Degree'][i]}}",
+      jobType:  "#learnMore{{i}}",
+      datePosted: "{{all_user_data['Joined_date'][i]}}",
+      jobLocation:"{{all_user_data['Course'][i]}}",
+      applyLink: "#",
+
+     
+      image:"{{all_user_data['profile_url'][i]}}"
+
+
+    },
+    
+    {% endfor %}
+
+  ];
+  
+  var userList = new List("sandbox", options, values);
+  userList.sort("datePosted", {
+    order: "desc"
+  });
+  
+  $(".jPaginateNext").on("click", function() {
+    var list = $(".pagination").find("li");
+    $.each(list, function(position, element) {
+      if ($(element).is(".active")) {
+        $(list[position + 1]).trigger("click");
+      }
+    });
+  });
+  
+  $(".jPaginateBack").on("click", function() {
+    var list = $(".pagination").find("li");
+    $.each(list, function(position, element) {
+      if ($(element).is(".active")) {
+        $(list[position - 1]).trigger("click");
+      }
+    });
+  });
+  
+  $('#type-filter').change(function () {
+      var selection = this.value;
+      if (selection) {
+          userList.filter(function(item) {
+              return (item.values().jobType == selection);
+          });
+      } else {
+          userList.filter();
+      }
+  });
+  
+  $('#location-filter').change(function () {
+      var selection = this.value;
+      if (selection) {
+          userList.filter(function(item) {
+              return (item.values().jobLocation == selection);
+          });
+      } else {
+          userList.filter();
+      }
+  });
+  
+  $('.mobFilter').click(function() {
+     $('.porpSection').addClass('activeMob');
+     $('body').addClass('filterActive')
+      
+  });
+  
+  $('.xbutton').click(function(){
+     $('.porpSection').removeClass('activeMob');
+     $('body').removeClass('filterActive')
+  });
+  
+  $('.selectlist').change(function(){
+        $('.porpSection').removeClass('activeMob');
+     $('body').removeClass('filterActive')           
+  });
+  </script>
+</body>

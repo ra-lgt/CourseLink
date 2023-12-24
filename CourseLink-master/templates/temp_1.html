@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wysihtml5 Editor</title>
+  <!-- Include Wysihtml5 CSS and JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wysihtml@0.5.5/dist/bootstrap-wysihtml5.css" />
+  <script src="https://cdn.jsdelivr.net/npm/wysihtml@0.5.5/dist/wysihtml5-0.5.5.min.js"></script>
+</head>
+<body>
+  <div class="bcontent" contenteditable="true"></div>
+  <div class="input-group">
+    <span class="btn-file">
+      <input type="file" id="fileInput" multiple>
+    </span>
+    <input type="text" id="fileInputLabel" readonly>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Initialize wysihtml5 editor
+      var editor = new wysihtml5.Editor(document.querySelector('.bcontent'), {
+        toolbar: {
+          "image": false
+        }
+      });
+
+      var wysihtml5Editor = editor.composer;
+      
+      if (wysihtml5Editor) {
+        wysihtml5Editor.element.addEventListener('input', function() {
+          console.log("hi");
+          update_content_Reflection(document.querySelector(".bcontent").innerHTML);
+        });
+      }
+
+    
+
+      document.addEventListener('fileselect', function(event) {
+        var input = document.querySelector('.input-group :text');
+        var log = event.detail.numFiles > 1 ? event.detail.numFiles + ' files selected' : event.detail.label;
+
+        if (input) {
+          input.value = log;
+        } else {
+          if (log) {
+            alert(log);
+          }
+        }
+      });
+    });
+
+    function update_content_Reflection(content) {
+      // Your logic for updating content reflection
+      console.log("Content updated:", content);
+    }
+  </script>
+</body>
+</html>
