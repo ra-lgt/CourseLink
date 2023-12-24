@@ -22,11 +22,30 @@
     <link rel="stylesheet" href="{{url_for('static',filename='css/flaticon.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 </head>
-<body>
+
+  <style>
  
+
+    .ani{
+      transition: transform 0.10s ease-in-out;
+    }
+   .ani:hover{
+      transform: translateY(-10px);
+    }
+</style>
+
+</head>
+
+<body style="background:#FFFFFF">
+   
 <style>
 /* Extra */
-
+body {
+  background: #ccc;
+  color: #272727;
+  font-size: 14px;
+  margin: 0;
+}
 
 .logo {
   max-width: 200px;
@@ -121,11 +140,11 @@
   }
   .menu_temp-active .nav_temp-menu_temp {
     transform: translatey(0%);
-    opacity: 0;
+    opacity: 1;
   }
 }
 .nav_temp-menu_temp .menu_temp-item a {
-  color: #161A30;
+  color: #444444;
   display: block;
   line-height: 30px;
   margin: 0px 10px;
@@ -133,8 +152,7 @@
   text-transform: uppercase;
 }
 .nav_temp-menu_temp .menu_temp-item a:hover {
-  color:#161A30;
-  font-weight: bold;
+  color: #777777;
   text-decoration: underline;
 }
 @media screen and (max-width: 768px) {
@@ -172,20 +190,6 @@
 }
 </style>
 
-
-<script>$(document).ready(function() {
-  // Toggle menu_temp on click
-  $("#menu_temp-toggler").click(function() {
-    toggleBodyClass("menu_temp-active");
-  });
-
-  function toggleBodyClass(className) {
-    document.body.classList.toggle(className);
-  }
-
- });
-</script>
-
 <!-- END nav -->
 
 <div class="hero-wrap js-fullheight" style="background-image: url('{{url_for('static',filename='images/bg_1.jpg')}}');">
@@ -217,6 +221,18 @@
     
       </div>
     </nav>
+    <script>$(document).ready(function() {
+      // Toggle menu_temp on click
+      $("#menu_temp-toggler").click(function() {
+        toggleBodyClass("menu_temp-active");
+      });
+    
+      function toggleBodyClass(className) {
+        document.body.classList.toggle(className);
+      }
+    
+     });
+    </script>
   </div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">

@@ -24,7 +24,12 @@
 </head>
 <style>
   /* Extra */
-  
+  body {
+    background: #ccc;
+    color: #272727;
+    font-size: 14px;
+    margin: 0;
+  }
   
   .logo {
     max-width: 200px;
@@ -169,20 +174,19 @@
     display: block;
   }
   </style>
-  
-  
-  <script>$(document).ready(function() {
-    // Toggle menu_temp on click
-    $("#menu_temp-toggler").click(function() {
-      toggleBodyClass("menu_temp-active");
-    });
-  
-    function toggleBodyClass(className) {
-      document.body.classList.toggle(className);
+  <style>
+ 
+
+    .ani{
+      transition: transform 0.10s ease-in-out;
     }
+   .ani:hover{
+      transform: translateY(-10px);
+    }
+</style>
   
-   });
-  </script>
+  
+ 
 <body onload="check_page()">
 
 
@@ -210,6 +214,18 @@
 
   </div>
 </nav>
+<script>$(document).ready(function() {
+  // Toggle menu_temp on click
+  $("#menu_temp-toggler").click(function() {
+    toggleBodyClass("menu_temp-active");
+  });
+
+  function toggleBodyClass(className) {
+    document.body.classList.toggle(className);
+  }
+
+ });
+</script>
  <!-- END nav -->
  
  <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');">
