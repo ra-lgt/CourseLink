@@ -202,25 +202,12 @@ body {
 
     <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
     <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
-      <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="#">Home</a></li>
-      <li class="menu_temp-item dropdown"><a class="nav_temp__link"  href="#">About</a>
-         <ul class="sub-nav_temp" >
-          <li><a class="sub-nav_temp__link" href="#">link 1</a></li>
-          <li><a class="sub-nav_temp__link" href="#">link 2</a></li>
-          <li><a class="sub-nav_temp__link" href="#">link 3 - long link - long link - long link</a></li>
-        </ul>
-
-      </li>
-      <li class="menu_temp-item dropdown"><a class="nav_temp__link"  href="#">Contact</a>
-        <ul class = "sub-nav_temp">
-          <li><a class="sub-nav_temp__link"  href="#">link 1</a></li>
-          <li><a class="sub-nav_temp__link"  href="#">link 2</a></li>
-          <li><a class="sub-nav_temp__link"  href="#">link 3 - long link - long link - long link</a></li>
-        </ul>
-      </li>
-      <li class="menu_temp-item "><a class="nav_temp__link"  href="#">Blog</a>
-       
-      </li>
+      <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
+      <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
+      
+      <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Message</a></li>
+        <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('blog',page_no=1)}}">Blog</a></li>
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('profile')}}">Profile</a></li>
     </ul>
 
 
@@ -326,14 +313,31 @@ body {
   }
 </script>
 <style>
-  .image {
-  width: 9%;
-  height: 20%;
-  margin-left: 15px;
-  margin-top: 10px;
-  border-radius: 65%;
-  overflow: hidden;
-}
+  @media (min-width: 768px) {
+    /* Add your desktop styles here */
+    .image {
+      width: 9%;
+      height: 30%;
+      margin-left: 15px;
+      margin-top: 10px;
+      border-radius: 65%;
+      overflow: hidden;
+    }
+  }
+  
+  /* Styles for Mobile */
+  @media (max-width: 767px) {
+    /* Add your mobile styles here */
+    .image {
+      width: 30%;
+      height: 30%;
+      margin-left: 15px;
+      margin-top: 10px;
+      border-radius: 65%;
+      overflow: hidden;
+    }
+  }
+
   @media (min-width: 576px) {
     .modal-dialog {
         max-width: 950px;

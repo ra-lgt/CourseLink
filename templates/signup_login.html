@@ -100,9 +100,7 @@
                   </div>
                    <br>
 
-                  <input type="checkbox" id="terms" required>
-<span for="terms">I have read and agree to the <a href="{{url_for('terms')}}" target="_blank">Terms and Conditions</a></span>
-
+  
                      
                      
                      
@@ -178,11 +176,6 @@
     const con_password=document.getElementById('passwordCon').value;
     
     const terms=document.getElementById("terms");
-
-    if(!terms.checked){
-      alert("Accept to the terms and conditions")
-    }
-    else{
      
     const data = {
         username: username,

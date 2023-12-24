@@ -19,13 +19,17 @@ class Chat:
         
     
     def start_chat(self,sender_email,reciever_email):
+
         db=self.mongo_conn['ChatDB']
         collection_sender=db[sender_email]
         collection_reciever=db[reciever_email]
         
         existing_document = collection_sender.find({'chat_reciever_email': reciever_email})
-        if existing_document is not None:
-            return True
+        
+        for doc in existing_document:
+            if(len(doc.keys())<=0):
+                return True
+        
         chat_id=self.generate_chat_id(length=6)
         
         try:

@@ -5,7 +5,10 @@
 		[x-cloak] {
 			display: none;
 		}
+		#next,#complete{
+			background: #31304D;
 
+		}
 		[type="checkbox"] {
 			box-sizing: border-box;
 			padding: 0;
@@ -59,10 +62,11 @@
 			background-position: center;
 			background-repeat: no-repeat;
 		}
+		
 	</style>
 
 
-<body class="antialiased sans-serif bg-gray-200">
+<body class="antialiased sans-serif bg-gray-200" style="background-color: #FAF0E6;">
 	<div x-data="app()" x-cloak>
 		<div class="max-w-3xl mx-auto px-4 py-10">
 
@@ -92,11 +96,11 @@
 					<div class="flex flex-col md:flex-row md:items-center md:justify-between">
 						<div class="flex-1">
 							<div x-show="step === 1">
-								<div class="text-lg font-bold text-gray-700 leading-tight">Your Profile</div>
+								<div class="text-lg font-bold text-gray-700 leading-tight">Basic Information</div>
 							</div>
 							
 							<div x-show="step === 2">
-								<div class="text-lg font-bold text-gray-700 leading-tight">Your Password</div>
+								<div class="text-lg font-bold text-gray-700 leading-tight">Experience</div>
 							</div>
 
 							<div x-show="step === 3">
@@ -165,9 +169,56 @@
 						</div>
                         <div class="mb-5">
 							<label for="email" class="font-bold mb-1 text-gray-700 block">Country</label>
-							<input id="country" type="text"
-								class="w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
-								placeholder="Enter your Country Name...">
+							{% set countries = [
+								"Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
+								"Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
+								"Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados",
+								"Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+								"Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei",
+								"Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia",
+								"Cameroon", "Canada", "Central African Republic", "Chad", "Chile",
+								"China", "Colombia", "Comoros", "Congo", "Costa Rica",
+								"Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark",
+								"Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador",
+								"Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia",
+								"Eswatini", "Ethiopia", "Fiji", "Finland", "France",
+								"Gabon", "Gambia", "Georgia", "Germany", "Ghana",
+								"Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau",
+								"Guyana", "Haiti", "Holy See", "Honduras", "Hungary",
+								"Iceland", "India", "Indonesia", "Iran", "Iraq",
+								"Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica",
+								"Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati",
+								"Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon",
+								"Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania",
+								"Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives",
+								"Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius",
+								"Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia",
+								"Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia",
+								"Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua",
+								"Niger", "Nigeria", "North Korea", "North Macedonia", "Norway",
+								"Oman", "Pakistan", "Palau", "Palestine", "Panama",
+								"Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland",
+								"Portugal", "Qatar", "Romania", "Russia", "Rwanda",
+								"Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino",
+								"Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles",
+								"Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands",
+								"Somalia", "South Africa", "South Korea", "South Sudan", "Spain",
+								"Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland",
+								"Syria", "Tajikistan", "Tanzania", "Thailand", "Togo",
+								"Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan",
+								"Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom",
+								"United States", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela",
+								"Vietnam", "Yemen", "Zambia", "Zimbabwe"
+							] %}
+							<select id="exp"
+                                    class="w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium">
+                                    
+                                    <!-- Add additional <option> elements for each course -->
+                                    {% for i in countries %}
+                                    <option value="{{i}}">{{i}}</option>
+									{% endfor %}
+                                    <!-- Add more options as needed -->
+                                </select>
 						</div>
                         <div class="mb-5">
 							<label for="email" class="font-bold mb-1 text-gray-700 block">City</label>
@@ -217,6 +268,29 @@
                                     <!-- Add more options as needed -->
                                 </select>
                             </div>
+							{% set languages = [
+								"Afrikaans", "Albanian", "Amharic", "Arabic", "Armenian",
+								"Azerbaijani", "Basque", "Belarusian", "Bengali", "Bosnian",
+								"Bulgarian", "Catalan", "Cebuano", "Chichewa", "Chinese",
+								"Corsican", "Croatian", "Czech", "Danish", "Dutch",
+								"English", "Esperanto", "Estonian", "Filipino", "Finnish",
+								"French", "Frisian", "Galician", "Georgian", "German",
+								"Greek", "Gujarati", "Haitian Creole", "Hausa", "Hawaiian",
+								"Hebrew", "Hindi", "Hmong", "Hungarian", "Icelandic",
+								"Igbo", "Indonesian", "Irish", "Italian", "Japanese",
+								"Javanese", "Kannada", "Kazakh", "Khmer", "Kinyarwanda",
+								"Korean", "Kurdish", "Kyrgyz", "Lao", "Latin",
+								"Latvian", "Lithuanian", "Luxembourgish", "Macedonian", "Malagasy",
+								"Malay", "Malayalam", "Maltese", "Maori", "Marathi",
+								"Mongolian", "Burmese", "Nepali", "Norwegian", "Odia",
+								"Pashto", "Persian", "Polish", "Portuguese", "Punjabi",
+								"Romanian", "Russian", "Samoan", "Scots Gaelic", "Serbian",
+								"Sesotho", "Shona", "Sindhi", "Sinhala", "Slovak",
+								"Slovenian", "Somali", "Spanish", "Sundanese", "Swahili",
+								"Swedish", "Tajik", "Tamil", "Telugu", "Thai",
+								"Turkish", "Ukrainian", "Urdu", "Uzbek", "Vietnamese",
+								"Welsh", "Xhosa", "Yiddish", "Yoruba", "Zulu"
+							] %}
 
                             <div class="mb-5">
                                 <label for="course" class="font-bold mb-1 text-gray-700 block">Prefered Language</label>
@@ -224,9 +298,10 @@
                                     class="w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium">
                                     
                                     <!-- Add additional <option> elements for each course -->
-                                    <option value="course1">Beginner</option>
-                                    <option value="course2">Intermdiate</option>
-                                    <option value="course3">Expert</option>
+										{% for i in languages|sort %}
+                                    
+                                    <option value="{{i}}">{{i}}</option>
+									{% endfor %}
                                     <!-- Add more options as needed -->
                                 </select>
                             </div>
@@ -263,9 +338,11 @@
 
 					<div class="w-1/2 text-right">
 						<button
+						id="next"
 							x-show="step < 3"
 							@click="step++"
 							class="w-32 focus:outline-none border border-transparent py-2 px-5 rounded-lg shadow-sm text-center text-white bg-blue-500 hover:bg-blue-600 font-medium" 
+							
 						>Next</button>
 
 						<button

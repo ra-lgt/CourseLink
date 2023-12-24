@@ -269,6 +269,7 @@ def save_profile_pic():
     
 @app.route('/create_chat',methods=['POST','GET'])
 def create_chat():
+    
     data=request.get_json()
     
     return_code=user_chat.start_chat(session['email'],data['email'])    
@@ -290,11 +291,12 @@ def chat_page(chat_id):
     
     if(user_specific_chats is None):
         user_specific_chats=user_chat.get_users_chat(session['email'])
-        cache.set('users_chat',user_specific_chats,timeout=180*60)
+        cache.set('users_chat',user_specific_chats,timeout=180*60)  
+    if(len(user_specific_chats['_id'])!=0):
     
-    for email in user_specific_chats['chat_reciever_email']:
-        data=user_dataAPI.get_data_of_specific_user(email)
-        user_specific_data.append(data)
+        for email in user_specific_chats['chat_reciever_email']:
+            data=user_dataAPI.get_data_of_specific_user(email)
+            user_specific_data.append(data)
     
     selected_chat={}
     

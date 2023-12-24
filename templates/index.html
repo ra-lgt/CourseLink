@@ -202,12 +202,16 @@
     
         <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
         <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
+          {% if session_bool %}
           <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
-          <li class="menu_temp-item dropdown"><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
           
-          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Messages</a>
-           
-          </li>
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Message</a></li>
+            <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('blog',page_no=1)}}">Blog</a></li>
+              <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('profile')}}">Profile</a></li>
+              {% else %}
+              <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('signup_login')}}">Signup/Login</a></li>
+              {% endif %}
         </ul>
     
     
@@ -218,8 +222,8 @@
     <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
       <div class="col-md-7 ftco-animate">
         <span class="subheading">Welcome to StudyLab</span>
-        <h1 class="mb-4">We Are Online Platform For Make Learn</h1>
-        <p class="caps">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+        <h1 class="mb-4">Global Student Connect</h1>
+        <p class="caps">Global Student Connect: Join, connect, and engage with students worldwide based on degree and stream. Clear doubts and foster academic conversations to enhance your global learning experience.</p>
         <p class="mb-0"><a href="#" class="btn btn-primary">Our Course</a> <a href="#" class="btn btn-white">Learn More</a></p>
     </div>
 </div>
@@ -295,14 +299,14 @@
       <div class="row justify-content-center pb-4">
           <div class="col-md-12 heading-section text-center ftco-animate">
             <span class="subheading">Start Learning Today</span>
-            <h2 class="mb-4">Pick Your Course</h2>
+            <h2 class="mb-4">Choose Your Pathway</h2>
         </div>
     </div>
     <div class="row">
        <div class="col-md-4 ftco-animate">
           <div class="project-wrap">
              <a href="#" class="img" style="background-image: url('{{url_for('static',filename='images/Arts & Humanities.jpg')}}');">
-                <span class="price">Software</span>
+                <span class="price">Humanities</span>
             </a>
             <div class="text p-4">
                 <h3><a href="#">ARTS & HUMANITIES</a></h3>
@@ -313,7 +317,7 @@
    <div class="col-md-4 ftco-animate">
       <div class="project-wrap">
          <a href="#" class="img" style="background-image: url('{{url_for('static',filename='images/Economics.jpg')}}');">
-            <span class="price">Software</span>
+            <span class="price">social sciences</span>
         </a>
         <div class="text p-4">
             <h3><a href="#">ECONOMICS</a></h3>
@@ -324,7 +328,7 @@
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
      <a href="#" class="img" style="background-image: url('{{url_for('static',filename='images/Commerce.jpg')}}');">
-        <span class="price">Software</span>
+        <span class="price">business studies</span>
     </a>
     <div class="text p-4">
         <h3><a href="#">COMMERCE</a></h3>
@@ -347,7 +351,7 @@
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
      <a href="#" class="img" style="background-image: url('{{url_for('static',filename='images/work-5.jpg')}}');">
-        <span class="price">Software</span>
+        <span class="price">Business</span>
     </a>
     <div class="text p-4">
         <h3><a href="#">FINANCE</a></h3>
@@ -358,7 +362,7 @@
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
      <a href="#" class="img" style="background-image: url('{{url_for('static',filename='images/work-6.jpg')}}');">
-        <span class="price">Software</span>
+        <span class="price">Development</span>
     </a>
     <div class="text p-4">
         <h3><a href="#">COMPUTER SCIENCE</a></h3>
@@ -379,7 +383,7 @@
             <div class="icon"><span class="flaticon-online"></span></div>
             <div class="text">
              <strong class="number" data-number="400">0</strong>
-             <span>Online Courses</span>
+             <span>Active Users</span>
          </div>
      </div>
  </div>

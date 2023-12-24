@@ -8606,8 +8606,6 @@ h1, h2, h3, h4, h5,
     .hero-wrap.hero-wrap-2 .slider-text {
       height: 600px; }
 
-.slider-text {
-  position: relative; }
   .slider-text .subheading {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.8);
