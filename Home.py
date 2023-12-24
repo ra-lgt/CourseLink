@@ -1,5 +1,6 @@
 
 
+from functools import wraps
 from flask import Flask,render_template,request,jsonify,session,url_for,redirect
 import json
 import random
@@ -45,6 +46,17 @@ def check_email_exists(email):
     
 #end of helping functions
 
+def login_required(view_function):
+    @wraps(view_function)
+    def decorated_function(*args, **kwargs):
+        
+        
+        if session.get('user_id'):
+            return view_function(*args, **kwargs)
+        else:
+            return redirect(url_for('signup_login'))
+    return decorated_function
+
 @app.route('/')
 def Home():
     session_bool=False
@@ -62,6 +74,7 @@ def signup_login():
 
 
 @app.route('/success')
+@login_required
 def success():
     data=request.args.get('data')
     return render_template('success.html',data=data)
@@ -196,6 +209,7 @@ def email_exists():
 
     
 @app.route('/profile',methods=['GET','POST'])
+@login_required
 def profile():
     user_specific_data=None
     user_specific_data=cache.get('profile_data')
@@ -231,34 +245,34 @@ def profile():
     # return render_template("profile.html",user_specific_data=user_specific_data,event_count=len(user_specific_event['_id']),friend_count=len(friend_data['_id']))
     return render_template('Profile.html',user_specific_data=user_specific_data)
 @app.route('/first_user',methods=['POST'])
+@login_required
 def first_user():
+
     data=request.get_json()
     data['Intial_set']='True'
     db=mongo_client['User-Data']
     collection=db['user_details']
     filters = {"email": session['email']}
     update_operation = {"$set": data}
-    profile_pic=data['profile_pic']
-    del data['profile_pic']
+
     
     try:
-        if(profile_pic!=""):
-            user_dataAPI.save_profile(profile_pic,session['username'])
         result = collection.update_one(filters, update_operation)
         cache.delete("profile_data")
         return jsonify({"status":200}),200
-    except:
+    except: 
         return jsonify({"status":404}),404
         
     
 @app.route('/save_profile_pic',methods=['POST'])
+@login_required
 def save_profile_pic():
     
     if 'file' not in request.files:
         print("file not found")
     file = request.files['file']
 
-    return_code=user_dataAPI.save_profile(file,cache.get('profile_data')['username'])
+    return_code=user_dataAPI.save_profile(file,cache.get('profile_data')['username'] or session['username'])
     
     if(return_code==True):
         result = {'message': 'Image uploaded successfully'}
@@ -268,6 +282,7 @@ def save_profile_pic():
         return jsonify(result)
     
 @app.route('/create_chat',methods=['POST','GET'])
+@login_required
 def create_chat():
     
     data=request.get_json()
@@ -280,6 +295,7 @@ def create_chat():
     return jsonify({'message':"Error",'status':404}),404
 
 @app.route('/chat_page/<chat_id>')
+@login_required
 def chat_page(chat_id):
     
     user_specific_chats=None
@@ -320,6 +336,7 @@ def chat_page(chat_id):
     return render_template('chat.html',user_specific_data=user_specific_data,user_specific_chats=user_specific_chats,count=len(user_specific_data),chat_id=chat_id,selected_chat=selected_chat,email=session['email'],history_chat=history_chat,len_chat=len_chat,username=session['username'])
 
 @app.route('/change_chat/<chat_id>')
+@login_required
 def change_chat(chat_id):
     # specific_chat=user_chat.get_specific_chat(chat_id,session['email'])
     return "hi"
@@ -371,6 +388,7 @@ def terms():
     return "hello"
 
 @app.route('/create_blog')
+@login_required
 def create_blog():
     user_specific_data=None
     user_specific_data=cache.get('profile_data')
@@ -382,6 +400,7 @@ def create_blog():
     return render_template('create_blog.html',username=session['username'],profile_pic=user_specific_data['profile_pic'],date=datetime.now().strftime("%b %d"))
 
 @app.route('/blog/<int:page_no>')
+@login_required
 def blog(page_no):
     blog_posts=user_blog.get_all_blog_posts()
     
@@ -399,6 +418,7 @@ def blog(page_no):
     return render_template('blog.html',blog_posts=blog_posts,end=end,start=start,page_no_len=len(blog_posts['_id'])//1,page_no=page_no)
 
 @app.route('/post_blog',methods=['POST','GET'])
+@login_required
 def post_blog():
     bimgs=None
     if(request.method=='POST'):
@@ -424,6 +444,7 @@ def post_blog():
         
     
 @app.route('/find_friends')
+@login_required
 def find_friends():
     all_user_data=None
     all_user_data = cache.get('cached_all_user_data')
@@ -459,6 +480,7 @@ def find_friends():
 # def send_friend_request():
 #     return "hi"
 @app.route('/update_profile_data',methods=['POST'])
+@login_required
 def update_profile_data():
   
     

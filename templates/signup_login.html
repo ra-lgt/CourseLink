@@ -250,7 +250,7 @@ if(otp==user_otp){
     })
   .then(response => response.json())
     .then(data => {
-          window.location.href = "{{url_for('success')}}?data=encodeURIComponent('THANKS FOR REGISTERING')";  
+          window.location.href = "{{url_for('success')}}?data=THANKS FOR REGISTERING";  
     })
     
     .catch(error => {

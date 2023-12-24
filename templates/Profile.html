@@ -41,18 +41,8 @@
           <li class="nav-item dropdown">
             <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <div class="media align-items-center">
-                <span class="avatar avatar-sm rounded-circle">
-                  {% if user_specific_data['profile_pic']!="" %}
-                  <img alt="Image placeholder" src="{{user_specific_data['profile_pic']}}">
-                  {% else %}
-                  <img alt="Image placeholder" src="{{url_for('static',filename='images/default_profile.jpg')}}">
-                  {% endif %}
-
-                  
-                </span>
-                <div class="media-body ml-2 d-none d-lg-block">
-                  <span class="mb-0 text-sm  font-weight-bold">{{user_specific_data['username']}}</span>
-                </div>
+                
+                
               </div>
             </a>
             
@@ -219,13 +209,13 @@
                     <div class="col-lg-4">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-country">Country</label>
-                        <input type="text" name="country" id="input-country" class="form-control form-control-alternative" placeholder="Country" value="{{user_specific_data['Country']}}">
+                        <input type="text" name="country" id="input-country" class="form-control form-control-alternative" value="{{user_specific_data['Country']}}">
                       </div>
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Postal code</label>
-                        <input type="number" name="postal" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" value="{{user_specific_data['Postal_Code']}}">
+                        <input type="number" name="postal" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" value="{{user_specific_data['postal_code']}}">
                       </div>
                     </div>
                   </div>
@@ -252,8 +242,8 @@
                     </div>
                     <div class="col-lg-4">
                       <div class="form-group focused">
-                        <label class="form-control-label" for="input-country">Experince Level</label>
-                        <select id="input-country" name="Experince_Level" class="form-control form-control-alternative" >
+                        <label class="form-control-label" for="input-exp">Experince Level</label>
+                        <select id="input-exp" name="Experince_Level" class="form-control form-control-alternative" >
                           
                           <option value="Begineer">Begineer</option>
   <option value="Intermediate">Intermediate</option>
@@ -271,7 +261,7 @@
                 </div>
                 
   <script>
-    document.getElementById("input-country").value = "{{user_specific_data['Experince_Level']}}";
+    document.getElementById("input-exp").value = "{{user_specific_data['Experince_Level']}}";
 
   </script>              
 
