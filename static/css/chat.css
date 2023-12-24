@@ -199,6 +199,7 @@ message-area
 .message-area {
     height: 100vh;
     overflow: hidden;
+    padding: 30px 0;
     background: #f5f5f5;
 }
 
@@ -207,9 +208,8 @@ message-area
     width: 100%;
     background-color: #fff;
     border-radius: 0.3rem;
-    height: 85vh;
+    height: 90vh;
     overflow: hidden;
-    margin-top:0.4%;
     min-height: calc(100% - 1rem);
 }
 
@@ -219,6 +219,7 @@ message-area
     overflow: hidden;
     width: 300px;
     float: left;
+    padding: 15px;
 }
 
 .chat-area .modal-content {
@@ -236,6 +237,7 @@ message-area
     width: auto;
     overflow: hidden;
     height: 100%;
+    border-left: 1px solid #e449ad;
 }
 
 .chatbox .modal-dialog,
@@ -247,26 +249,25 @@ message-area
 .msg-search {
     display: flex;
     align-items: center;
-    padding-top: 20px;
-    padding-left: 30px;
     justify-content: space-between;
-    background-color: #FAF0E6;;
 }
 
 .chat-area .form-control {
     display: block;
-    width: 90%;
+    width: 80%;
     padding: 0.375rem 0.75rem;
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
-    background-color:#fff;
+    color: #992c9e;
+    background-color: #fff;
     background-clip: padding-box;
+    border: 1px solid #e449ad;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     border-radius: 0.25rem;
-    transition: border-color .20s ease-in-out, box-shadow .20s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .chat-area .form-control:focus {
@@ -283,7 +284,6 @@ a.add img {
     align-items: center;
     justify-content: space-between;
     flex-wrap: inherit;
-    background-color:#FAF0E6;;
 }
 
 .chat-area .nav-tabs .nav-item {
@@ -307,8 +307,8 @@ a.add img {
 
 .chat-area .nav-tabs .nav-item.show .nav-link,
 .chat-area .nav-tabs .nav-link.active {
-    color: #F0ECE5;
-    background: linear-gradient(90deg, #161A30 0%, #31304D 100%);
+    color: #222;
+    background-color: #fff;
     border-color: transparent transparent #000;
 }
 
@@ -375,8 +375,7 @@ a.add img {
 
 .msg-head {
     padding: 15px;
-    background: #FAF0E6;
-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);;
+    border-bottom: 1px solid #e449ad;
 }
 
 .moreoption {
@@ -477,21 +476,19 @@ box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);;
     height: 0;
     border-style: solid;
     border-width: 0 12px 15px 12px;
-    border-color: transparent transparent #FAF0E6 transparent;
+    border-color: transparent transparent #992c9e transparent;
     -webkit-transform: rotate(37deg);
     -ms-transform: rotate(37deg);
     transform: rotate(37deg);
 }
 
 .msg-body ul li.repaly p {
-    color:#31304D;
+    color: #fff;
     font-size: 14px;
     line-height: 1.5;
     font-weight: 400;
     padding: 15px;
-    border-radius: 15px;
-background: #FAF0E6;
-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+    background: #992c9e;
     display: inline-block;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -536,6 +533,8 @@ li.repaly .time {
     font-weight: normal;
     font-size: 14px;
     line-height: 1.5;
+    color: #992c9e;
+
     background: #fff;
     display: inline-block;
     padding: 0 5px;
@@ -557,7 +556,7 @@ li.repaly .time {
 
 .send-box {
     padding: 15px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.40);
+    border-top: 1px solid #e449ad;
 }
 
 .send-box form {
@@ -574,23 +573,23 @@ li.repaly .time {
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
+    color: #992c9e;
     background-color: #fff;
     background-clip: padding-box;
+    border: 1px solid #e449ad;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    border-radius: 5px;
-    transition: border-color .15s ease-in-out;
-     box-shadow : 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 .send-box button {
     border: none;
-   border-radius: 5px;
-background: linear-gradient(90deg, #161A30 0%, #31304D 100%);
+    background: #992c9e;
     padding: 0.375rem 5px;
-    color: #F0ECE5;
-    
+    color: #fff;
+    border-radius: 0.25rem;
     font-size: 14px;
     font-weight: 400;
     width: 24%;
