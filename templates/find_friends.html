@@ -230,7 +230,7 @@ body {
 
 
 {% for i in range(count) %}
-<div class="modal fade" id="learnMore{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal " id="learnMore{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
 
@@ -451,7 +451,7 @@ body {
           <select id="location-filter" class="location selectlist">
             {% for i in Course %}
             
-        <option selected="selected" value="">{{i}}</option>
+        <option selected="selected" value="{{i}}">{{i}}</option>
         
        {% endfor %}
       </select>
@@ -460,7 +460,7 @@ body {
           <h3>Filter by Degree</h3>
           <select id="type-filter" class="jobtypefilter selectlist">
        {% for i in degree %}
-        <option value="Part Time">{{i}}</option>
+        <option value="{{i}}">{{i}}</option>
         {% endfor %}
       </select>
         </div>
@@ -494,7 +494,7 @@ var options = {
   '<img class="image" >' +
   '<a class="applyLink">' +
     '<h4 class="jobTitle"style="color:black;margin-left:37px"></h4>' +
-    '<h3 class="jobtypefilter"style="color:black;margin-left:37px"></h3>'+
+    '<h4 class="jobtypefilter"style="color:black;margin-left:37px"></h4>'+
   '</a>' +
  
   '<div class="bottomBox">' +
@@ -527,8 +527,9 @@ var options = {
   {% for i in range(count) %}
  
     {
-      jobTitle: "User Name : {{all_user_data['username'][i]}}",
-      jobtypefilter:"Degree : {{all_user_data['Degree'][i]}}",
+
+      jobTitle: "<br><img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA2ElEQVR4nL3SvUpDQRDF8V8KTRVRTJNKfQURtJA8QupgFRsr7TXocwg+gCikiVhoZe9H0mrno4SFLS7k3sQ7Qv4wxZwzc9hllxWzgRu85bpGKxrWxgfO0cl1gXdsRwLv0C/RT3AbCfxBo0RP2nck8CvoVfIZ9FYXOMF6id6MBg5xWUNfyhqe0CtovawlL8RZrqq+NlcYFPrT6HWPMcIYmwV9C8/ZSzNL2cUL7rG/YO4gz7xir2poB1Mc+TuHeScdZI5HdNWni4cy47fwinUr7c4RDfv3V1rIDGxNLyDjctveAAAAAElFTkSuQmCC'> : {{all_user_data['username'][i]}}",
+      jobtypefilter:"<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA+UlEQVR4nN3UMUoDURSF4a8x2AQjriONO4grcAXpEmzERhCZJpAmWFqFZAHuIJBKEASLgIEswUVoKQMnENSBUQcLDxx4nHffz5s7c4f/ooP41+pghHU8SvZttXEVyAX2sYc+njHB4U9BH1UL3K4Bqg2+DmiIVrKyT8fo4TQH+1n3srftZStn12F9Ai5xjxluUOA8LpLNUrP8CijBQ8KV+lpVvf1hXIYbnGCAS4xxG4+TDVKzqfqMtsBSb3jBPI/YT996WRfZK2teq66+C+zmFlPcYYHHeJFsmppuHWAjOosbUWdnVhv5ARzhKS7XjWgSN6ZyduvM79/rHdT2P19NiEnTAAAAAElFTkSuQmCC'> : {{all_user_data['Degree'][i]}}",
       jobType:  "#learnMore{{i}}",
       datePosted: "{{all_user_data['Joined_date'][i]}}",
       jobLocation:"{{all_user_data['Course'][i]}}",
@@ -571,7 +572,7 @@ var options = {
       var selection = this.value;
       if (selection) {
           userList.filter(function(item) {
-              return (item.values().jobType == selection);
+              return (item.values().jobtypefilter == selection);
           });
       } else {
           userList.filter();

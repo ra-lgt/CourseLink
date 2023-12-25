@@ -206,12 +206,59 @@
                         <input type="text" name="city" id="input-city" class="form-control form-control-alternative" placeholder="City" value="{{user_specific_data['City']}}">
                       </div>
                     </div>
+                    {% set countries = [
+                      "Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
+                      "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
+                      "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados",
+                      "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+                      "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei",
+                      "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia",
+                      "Cameroon", "Canada", "Central African Republic", "Chad", "Chile",
+                      "China", "Colombia", "Comoros", "Congo", "Costa Rica",
+                      "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark",
+                      "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador",
+                      "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia",
+                      "Eswatini", "Ethiopia", "Fiji", "Finland", "France",
+                      "Gabon", "Gambia", "Georgia", "Germany", "Ghana",
+                      "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau",
+                      "Guyana", "Haiti", "Holy See", "Honduras", "Hungary",
+                      "Iceland", "India", "Indonesia", "Iran", "Iraq",
+                      "Ireland", "Israel", "Italy", "Ivory Coast", "Jamaica",
+                      "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati",
+                      "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon",
+                      "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania",
+                      "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives",
+                      "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius",
+                      "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia",
+                      "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia",
+                      "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua",
+                      "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway",
+                      "Oman", "Pakistan", "Palau", "Palestine", "Panama",
+                      "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland",
+                      "Portugal", "Qatar", "Romania", "Russia", "Rwanda",
+                      "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino",
+                      "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles",
+                      "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands",
+                      "Somalia", "South Africa", "South Korea", "South Sudan", "Spain",
+                      "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland",
+                      "Syria", "Tajikistan", "Tanzania", "Thailand", "Togo",
+                      "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan",
+                      "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom",
+                      "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela",
+                      "Vietnam", "Yemen", "Zambia", "Zimbabwe"
+                    ] %}
                     <div class="col-lg-4">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-country">Country</label>
-                        <input type="text" name="country" id="input-country" class="form-control form-control-alternative" value="{{user_specific_data['Country']}}">
+                        <select id="input-countries" name="country" class="form-control form-control-alternative" >
+                          {% for i in countries %}
+                          <option value="{{i}}">{{i}}</option>
+                          {% endfor %}
+  
+                        </select>
                       </div>
                     </div>
+                    
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Postal code</label>
@@ -243,7 +290,7 @@
                     <div class="col-lg-4">
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-exp">Experince Level</label>
-                        <select id="input-exp" name="Experince_Level" class="form-control form-control-alternative" >
+                        <select id="input-experience" name="Experince_Level" class="form-control form-control-alternative" >
                           
                           <option value="Begineer">Begineer</option>
   <option value="Intermediate">Intermediate</option>
@@ -251,19 +298,44 @@
                         </select>
                       </div>
                     </div>
+                    {% set languages = [
+                      "Afrikaans", "Albanian", "Amharic", "Arabic", "Armenian",
+                      "Azerbaijani", "Basque", "Belarusian", "Bengali", "Bosnian",
+                      "Bulgarian", "Catalan", "Cebuano", "Chichewa", "Chinese",
+                      "Corsican", "Croatian", "Czech", "Danish", "Dutch",
+                      "English", "Esperanto", "Estonian", "Filipino", "Finnish",
+                      "French", "Frisian", "Galician", "Georgian", "German",
+                      "Greek", "Gujarati", "Haitian Creole", "Hausa", "Hawaiian",
+                      "Hebrew", "Hindi", "Hmong", "Hungarian", "Icelandic",
+                      "Igbo", "Indonesian", "Irish", "Italian", "Japanese",
+                      "Javanese", "Kannada", "Kazakh", "Khmer", "Kinyarwanda",
+                      "Korean", "Kurdish", "Kyrgyz", "Lao", "Latin",
+                      "Latvian", "Lithuanian", "Luxembourgish", "Macedonian", "Malagasy",
+                      "Malay", "Malayalam", "Maltese", "Maori", "Marathi",
+                      "Mongolian", "Burmese", "Nepali", "Norwegian", "Odia",
+                      "Pashto", "Persian", "Polish", "Portuguese", "Punjabi",
+                      "Romanian", "Russian", "Samoan", "Scots Gaelic", "Serbian",
+                      "Sesotho", "Shona", "Sindhi", "Sinhala", "Slovak",
+                      "Slovenian", "Somali", "Spanish", "Sundanese", "Swahili",
+                      "Swedish", "Tajik", "Tamil", "Telugu", "Thai",
+                      "Turkish", "Ukrainian", "Urdu", "Uzbek", "Vietnamese",
+                      "Welsh", "Xhosa", "Yiddish", "Yoruba", "Zulu"
+                    ] %}
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Preferred Language</label>
-                        <input type="text" name="language" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" value="{{user_specific_data['language']}}">
+                        <select id="input-exp" name="language" class="form-control form-control-alternative" >
+                          {% for i in languages|sort %}
+                          <option value="{{i}}">{{i}}</option>
+
+                          {% endfor %}
+                        </select>
                       </div>
                     </div>
                   </div>
                 </div>
                 
-  <script>
-    document.getElementById("input-exp").value = "{{user_specific_data['Experince_Level']}}";
-
-  </script>              
+            
 
                 <hr class="my-4">
                 <!-- Description -->
@@ -284,6 +356,24 @@
   </div>
 
 </body>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Get the select element
+    var selectElement = document.getElementById('input-countries');
+    var exp_select = document.getElementById('input-experience');
+    var lang_select = document.getElementById('language');
+    var option_language=lang_select.querySelector("option[value='{{user_specific_data['language']}}']")
+
+    // Get the option to be selected
+    var optionToSelect = selectElement.querySelector("option[value='{{user_specific_data['Country']}}']");
+    var exp_select_option=exp_select.querySelector("option[value='{{user_specific_data['Experince_Level']}}']");
+
+    option_language.selected=true
+    exp_select_option.selected=true
+    // Set the selected property
+    optionToSelect.selected = true;
+  });
+</script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
    

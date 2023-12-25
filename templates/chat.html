@@ -128,6 +128,9 @@
     margin: 8px;
   }
 }
+.modal-content{
+  width: 100%;
+}
 
 .sub-nav_temp {
   border: 1px solid #ccc;
@@ -234,7 +237,24 @@
                                                         {% for i in range(count) %}
                                                         <a href="{{url_for('chat_page',chat_id=user_specific_chats['chat_id'][i])}}" class="d-flex align-items-center">
                                                             <div class="flex-shrink-0">
-                                                                <img class="img-fluid" src="{{user_specific_data[i]['profile_pic']}}" width="50" height="50" alt="user img">
+                                                              <div class="rounded-image-container">
+                                                                <img class="img-fluid rounded-image" src="{{user_specific_data[i]['profile_pic']}}" width="50" height="50" alt="user img">
+                                                              </div>
+<style>
+  .rounded-image-container {
+    overflow: hidden;
+    border-radius: 50%; /* Use 50% to create a perfect circle */
+    width: 50px; /* Set the width and height to match your image dimensions */
+    height: 50px;
+  }
+  
+  .rounded-image {
+    width: 100%; /* Make the image fill the container */
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio and cover the container */
+  }
+  
+</style>                                                              
                                                                 
                                                             </div>
                                                             <div class="flex-grow-1 ms-3">
@@ -294,7 +314,9 @@
                                                 <div class="d-flex align-items-center">
                                                     <span class="chat-icon"><a href="{{url_for('chat_page',chat_id='None')}}"><img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/arroleftt.svg" alt="image title"></a></span>
                                                     <div class="flex-shrink-0">
-                                                        <img class="img-fluid" src="{{selected_chat['profile_pic']}}" width="40" height="40" alt="user img">
+                                                      <div class="rounded-image-container">
+                                                        <img class="img-fluid rounded-image" src="{{selected_chat['profile_pic']}}" width="50" height="50" alt="user img">
+                                                      </div>
                                                     </div>
                                                     <div class="flex-grow-1 ms-3">
                                                         <h3>{{selected_chat['username']}}</h3>
@@ -302,7 +324,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-4">
+                                            <!-- <div class="col-4">
                                                 <ul class="moreoption">
                                                     <li class="navbar nav-item dropdown">
                                                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></a>
@@ -312,11 +334,11 @@
                                                             <li>
                                                                 <hr class="dropdown-divider">
                                                             </li>
-                                                            <li><a class="dropdown-item" href="#">Block</a></li>
+                                                            <li><a class="dropdown-item" href="{{url_for('block_user',chat_id=selected_chat['chat_id'])}}">Block</a></li>
                                                         </ul>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     

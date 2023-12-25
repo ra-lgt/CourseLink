@@ -417,6 +417,10 @@ def blog(page_no):
 
     return render_template('blog.html',blog_posts=blog_posts,end=end,start=start,page_no_len=len(blog_posts['_id'])//1,page_no=page_no)
 
+@app.route('/view_blog')
+def view_blog():
+    return render_template('blog-single.html')
+
 @app.route('/post_blog',methods=['POST','GET'])
 @login_required
 def post_blog():
