@@ -23,156 +23,149 @@
   <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 </head>
 <style>
-  /* Extra */
-  body {
-    background: #ccc;
-    color: #272727;
-    font-size: 14px;
-    margin: 0;
-  }
   
-  .logo {
-    max-width: 200px;
-  }
-  
-  .nav_tempbar {
-    align-items: center;
-    background: #fff;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: row;
-    font-family: sans-serif;
-    padding: 10px 50px;
-  }
-  
-  .push-left {
-    margin-left: auto;
-  }
-  
-  /* menu_temp */
+.logo {
+  max-width: 200px;
+}
+
+.nav_tempbar {
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  font-family: sans-serif;
+  padding: 10px 50px;
+}
+
+.push-left {
+  margin-left: auto;
+}
+
+/* menu_temp */
+.hamburger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: none;
+  outline: none;
+  height: 30px;
+  position: relative;
+  width: 30px;
+  z-index: 1000;
+}
+@media screen and (max-width: 768px) {
   .hamburger {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    display: none;
-    outline: none;
-    height: 30px;
-    position: relative;
-    width: 30px;
-    z-index: 1000;
+    display: inline-block;
   }
-  @media screen and (max-width: 768px) {
-    .hamburger {
-      display: inline-block;
-    }
-  }
-  .hamburger-line {
-    background: #272727;
-    height: 3px;
-    position: absolute;
-    left: 0;
-    transition: all 0.2s ease-out;
-    width: 100%;
-  }
-  .hamburger:hover .hamburger-line {
-    background: #777;
-  }
-  .hamburger-line-top {
-    top: 3px;
-  }
-  .menu_temp-active .hamburger-line-top {
-    top: 50%;
-    transform: rotate(45deg) translatey(-50%);
-  }
-  .hamburger-line-middle {
-    top: 50%;
-    transform: translatey(-50%);
-  }
-  .menu_temp-active .hamburger-line-middle {
-    left: 50%;
-    opacity: 0;
-    width: 0;
-  }
-  .hamburger-line-bottom {
-    bottom: 3px;
-  }
-  .menu_temp-active .hamburger-line-bottom {
-    bottom: 50%;
-    transform: rotate(-45deg) translatey(50%);
-  }
-  
+}
+.hamburger-line {
+  background: #272727;
+  height: 3px;
+  position: absolute;
+  left: 0;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+.hamburger:hover .hamburger-line {
+  background: #777;
+}
+.hamburger-line-top {
+  top: 3px;
+}
+.menu_temp-active .hamburger-line-top {
+  top: 50%;
+  transform: rotate(45deg) translatey(-50%);
+}
+.hamburger-line-middle {
+  top: 50%;
+  transform: translatey(-50%);
+}
+.menu_temp-active .hamburger-line-middle {
+  left: 50%;
+  opacity: 0;
+  width: 0;
+}
+.hamburger-line-bottom {
+  bottom: 3px;
+}
+.menu_temp-active .hamburger-line-bottom {
+  bottom: 50%;
+  transform: rotate(-45deg) translatey(50%);
+}
+
+.nav_temp-menu_temp {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: all 0.25s ease-in;
+}
+@media screen and (max-width: 768px) {
   .nav_temp-menu_temp {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    transition: all 0.25s ease-in;
-  }
-  @media screen and (max-width: 768px) {
-    .nav_temp-menu_temp {
-      background: #fff;
-      flex-direction: column;
-      justify-content: center;
-      opacity: 0;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      transform: translatey(-100%);
-      text-align: center;
-    }
-    .menu_temp-active .nav_temp-menu_temp {
-      transform: translatey(0%);
-      opacity: 0;
-    }
-  }
-  .nav_temp-menu_temp .menu_temp-item a {
-    color: #161A30;
-    display: block;
-    line-height: 30px;
-    margin: 0px 10px;
-    text-decoration: none;
-    text-transform: uppercase;
-  }
-  .nav_temp-menu_temp .menu_temp-item a:hover {
-    color:#161A30;
-    font-weight: bold;
-    text-decoration: underline;
-  }
-  @media screen and (max-width: 768px) {
-    .nav_temp-menu_temp .menu_temp-item a {
-      font-size: 20px;
-      margin: 8px;
-    }
-  }
-  
-  .sub-nav_temp {
-    border: 1px solid #ccc;
-    display: none;
+    background: #fff;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
     position: absolute;
-    background-color: #fff;
-    padding: 5px 5px;
-    list-style: none;
-    width: 230px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translatey(-100%);
+    text-align: center;
+    margin-bottom: 70%;
   }
-  @media screen and (max-width: 768px) {
-    .sub-nav_temp {
-      position: relative;
-      width: 100%;
-      display: none;
-      background-color: rgba(0, 0, 0, 0.2);
-      box-sizing: border-box;
-    }
+  .menu_temp-active .nav_temp-menu_temp {
+    transform: translatey(0%);
+    opacity: 1;
   }
-  
-  .nav_temp__link:hover + .sub-nav_temp {
-    display: block;
+}
+.nav_temp-menu_temp .menu_temp-item a {
+  color: #444444;
+  display: block;
+  line-height: 30px;
+  margin: 0px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.nav_temp-menu_temp .menu_temp-item a:hover {
+  color: #777777;
+  text-decoration: underline;
+}
+@media screen and (max-width: 768px) {
+  .nav_temp-menu_temp .menu_temp-item a {
+    font-size: 20px;
+    margin: 8px;
   }
-  
-  .sub-nav_temp:hover {
-    display: block;
+}
+
+.sub-nav_temp {
+  border: 1px solid #ccc;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  padding: 5px 5px;
+  list-style: none;
+  width: 230px;
+}
+@media screen and (max-width: 768px) {
+  .sub-nav_temp {
+    position: relative;
+    width: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
   }
+}
+
+.nav_temp__link:hover + .sub-nav_temp {
+  display: block;
+}
+
+.sub-nav_temp:hover {
+  display: block;
+}
   </style>
   <style>
  
@@ -184,13 +177,8 @@
       transform: translateY(-10px);
     }
 </style>
-  
-  
- 
-<body onload="check_page()">
-
-
-  <nav class="nav_tempbar">
+   <div class="overlay">
+     <nav class="nav_tempbar">
   <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
   <div class="push-left">
     <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
@@ -214,6 +202,9 @@
 
   </div>
 </nav>
+  </div>
+
+
 <script>$(document).ready(function() {
   // Toggle menu_temp on click
   $("#menu_temp-toggler").click(function() {
@@ -227,9 +218,11 @@
  });
 </script>
  <!-- END nav -->
+  
+ 
+<body onload="check_page()">
  
  <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');">
-  <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text align-items-end justify-content-center">
       <div class="col-md-9 ftco-animate pb-5 text-center">
@@ -290,12 +283,12 @@
 </div>
 </section>
 <div class="adminActions">
-	<input type="checkbox" name="adminToggle" class="adminToggle" />
-	<a class="adminButton" href="#!"><i class="fa fa-cog"></i></a>
-	<div class="adminButtons">
-		<a href="{{url_for('create_blog')}}" title="Create Blog"><i class="fa fa-pencil fa-fw"></i></a>
-		<a href="#" title="Edit Company"><i class="fa fa-eye"></i></a>
-	</div>
+  <input type="checkbox" name="adminToggle" class="adminToggle" />
+  <a class="adminButton" href="#!"><i class="fa fa-cog"></i></a>
+  <div class="adminButtons">
+    <a href="{{url_for('create_blog')}}" title="Create Blog"><i class="fa fa-pencil fa-fw"></i></a>
+    <a href="#" title="Edit Company"><i class="fa fa-eye"></i></a>
+  </div>
 </div>
 <script>
   function check_page(){
