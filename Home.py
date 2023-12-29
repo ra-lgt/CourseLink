@@ -14,6 +14,7 @@ from flask_socketio import SocketIO, emit,join_room,leave_room,send
 from flask_cors import CORS
 import threading
 from Blog import Blog
+from Admin import Admin
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -28,6 +29,7 @@ user_dataAPI=DataAPI()
 user_chat=Chat()
 CORS(app)
 user_blog=Blog()
+admin=Admin()
 
 #helping functions
 def generate_otp():
@@ -340,6 +342,39 @@ def chat_page(chat_id):
 def change_chat(chat_id):
     # specific_chat=user_chat.get_specific_chat(chat_id,session['email'])
     return "hi"
+
+
+@app.route('/Admin_Home')
+def Admin_Home():
+    user_data=None
+    user_data=cache.get('All_User')
+    
+    if(user_data is None):
+        user_data=admin.get_all_user_data()
+        cache.set('All_User',user_data,timeout=180*30)
+    
+    
+    
+    return render_template('Admin_Home.html',user_data=user_data,count=len(user_data['_id']))
+    
+
+
+@app.route("/Admin",methods=['GET','POST'])
+def Admin():
+    if(request.method=='POST'):
+        admin_email=request.form['emailAdress']
+        admin_password=request.form['password']
+        
+        if(admin_email=="raviajay9344@gmail.com" and admin_password=="raviajay"):
+            session['user_id']="admin12345656"
+            return redirect(url_for('Admin_Home'))
+            
+            
+        
+        
+    
+    return render_template('Admin_login.html')
+    
     
 @socketio.on('join')
 def on_join(data):
