@@ -21,7 +21,6 @@ from firebase_admin import credentials, auth
 
 app = Flask(__name__)
 socketio = SocketIO(app)
-
 config=Configurations()
 firebase_db=config.Setup_auth()
 cred = credentials.Certificate("course_link.json")
@@ -364,7 +363,9 @@ def delete_user(email):
     else:
         return "UNEXPECTED ERROR"
     
-    
+@app.route('/Admin_Blogs')
+def Admin_Blogs():
+    return render_template('Admin_Blogs.html')
 
 @app.route('/Admin_Home')
 def Admin_Home():
@@ -477,7 +478,29 @@ def blog(page_no):
 def view_blog(blog_id):
     user_specific_blog=user_blog.get_specific_blog(blog_id)
     all_blog=user_blog.get_all_blog_posts()
-    return render_template('blog-single.html')
+    get_all_comments=user_blog.get_all_comments(blog_id)
+    
+    count=0
+    if(len(all_blog['_id'])<=4):
+        count=len(all_blog['_id'])
+    else:
+        count=4
+    print(get_all_comments)    
+    return render_template('blog-single.html',user_specific_blog=user_specific_blog,all_blog=all_blog,count=count,get_all_comments=get_all_comments,comment_count=len(get_all_comments['_id']))
+
+@app.route('/post_comment/<post_id>/<username>',methods=['GET','POST'])
+def post_comment(post_id,username):
+    
+    if(request.method=='POST'):
+        
+        message=request.form['message']
+    return_code=user_blog.post_comment(post_id,username,message)
+    
+    if(return_code==True):
+        blog_id=post_id
+        return redirect(url_for('view_blog',blog_id=blog_id))
+    else:
+        return "Can't post comment"
 
 @app.route('/post_blog',methods=['POST','GET'])
 @login_required

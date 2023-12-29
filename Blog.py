@@ -11,6 +11,7 @@ class Blog(DataAPI):
         self.config=Configurations()
         self.storage=self.config.Setup_Storage()
         self.mongo_conn=self.config.create_mong_conn()
+        self.current_datetime = datetime.now()
     
     def generate_post_id(self,length=6):
    
@@ -83,6 +84,41 @@ class Blog(DataAPI):
             for key,value in doc.items():
                 specific_blog[key]=value
         return specific_blog
+    
+    def post_comment(self,post_id,username,message):
+        collection=self.mongo_conn['Comments'][post_id]
+        
+        
+        try:
+            collection.insert_one({
+                'post_id':post_id,
+                'username':username,
+                'Date':self.current_datetime.strftime("%B %d, %Y at %I:%M %p"),
+                'message':message
+                
+            })
+            return True
+        except:
+            return False
+        
+    def get_all_comments(self,post_id):
+        collection=self.mongo_conn['Comments'][post_id]
+        
+        cursor=collection.find({})
+        
+        all_comments={}
+        
+        all_comments['_id']=list()
+        
+        for doc in cursor:
+            for key,value in doc.items():
+                if key not in all_comments:
+                   all_comments[key]=list()
+                all_comments[key].append(value)
+        return all_comments
+                 
+        
+        
                 
                 
         

@@ -71,11 +71,11 @@ class DataAPI:
         collection=db['user_details']
         
         cursor = collection.find({"email":email})
-        
         data=None
         for doc in cursor:
             data=doc
             break
+        
         data['profile_pic']=self.get_profile_pic(data['username'])
         
         return data

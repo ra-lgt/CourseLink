@@ -59,49 +59,41 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 ftco-animate py-md-5 mt-md-5">
-        <h2 class="mb-3">It is a long established fact a reader be distracted</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.</p>
-        <p>
-          <img src="images/image_1.jpg" alt="" class="img-fluid">
+        <h2 class="mb-3">{{user_specific_blog['title']}}</h2>
+        <h3>{{user_specific_blog['description']}}</h3>
+          <img src="{{user_specific_blog['blog_pic']}}" alt="" class="img-fluid">
+        
         </p>
-        <p>Molestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!</p>
-        <h2 class="mb-3 mt-5">#2. Creative WordPress Themes</h2>
-        <p>Temporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. Error dolore voluptas, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.</p>
-        <p>
-          <img src="images/bg_1.jpg" alt="" class="img-fluid">
-        </p>
-        <p>Quisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. Error, velit, porro. Deserunt minus, quibusdam iste enim veniam, modi rem maiores.</p>
-        <div class="tag-widget post-tag-container mb-5 mt-5">
-          <div class="tagcloud">
-            <a href="#" class="tag-cloud-link">Life</a>
-            <a href="#" class="tag-cloud-link">Sport</a>
-            <a href="#" class="tag-cloud-link">Tech</a>
-            <a href="#" class="tag-cloud-link">Travel</a>
-          </div>
-        </div>
+        
+        <p>{{user_specific_blog['content']}}</p>
+        
         
         <div class="about-author d-flex p-4 bg-light">
           <div class="bio mr-5">
-            <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
+            <img src="{{user_specific_blog['profile_pic']}}" width="20%" height="20%" alt="Image placeholder" class="img-fluid mb-4 rounded-circle">
+
+
+            <h5>Author:  {{user_specific_blog['username']}}</h5>
           </div>
           <div class="desc">
-            <h3>George Washington</h3>
+           
           </div>
         </div>
 
 
         <div class="pt-5 mt-5">
-          <h3 class="mb-5" style="font-size: 20px; font-weight: bold;">6 Comments</h3>
+          <h3 class="mb-5" style="font-size: 20px; font-weight: bold;">{{comment_count}} Comments</h3>
           <ul class="comment-list">
+            {% for i in range(comment_count) %}
             <li class="comment">
               
               <div class="comment-body">
-                <h3>John Doe</h3>
-                <div class="meta">September 17, 2020 at 2:21pm</div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-                <p><a href="#" class="reply">Reply</a></p>
+                <h3>{{get_all_comments['username'][i]}}</h3>
+                <div class="meta">{{get_all_comments['Date'][i]}}</div>
+                <p>{{get_all_comments['message'][i]}}</p>
               </div>
             </li>
+            {% endfor %}
 
 
           </ul>
@@ -109,13 +101,13 @@
           
           <div class="comment-form-wrap pt-5">
             <h3 class="mb-5" style="font-size: 20px; font-weight: bold;">Leave a comment</h3>
-            <form action="#" class="p-5 bg-light">
+            <form action="{{url_for('post_comment',post_id=user_specific_blog['post_id'],username=user_specific_blog['username'])}}" method="POST" class="p-5 bg-light">
               
              
 
               <div class="form-group">
                 <label for="message">Message</label>
-                <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
               </div>
               <div class="form-group">
                 <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
@@ -131,39 +123,21 @@
 
         <div class="sidebar-box ftco-animate">
           <h3>Recent Blog</h3>
+          {% for i in range(count) %}
           <div class="block-21 mb-4 d-flex">
-            <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+            <a class="blog-img mr-4" style="background-image: url({{all_blog['blog_pic'][i]}});"></a>
             <div class="text">
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
+              <h3 class="heading"><a href="{{url_for('view_blog',blog_id=all_blog['post_id'][i])}}">{{all_blog['title'][i]}}</a></h3>
+              <p>{{all_blog['description'][i]}}</p>
               <div class="meta">
-                <div><a href="#"><span class="fa fa-calendar"></span> Sept. 17, 2020</a></div>
-                <div><a href="#"><span class="fa fa-user"></span> Admin</a></div>
-                <div><a href="#"><span class="fa fa-comment"></span> 19</a></div>
+                <div><a href="{{url_for('view_blog',blog_id=all_blog['post_id'][i])}}"><span class="fa fa-calendar"></span>{{all_blog['date'][i]}}</a></div>
+                
+                <div><a href="{{url_for('view_blog',blog_id=all_blog['post_id'][i])}}"><span class="fa fa-user"></span>{{all_blog['username'][i]}}</a></div>
+                
               </div>
             </div>
           </div>
-          <div class="block-21 mb-4 d-flex">
-            <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
-            <div class="text">
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              <div class="meta">
-                <div><a href="#"><span class="fa fa-calendar"></span> Sept. 17, 2020</a></div>
-                <div><a href="#"><span class="fa fa-user"></span> Admin</a></div>
-                <div><a href="#"><span class="fa fa-comment"></span> 19</a></div>
-              </div>
-            </div>
-          </div>
-          <div class="block-21 mb-4 d-flex">
-            <a class="blog-img mr-4" style="background-image: url(images/image_3.jpg);"></a>
-            <div class="text">
-              <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about the blind texts</a></h3>
-              <div class="meta">
-                <div><a href="#"><span class="fa fa-calendar"></span> Sept. 17, 2020</a></div>
-                <div><a href="#"><span class="fa fa-user"></span> Admin</a></div>
-                <div><a href="#"><span class="fa fa-comment"></span> 19</a></div>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
 
       </div>
@@ -225,14 +199,7 @@
      </div>
    </div>
  </div>
- <div class="row">
-  <div class="col-md-12 text-center">
 
-    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-      Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-      <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-    </div>
-  </div>
 </div>
 </footer>
 
