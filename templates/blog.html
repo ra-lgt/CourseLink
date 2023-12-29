@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 </head>
 <style>
+  /* Extra */
   
 .logo {
   max-width: 200px;
@@ -177,8 +178,11 @@
       transform: translateY(-10px);
     }
 </style>
-   <div class="overlay">
-     <nav class="nav_tempbar">
+<body onload="check_page()">
+
+  <section class="hero-wrap hero-wrap-2">
+<div class="overlay">
+          <nav class="nav_tempbar">
   <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
   <div class="push-left">
     <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
@@ -202,9 +206,6 @@
 
   </div>
 </nav>
-  </div>
-
-
 <script>$(document).ready(function() {
   // Toggle menu_temp on click
   $("#menu_temp-toggler").click(function() {
@@ -218,11 +219,9 @@
  });
 </script>
  <!-- END nav -->
-  
+      </div>
+  <section style="background-image: url('images/bg_2.jpg');">
  
-<body onload="check_page()">
- 
- <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');">
   <div class="container">
     <div class="row no-gutters slider-text align-items-end justify-content-center">
       <div class="col-md-9 ftco-animate pb-5 text-center">
@@ -231,6 +230,7 @@
      </div>
    </div>
  </div>
+</section>
 </section>
 
 <section class="ftco-section bg-light">
@@ -256,7 +256,6 @@
      </div>
    </div>
    {% endfor %}
-
 
 
 
