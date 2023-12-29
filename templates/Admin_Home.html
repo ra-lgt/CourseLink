@@ -3,9 +3,10 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- 
+{% for i in range(count) %}
   <style>
     @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500|Jost:400,500,600&display=swap");
+}
 * {
   box-sizing: border-box;
 }
@@ -20,7 +21,7 @@ body {
 }
 
 .card {
-  max-width: 340px;
+  width: 300px;
   overflow-y: auto;
   position: relative;
   z-index: 1;
@@ -33,21 +34,22 @@ body {
   flex-direction: column;
   border-radius: 10px;
   box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.2);
+  height: 400px;
 }
 
-.card[data-state="#about"] {
-  height: 450px;
+.card[data-state="#about{{i}}"] {
+  height: 400px;
 }
-.card[data-state="#about"] .card-main {
+.card[data-state="#about{{i}}"] .card-main {
   padding-top: 0;
 }
 
-.card[data-state="#contact"] {
-  height: 430px;
+.card[data-state="#contact{{i}}"] {
+  height: 400px;
 }
 
-.card[data-state="#experience"] {
-  height: 550px;
+.card[data-state="#experience{{i}}"] {
+  height: 400px;
 }
 
 .card.is-active .card-header {
@@ -82,7 +84,7 @@ body {
 .card-header {
   position: relative;
   display: flex;
-  height: 200px;
+  height: 180px;
   flex-shrink: 0;
   width: 100%;
   transition: 0.3s;
@@ -150,7 +152,6 @@ body {
   position: relative;
   flex: 1;
   display: flex;
-  padding-top: 10px;
   flex-direction: column;
 }
 
@@ -208,8 +209,7 @@ body {
 .card-buttons {
   display: flex;
   background-color: #fff;
-  margin-top: auto;
-  position: sticky;
+  margin-top: 30%;
   bottom: 0;
   left: 0;
 }
@@ -339,7 +339,6 @@ body {
 .card-contact svg {
   flex-shrink: 0;
   width: 30px;
-  min-height: 34px;
   margin-right: 12px;
   transition: 0.3s;
   padding-right: 12px;
@@ -505,6 +504,7 @@ body {
   display: block;
 }
   </style>
+  {% endfor %}
 </head>
  <nav class="nav_tempbar">
       <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
