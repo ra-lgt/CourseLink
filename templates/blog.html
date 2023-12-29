@@ -239,7 +239,7 @@
       {% for i in range(start,end) %}
       <div class="col-lg-4 ftco-animate">
         <div class="blog-entry">
-          <a href="blog-single.html" class="block-20" style="background-image: url('{{blog_posts['blog_pic'][i]}}');">
+          <a href="{{url_for('view_blog',blog_id=blog_posts['post_id'][i])}}" class="block-20" style="background-image: url('{{blog_posts['blog_pic'][i]}}');">
           </a>
           <div class="text d-block">
            <div class="meta">
@@ -251,7 +251,7 @@
          </div>
          <h3 class="heading"><a href="#">{{blog_posts['title'][i]}}</a></h3>
          <p>{{blog_posts['description'][i]}}</p>
-         <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
+         <p><a href="{{url_for('view_blog',blog_id=blog_posts['post_id'][i])}}" class="btn btn-secondary py-2 px-3">Read more</a></p>
        </div>
      </div>
    </div>

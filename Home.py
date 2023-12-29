@@ -15,12 +15,17 @@ from flask_cors import CORS
 import threading
 from Blog import Blog
 from Admin import Admin
+import firebase_admin
+from firebase_admin import credentials, auth
+
 
 app = Flask(__name__)
 socketio = SocketIO(app)
 
 config=Configurations()
 firebase_db=config.Setup_auth()
+cred = credentials.Certificate("course_link.json")
+firebase_admin.initialize_app(cred)
 app.secret_key = 'Course-Link'
 mail=send_email()
 mongo_client=config.create_mong_conn()
@@ -41,7 +46,7 @@ def generate_otp():
 
 def check_email_exists(email):
     try:
-        users = firebase_db.get_user_by_email(email)
+        users = auth.get_user_by_email(email)
         return True
     except Exception as e:
         return False
@@ -342,7 +347,24 @@ def chat_page(chat_id):
 def change_chat(chat_id):
     # specific_chat=user_chat.get_specific_chat(chat_id,session['email'])
     return "hi"
-
+@app.route('/delete_user/<email>')
+def delete_user(email):
+    return_code=admin.delete_user_by_email(email)
+    
+    
+    if(return_code==True):
+        try:
+            user=auth.get_user_by_email(email)
+            user_id=user.uid
+            auth.delete_user(user_id)
+            cache.clear()
+            return redirect(url_for('Admin_Home'))
+        except:
+            return "UNEXPECTED ERROR"
+    else:
+        return "UNEXPECTED ERROR"
+    
+    
 
 @app.route('/Admin_Home')
 def Admin_Home():
@@ -352,7 +374,6 @@ def Admin_Home():
     if(user_data is None):
         user_data=admin.get_all_user_data()
         cache.set('All_User',user_data,timeout=180*30)
-    
     
     
     return render_template('Admin_Home.html',user_data=user_data,count=len(user_data['_id']))
@@ -452,8 +473,10 @@ def blog(page_no):
 
     return render_template('blog.html',blog_posts=blog_posts,end=end,start=start,page_no_len=len(blog_posts['_id'])//1,page_no=page_no)
 
-@app.route('/view_blog')
-def view_blog():
+@app.route('/view_blog/<blog_id>')
+def view_blog(blog_id):
+    user_specific_blog=user_blog.get_specific_blog(blog_id)
+    all_blog=user_blog.get_all_blog_posts()
     return render_template('blog-single.html')
 
 @app.route('/post_blog',methods=['POST','GET'])
@@ -518,6 +541,8 @@ def find_friends():
 # @app.route('/send_friend_request')
 # def send_friend_request():
 #     return "hi"
+
+    
 @app.route('/update_profile_data',methods=['POST'])
 @login_required
 def update_profile_data():

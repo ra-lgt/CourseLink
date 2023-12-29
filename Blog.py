@@ -70,6 +70,19 @@ class Blog(DataAPI):
                 blogs[key].append(value)
                 
         return blogs
+    
+    def get_specific_blog(self,blog_id):
+        collection=self.mongo_conn['Blogs']['allBlogPost']
+        
+        cursor=collection.find({"post_id":blog_id})
+        
+        specific_blog={}
+        
+        
+        for doc in cursor:
+            for key,value in doc.items():
+                specific_blog[key]=value
+        return specific_blog
                 
                 
         

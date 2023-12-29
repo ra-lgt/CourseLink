@@ -209,7 +209,7 @@ body {
 .card-buttons {
   display: flex;
   background-color: #fff;
-  margin-top: 30%;
+  margin-top: 60%;
   bottom: 0;
   left: 0;
 }
@@ -503,6 +503,21 @@ body {
 .sub-nav_temp:hover {
   display: block;
 }
+/* Add this CSS to your styles or stylesheet */
+#delete {
+  background-color: #ff0000; /* Red color */
+  color: #ffffff; /* Text color, you can adjust this based on your design */
+  padding: 10px 20px; /* Adjust padding as needed */
+  border: none; /* Remove border if needed */
+  border-radius: 5px; /* Add border-radius for rounded corners */
+  cursor: pointer; /* Add pointer cursor on hover */
+}
+
+#delete:hover {
+  background-color: #cc0000; /* Darker shade of red on hover */
+  /* Adjust other styles for hover effect if needed */
+}
+
   </style>
   {% endfor %}
 </head>
@@ -517,8 +532,8 @@ body {
    
         <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
         <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
-          <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Admin_Home')}}">Home</a></li>
-          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
+          <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Admin_Home')}}">User</a></li>
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('Admin_Blogs')}}">Blogs</a></li>
           </li>
         </ul>
    
@@ -527,10 +542,10 @@ body {
     </nav>
 <body>
   {% for i in range(count) %}
-  <div class="card" data-state="#about{{i}}">
+  <div class="card is-active" data-state="#about{{i}}">
   <div class="card-header">
     <div class="card-cover"></div>
-    <img class="card-avatar" src="https://images.unsplash.com/photo-1549068106-b024baf5062d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80" alt="avatar" />
+    <img class="card-avatar" src="{{user_data['profile_pic'][i]}}" alt="avatar" />
     <h1 class="card-fullname">{{user_data['username'][i]}}</h1>
     <h2 class="card-jobtitle">{{user_data['Course'][i]}}</h2>
   </div>
@@ -598,14 +613,14 @@ body {
               <path d="M22 6l-10 7L2 6" /></svg>
               {{user_data['email'][i]}}
           </div>
-          <button class="contact-me">WORK TOGETHER</button>
+          <a href="{{url_for('delete_user',email=user_data['email'][i])}}"><button class="contact-me" id="delete">DELETE</button></a>
         </div>
       </div>
     </div>
     <div class="card-buttons">
       <button data-section="#about{{i}}" class="is-active">ABOUT</button>
       <button data-section="#experience{{i}}">EXPERIENCE</button>
-      <button data-section="#contact{{i}}">CONTACT</button>
+      <button data-section="#contact{{i}}">ACTION</button>
     </div>
   </div>
 </div>

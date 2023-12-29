@@ -19,7 +19,7 @@ class Configurations:
         self.client = pymongo.MongoClient("mongodb+srv://raviajay9344:x41B2mJP2PEDBAcg@courselinkfreelancer.k5wwxhh.mongodb.net/")
         #x41B2mJP2PEDBAcg
         self.firebase=pyrebase.initialize_app(self.firebaseConfig)
-        
+         
     def Setup_auth(self):
         return self.firebase.auth()
 
