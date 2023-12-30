@@ -192,10 +192,19 @@
 
     <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
     <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
+      {% if user %}
+      <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
+      <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
+      
+      <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Message</a></li>
+        <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('blog',page_no=1)}}">Blog</a></li>
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('profile')}}">Profile</a></li>
+          {% else %}
       
       <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Admin_Home')}}">User</a></li>
       <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('Admin_Blogs',page_no=1)}}">Blogs</a></li>
       </li>
+      {% endif %}
      
     </ul>
 

@@ -72,6 +72,20 @@ class Blog(DataAPI):
                 
         return blogs
     
+    def get_user_blogs(self,email):
+        collection=self.mongo_conn['Blogs'][email]
+        
+        user_blog={}
+        
+        cursor=collection.find({})
+        user_blog['_id']=list()
+        for doc in cursor:
+            for key,value in doc.items():
+                if key not in user_blog:
+                    user_blog[key]=list()
+                user_blog[key].append(value)
+                
+        return user_blog
     def get_specific_blog(self,blog_id):
         collection=self.mongo_conn['Blogs']['allBlogPost']
         

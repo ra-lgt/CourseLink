@@ -475,6 +475,26 @@ def create_blog():
         
     return render_template('create_blog.html',username=session['username'],profile_pic=user_specific_data['profile_pic'],date=datetime.now().strftime("%b %d"))
 
+@app.route('/user_blogs/<int:page_no>')
+def user_blogs(page_no):
+    
+    blog_posts=user_blog.get_user_blogs(session['email'])
+    
+    
+    start=(page_no-1)*1
+    
+    end=(page_no)*1
+    
+    if(start>len(blog_posts['_id'])):
+        start=(page_no-1)*1
+    
+    if(end>len(blog_posts['_id'])):
+        end=len(blog_posts['_id'])
+
+    return render_template('Admin_Blogs.html',blog_posts=blog_posts,end=end,start=start,page_no_len=len(blog_posts['_id'])//1,page_no=page_no,user=True)
+
+
+
 @app.route('/blog/<int:page_no>')
 @login_required
 def blog(page_no):
