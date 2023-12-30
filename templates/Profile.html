@@ -1,9 +1,12 @@
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 <title>Jolly Jolt | Profile</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <nav class="nav_tempbar">
+
+<body>
+   <nav class="nav_tempbar">
       <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
       <div class="push-left">
         <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
@@ -26,43 +29,14 @@
     
       </div>
     </nav>
-
-<body>
-
   <div class="main-content">
-    <!-- Top navbar -->
-    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
 
-      <div class="container-fluid">
-
-        <!-- Brand -->
-        
-        <!-- Form -->
-       
-        <!-- User -->
-        <ul class="navbar-nav align-items-center d-none d-md-flex">
-          <li class="nav-item dropdown">
-            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <div class="media align-items-center">
-                
-                
-              </div>
-            </a>
-            
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <!-- Header -->
-    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url('{{url_for('static',filename='images/profile_cover.jpg')}}');">
-      <!-- Mask -->
-      <span class="mask bg-gradient-default opacity-8"></span>
+    <!-- Header -->    <!-- Mask -->
       <!-- Header container -->
       <div class="container-fluid d-flex align-items-center">
         <div class="row">
           <div class="col-lg-7 col-md-10">
             <h1 class="display-2 text-white">Hello {{user_specific_data['username']}}</h1>
-            <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
             <a href="{{url_for('logout')}}" class="btn btn-info">Logout</a>
           </div>
         </div>
@@ -501,7 +475,7 @@ body {
   margin: 0;
   text-align: left;
   color: #525f7f;
-  background-color: #f8f9fe;
+  background-color:#FAF0E6;
 }
 
 [tabindex='-1']:focus {
@@ -805,12 +779,19 @@ a>code {
   padding-right: 15px;
   padding-left: 15px;
 }
+@media (max-width: 768px) {
+    .container-fluid {
+       margin-top:70%;
+    }
+}
 
 .row {
   display: flex;
   margin-right: -15px;
   margin-left: -15px;
   flex-wrap: wrap;
+  width:100%;
+  margin-top:70px;
 }
 
 .col-4,
@@ -996,7 +977,7 @@ a>code {
 }
 @media screen and (max-width: 768px) {
   .nav_temp-menu_temp {
-    background: #fff;
+    background: #f0f0f0;
     flex-direction: column;
     justify-content: center;
     opacity: 0;
@@ -1007,7 +988,7 @@ a>code {
     left: 0;
     transform: translatey(-100%);
     text-align: center;
-    margin-bottom: 70%;
+    margin-bottom: 120%;
   }
   .menu_temp-active .nav_temp-menu_temp {
     transform: translatey(0%);
@@ -1790,7 +1771,7 @@ button.bg-white:focus {
 }
 
 .mt--7 {
-  margin-top: -6rem !important;
+  margin-top: 1rem !important;
 }
 
 .pt-0 {

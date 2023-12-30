@@ -100,7 +100,7 @@
 }
 @media screen and (max-width: 768px) {
   .nav_temp-menu_temp {
-    background: #fff;
+    background: #f0f0f0;
     flex-direction: column;
     justify-content: center;
     opacity: 0;
@@ -111,7 +111,7 @@
     left: 0;
     transform: translatey(-100%);
     text-align: center;
-    margin-bottom: 70%;
+    margin-bottom: 80%;
   }
   .menu_temp-active .nav_temp-menu_temp {
     transform: translatey(0%);
@@ -165,6 +165,11 @@
 }
   </style>
   <style>
+    @media screen and (max-width: 768px) {
+    section.ftco-section.bg-light {
+        margin-top: 30%; /* Adjust the value as needed for smaller screens */
+    }
+}
  
 
     .ani{
@@ -176,8 +181,12 @@
     .hero-wrap.hero-wrap-2 .overlay{
       opacity: 1;
     }
+.hero-wrap.hero-wrap-2 .overlay {
+    width: 100%;
+    background: #fff;
+}
 </style>
-<body>
+<body >
 
   <section class="hero-wrap hero-wrap-2">
 <div class="overlay">
@@ -212,6 +221,7 @@
   </div>
 </nav>
 <section class="ftco-section bg-light">
+
   <div class="container">
     <div class="row d-flex">
       {% for i in range(start,end) %}
@@ -219,7 +229,7 @@
         <div class="blog-entry">
           <a href="{{url_for('view_blog',blog_id=blog_posts['post_id'][i])}}" class="block-20" style="background-image: url('{{blog_posts['blog_pic'][i]}}');">
           </a>
-          <div class="text d-block">
+          <div class="text d-block" style="background-color: #f0f0f0;">
            <div class="meta">
             <p>
              <a href="#"><span class="fa fa-calendar mr-2"></span>{{blog_posts['date'][i]}}</a>
@@ -229,8 +239,8 @@
          </div>
          <h3 class="heading"><a href="#">{{blog_posts['title'][i]}}</a></h3>
          <p>{{blog_posts['description'][i]}}</p>
-         <p><a href="{{url_for('view_blog',blog_id=blog_posts['post_id'][i])}}" class="btn btn-secondary py-2 px-3">Read more</a></p>
-         <p><a href="{{url_for('delete_blog',post_id=blog_posts['post_id'][i])}}" class="btn btn-secondary py-2 px-3">Delete Post</a></p>
+         <p><a href="{{url_for('view_blog',blog_id=blog_posts['post_id'][i])}}" class="btn btn-secondary py-2 px-3">Read more</a>
+         <a href="{{url_for('delete_blog',post_id=blog_posts['post_id'][i])}}" class="btn btn-secondary py-2 px-3" style="margin-left: 30px;background-color:#FF0000;">X Delete Post</a></p>
 
        </div>
      </div>

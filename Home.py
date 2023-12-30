@@ -404,7 +404,7 @@ def Admin_Home():
 
 @app.route("/Admin",methods=['GET','POST'])
 def Admin():
-    if(session['admin_id']):
+    if(session['user_id']):
         return redirect(url_for('Admin_Home'))
     
     if(request.method=='POST'):
@@ -412,7 +412,7 @@ def Admin():
         admin_password=request.form['password']
         
         if(admin_email=="raviajay9344@gmail.com" and admin_password=="raviajay"):
-            session['admin_id']="admin12345656"
+            session['user_id']="admin12345656"
             return redirect(url_for('Admin_Home'))
     return render_template('Admin_login.html')
     
