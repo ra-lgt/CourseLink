@@ -317,8 +317,11 @@ def chat_page(chat_id):
     if(len(user_specific_chats['_id'])!=0):
     
         for email in user_specific_chats['chat_reciever_email']:
-            data=user_dataAPI.get_data_of_specific_user(email)
-            user_specific_data.append(data)
+            try:
+                data=user_dataAPI.get_data_of_specific_user(email)
+                user_specific_data.append(data)
+            except:
+                continue
     
     selected_chat={}
     
@@ -363,10 +366,28 @@ def delete_user(email):
     else:
         return "UNEXPECTED ERROR"
     
-@app.route('/Admin_Blogs')
-def Admin_Blogs():
-    return render_template('Admin_Blogs.html')
+@app.route('/Admin_Blogs/<int:page_no>')
+def Admin_Blogs(page_no):
+    blog_posts=user_blog.get_all_blog_posts()
+    
+    
+    start=(page_no-1)*1
+    
+    end=(page_no)*1
+    
+    if(start>len(blog_posts['_id'])):
+        start=(page_no-1)*1
+    
+    if(end>len(blog_posts['_id'])):
+        end=len(blog_posts['_id'])
 
+    return render_template('Admin_Blogs.html',blog_posts=blog_posts,end=end,start=start,page_no_len=len(blog_posts['_id'])//1,page_no=page_no)
+
+@app.route('/delete_blog/<post_id>')
+def delete_blog(post_id):
+    user_blog.delete_blog_by_id(post_id)
+    return redirect(url_for('Admin_Blogs',page_no=1))
+    
 @app.route('/Admin_Home')
 def Admin_Home():
     user_data=None
@@ -383,18 +404,16 @@ def Admin_Home():
 
 @app.route("/Admin",methods=['GET','POST'])
 def Admin():
+    if(session['admin_id']):
+        return redirect(url_for('Admin_Home'))
+    
     if(request.method=='POST'):
         admin_email=request.form['emailAdress']
         admin_password=request.form['password']
         
         if(admin_email=="raviajay9344@gmail.com" and admin_password=="raviajay"):
-            session['user_id']="admin12345656"
+            session['admin_id']="admin12345656"
             return redirect(url_for('Admin_Home'))
-            
-            
-        
-        
-    
     return render_template('Admin_login.html')
     
     

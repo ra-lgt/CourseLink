@@ -116,6 +116,25 @@ class Blog(DataAPI):
                    all_comments[key]=list()
                 all_comments[key].append(value)
         return all_comments
+    
+    def delete_blog_by_id(self,blog_id):
+        db=self.mongo_conn['Blogs']
+        collection=db['allBlogPost']
+        
+        criteria = {"post_id": blog_id}
+        
+        cursor=collection.find_one(criteria)    
+        
+        email=cursor['email']
+        collection_email=db[email]
+        try:
+            collection.delete_one(criteria)
+            collection_email.delete_one(criteria)
+            
+        except:
+            return False
+        
+        
                  
         
         

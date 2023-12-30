@@ -1,5 +1,23 @@
 <html>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="{{url_for('static',filename='css/animate.css')}}">
+  
+  <link rel="stylesheet" href="{{url_for('static',filename='css/owl.carousel.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/owl.theme.default.min.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/magnific-popup.css')}}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap-datepicker.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/jquery.timepicker.css')}}">
+
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/flaticon.css')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
+</head>
 <style>
   /* Extra */
   
@@ -155,8 +173,11 @@
    .ani:hover{
       transform: translateY(-10px);
     }
+    .hero-wrap.hero-wrap-2 .overlay{
+      opacity: 1;
+    }
 </style>
-<body onload="check_page()">
+<body>
 
   <section class="hero-wrap hero-wrap-2">
 <div class="overlay">
@@ -172,18 +193,65 @@
     <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
     <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
       
-      <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
-      <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
-      
-      <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Message</a></li>
-        <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('blog',page_no=1)}}">Blog</a></li>
-          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('profile')}}">Profile</a></li>
-          
+      <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Admin_Home')}}">User</a></li>
+      <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('Admin_Blogs',page_no=1)}}">Blogs</a></li>
+      </li>
+     
     </ul>
 
 
   </div>
 </nav>
+<section class="ftco-section bg-light">
+  <div class="container">
+    <div class="row d-flex">
+      {% for i in range(start,end) %}
+      <div class="col-lg-4 ftco-animate">
+        <div class="blog-entry">
+          <a href="{{url_for('view_blog',blog_id=blog_posts['post_id'][i])}}" class="block-20" style="background-image: url('{{blog_posts['blog_pic'][i]}}');">
+          </a>
+          <div class="text d-block">
+           <div class="meta">
+            <p>
+             <a href="#"><span class="fa fa-calendar mr-2"></span>{{blog_posts['date'][i]}}</a>
+             <a href="#"><span class="fa fa-user mr-2"></span>{{blog_posts['username'][i]}}</a>
+             <!-- s -->
+           </p>
+         </div>
+         <h3 class="heading"><a href="#">{{blog_posts['title'][i]}}</a></h3>
+         <p>{{blog_posts['description'][i]}}</p>
+         <p><a href="{{url_for('view_blog',blog_id=blog_posts['post_id'][i])}}" class="btn btn-secondary py-2 px-3">Read more</a></p>
+         <p><a href="{{url_for('delete_blog',post_id=blog_posts['post_id'][i])}}" class="btn btn-secondary py-2 px-3">Delete Post</a></p>
+
+       </div>
+     </div>
+   </div>
+   {% endfor %}
+
+
+
+
+
+</div>
+<div class="row mt-5">
+  <div class="col text-center">
+    <div class="block-27">
+      <ul>
+       {% if page_no>1 %}
+        <li><a href="{{url_for('blog',page_no=page_no-1)}}">&lt;</a></li>
+        {% else %}
+        <li><a href="#">&lt;</a></li>
+        {% endif %}
+        {% for i in range(page_no_len) %}
+        <li class="s" id="{{i}}"><a href="{{url_for('blog',page_no=i+1)}}"><span>{{i+1}}</span></a></li>
+        {% endfor %}
+        <li><a href="{{url_for('blog',page_no=page_no+1)}}">&gt;</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+</section>
 <script>$(document).ready(function() {
   // Toggle menu_temp on click
   $("#menu_temp-toggler").click(function() {
@@ -199,5 +267,20 @@
  <!-- END nav -->
       </div>
       </section>
+      <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/jquery-migrate-3.0.1.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/popper.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/jquery.easing.1.3.js')}}"></script>
+<script src="{{url_for('static',filename='js/jquery.waypoints.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/jquery.stellar.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/owl.carousel.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/jquery.animateNumber.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/bootstrap-datepicker.js')}}"></script>
+<script src="{{url_for('static',filename='js/scrollax.min.js')}}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="{{url_for('static',filename='js/google-map.js')}}"></script>
+<script src="{{url_for('static',filename='js/main.js')}}"></script>
       </body>
       </html>
