@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>StudyLab - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Study Partner Finder </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -231,10 +231,10 @@
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
       <div class="col-md-7 ftco-animate">
-        <span class="subheading">Welcome to StudyLab</span>
+        <span class="subheading">Welcome to Study Partner</span>
         <h1 class="mb-4">Global Student Connect</h1>
-        <p class="caps">Global Student Connect: Join, connect, and engage with students worldwide based on degree and stream. Clear doubts and foster academic conversations to enhance your global learning experience.</p>
-        <p class="mb-0"><a href="#" class="btn btn-primary">Our Course</a> <a href="#" class="btn btn-white">Learn More</a></p>
+        <p class="caps">Welcome to Study Partner, a dynamic study platform designed to unite students from various academic disciplines. Our mission is to create a vibrant community where learners can connect, communicate, and collaborate to enhance their educational experience.</p>
+        <p class="mb-0"><a href="{{url_for('find_friends')}}" class="btn btn-primary">Find Buddy</a> <a href="#" class="btn btn-white">Learn More</a></p>
     </div>
 </div>
 </div>
@@ -252,7 +252,7 @@
     </div>
     <div class="row justify-content-center">
      <div class="col-md-3 col-lg-2">
-        <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/work-1.jpg')}}');">
+        <a href="{{url_for('find_friends')}}" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/work-1.jpg')}}');">
            <div class="text w-100 text-center">
               <h3>IT &amp; Software</h3>
               
@@ -260,7 +260,7 @@
       </a>
   </div>
   <div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/Business.jpeg')}}');">
+    <a href="{{url_for('find_friends')}}" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/Business.jpeg')}}');">
        <div class="text w-100 text-center">
           <h3>Business</h3>
           
@@ -268,7 +268,7 @@
   </a>
 </div>
 <div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/Entrance.png')}}');">
+    <a href="{{url_for('find_friends')}}" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/Entrance.png')}}');">
        <div class="text w-100 text-center">
           <h3>Entrance Exams</h3>
           
@@ -276,7 +276,7 @@
   </a>
 </div>
 <div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/Engineering.jpg')}}');">
+    <a href="{{url_for('find_friends')}}" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/Engineering.jpg')}}');">
        <div class="text w-100 text-center">
           <h3>Engineering</h3>
           
@@ -284,7 +284,7 @@
   </a>
 </div>
 <div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/work-8.jpg')}}');">
+    <a href="{{url_for('find_friends')}}" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/work-8.jpg')}}');">
        <div class="text w-100 text-center">
           <h3>Language</h3>
           
@@ -292,7 +292,7 @@
   </a>
 </div>
 <div class="col-md-3 col-lg-2">
-    <a href="#" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/Medical.jpg')}}');">
+    <a href="{{url_for('find_friends')}}" class="course-category img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/Medical.jpg')}}');">
        <span class="text w-100 text-center">
           <h3>Medical</h3>
           
@@ -315,68 +315,68 @@
     <div class="row">
        <div class="col-md-4 ftco-animate">
           <div class="project-wrap">
-             <a href="#" class="img" style="background-image: url('{{url_for('static',filename='images/Arts & Humanities.jpg')}}');">
+             <a href="{{url_for('find_friends')}}" class="img" style="background-image: url('{{url_for('static',filename='images/Arts & Humanities.jpg')}}');">
                 <span class="price">Humanities</span>
             </a>
             <div class="text p-4">
-                <h3><a href="#">ARTS & HUMANITIES</a></h3>
-                <p class="advisor">Advisor <span>Tony Garret</span></p>
+                <h3><a href="{{url_for('find_friends')}}">ARTS & HUMANITIES</a></h3>
+                
            </div>
        </div>
    </div>
    <div class="col-md-4 ftco-animate">
       <div class="project-wrap">
-         <a href="#" class="img" style="background-image: url('{{url_for('static',filename='images/Economics.jpg')}}');">
-            <span class="price">social sciences</span>
+         <a href="{{url_for('find_friends')}}" class="img" style="background-image: url('{{url_for('static',filename='images/Economics.jpg')}}');">
+            <span class="price">Social Sciences</span>
         </a>
         <div class="text p-4">
-            <h3><a href="#">ECONOMICS</a></h3>
-            <p class="advisor">Advisor <span>Tony Garret</span></p>
+            <h3><a href="{{url_for('find_friends')}}">ECONOMICS</a></h3>
+            
        </div>
    </div>
 </div>
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url('{{url_for('static',filename='images/Commerce.jpg')}}');">
-        <span class="price">business studies</span>
+     <a href="{{url_for('find_friends')}}" class="img" style="background-image: url('{{url_for('static',filename='images/Commerce.jpg')}}');">
+        <span class="price">Business Studies</span>
     </a>
     <div class="text p-4">
-        <h3><a href="#">COMMERCE</a></h3>
-        <p class="advisor">Advisor <span>Tony Garret</span></p>
+        <h3><a href="{{url_for('find_friends')}}">COMMERCE</a></h3>
+        
    </div>
 </div>
 </div>
 
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url('{{url_for('static',filename='images/work-4.jpg')}}');">
+     <a href="{{url_for('find_friends')}}" class="img" style="background-image: url('{{url_for('static',filename='images/work-4.jpg')}}');">
         <span class="price">Software</span>
     </a>
     <div class="text p-4">
-        <h3><a href="#">INFORMATION TECHNOLOGY</a></h3>
-        <p class="advisor">Advisor <span>Tony Garret</span></p>
+        <h3><a href="{{url_for('find_friends')}}">INFORMATION TECHNOLOGY</a></h3>
+        
    </div>
 </div>
 </div>
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url('{{url_for('static',filename='images/work-5.jpg')}}');">
+     <a href="{{url_for('find_friends')}}" class="img" style="background-image: url('{{url_for('static',filename='images/work-5.jpg')}}');">
         <span class="price">Business</span>
     </a>
     <div class="text p-4">
-        <h3><a href="#">FINANCE</a></h3>
-        <p class="advisor">Advisor <span>Tony Garret</span></p>
+        <h3><a href="{{url_for('find_friends')}}">FINANCE</a></h3>
+        
    </div>
 </div>
 </div>
 <div class="col-md-4 ftco-animate">
   <div class="project-wrap">
-     <a href="#" class="img" style="background-image: url('{{url_for('static',filename='images/work-6.jpg')}}');">
+     <a href="{{url_for('find_friends')}}" class="img" style="background-image: url('{{url_for('static',filename='images/work-6.jpg')}}');">
         <span class="price">Development</span>
     </a>
     <div class="text p-4">
-        <h3><a href="#">COMPUTER SCIENCE</a></h3>
-        <p class="advisor">Advisor <span>Tony Garret</span></p>
+        <h3><a href="{{url_for('find_friends')}}">COMPUTER SCIENCE</a></h3>
+        
    </div>
 </div>
 </div>
@@ -411,7 +411,7 @@
     <div class="icon"><span class="flaticon-instructor"></span></div>
     <div class="text">
      <strong class="number" data-number="1200">0</strong>
-     <span>Experts Instructors</span>
+     <span>Experts Students</span>
  </div>
 </div>
 </div>
@@ -482,7 +482,7 @@
                     <span class="fa fa-star"></span>
                     <span class="fa fa-star"></span>
                 </p>
-                <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <p class="mb-4">As a science major, I've found incredible value in connecting with students from other disciplines on [Your App Name]. It's refreshing to explore diverse perspectives and collaborate on solving problems together. This platform has truly enriched my learning experience</p>
                 <div class="d-flex align-items-center">
                    <div class="user-img" style="background-image: url('{{url_for('static',filename='images/person_1.jpg')}}')"></div>
                    <div class="pl-3">
@@ -503,7 +503,7 @@
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span>
         </p>
-        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+        <p class="mb-4">I can't thank Study Partner Finder enough for providing a space where I can discuss complex business concepts with students from various backgrounds. The collaborative environment has significantly boosted my understanding and confidence in my studies.</p>
         <div class="d-flex align-items-center">
            <div class="user-img" style="background-image: url('{{url_for('static',filename='images/person_2.jpg')}}')"></div>
            <div class="pl-3">
@@ -524,7 +524,7 @@
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span>
         </p>
-        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+        <p class="mb-4">Being a part of Study Partner Finder has been a game-changer for me. I used to struggle with doubts, but now, I can post them on the platform and get insights from students studying different subjects. It's like having a virtual study group available anytime I need it</p>
         <div class="d-flex align-items-center">
            <div class="user-img" style="background-image: url('{{url_for('static',filename='images/person_3.jpg')}}')"></div>
            <div class="pl-3">
@@ -545,7 +545,7 @@
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span>
         </p>
-        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+        <p class="mb-4">I love the concept of collaborative learning, and Study Partner Finder has nailed it. The platform has allowed me to broaden my horizons by connecting with students who bring unique insights and experiences to the table. </p>
         <div class="d-flex align-items-center">
            <div class="user-img" style="background-image: url('{{url_for('static',filename='images/person_1.jpg')}}')"></div>
            <div class="pl-3">
@@ -566,7 +566,7 @@
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span>
         </p>
-        <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+        <p class="mb-4">In my opinion, Study Partner Finder is more than just a study platform; it's a community that fosters a love for learning. The support I've received here, both academically and emotionally, has made my educational journey much more enjoyable and fulfilling</p>
         <div class="d-flex align-items-center">
            <div class="user-img" style="background-image: url('{{url_for('static',filename='images/person_2.jpg')}}')"></div>
            <div class="pl-3">
@@ -589,7 +589,7 @@
        <div class="col-md-12 text-center">
           <div class="img"  style="background-image: url('{{url_for('static',filename='images/bg_4.jpg')}}');">
              <div class="overlay"></div>
-             <h2>We Are StudyLab An Online Learning Center</h2>
+             <h2>We Are Study Partner An Online Learning Center</h2>
              <p>We can manage your dream building A small river named Duden flows by their place</p>
              <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Enroll Now</a></p>
          </div>
@@ -598,66 +598,7 @@
 </div>
 </section>
 
-<section class="ftco-section services-section">
-  <div class="container">
-    <div class="row d-flex">
-      <div class="col-md-6 heading-section pr-md-5 ftco-animate d-flex align-items-center">
-         <div class="w-100 mb-4 mb-md-0">
-            <span class="subheading">Welcome to StudyLab</span>
-            <h2 class="mb-4">We Are StudyLab An Online Learning Center</h2>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <div class="d-flex video-image align-items-center mt-md-4">
-              <a href="#" class="video img d-flex align-items-center justify-content-center" style="background-image: url('{{url_for('static',filename='images/about.jpg')}}');">
-                 <span class="fa fa-play-circle"></span>
-             </a>
-             <h4 class="ml-4">Learn anything from StudyLab, Watch video</h4>
-         </div>
-     </div>
- </div>
- <div class="col-md-6">
-     <div class="row">
-        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
-          <div class="services">
-            <div class="icon d-flex align-items-center justify-content-center"><span class="flaticon-tools"></span></div>
-            <div class="media-body">
-              <h3 class="heading mb-3">Top Quality Content</h3>
-              <p>A small river named Duden flows by their place and supplies</p>
-          </div>
-      </div>      
-  </div>
-  <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
-      <div class="services">
-        <div class="icon icon-2 d-flex align-items-center justify-content-center"><span class="flaticon-instructor"></span></div>
-        <div class="media-body">
-          <h3 class="heading mb-3">Highly Skilled Instructor</h3>
-          <p>A small river named Duden flows by their place and supplies</p>
-      </div>
-  </div>    
-</div>
-<div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
-  <div class="services">
-    <div class="icon icon-3 d-flex align-items-center justify-content-center"><span class="flaticon-quiz"></span></div>
-    <div class="media-body">
-      <h3 class="heading mb-3">World Class &amp; Quiz</h3>
-      <p>A small river named Duden flows by their place and supplies</p>
-  </div>
-</div>      
-</div>
-<div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
-  <div class="services">
-    <div class="icon icon-4 d-flex align-items-center justify-content-center"><span class="flaticon-browser"></span></div>
-    <div class="media-body">
-      <h3 class="heading mb-3">Get Certified</h3>
-      <p>A small river named Duden flows by their place and supplies</p>
-  </div>
-</div>      
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
+
 
 
 <section class="ftco-section bg-light">

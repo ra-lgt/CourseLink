@@ -647,5 +647,13 @@ def logout():
     cache.clear()
     return redirect(url_for('Home'))
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 if __name__ == '__main__':
     socketio.run(app,debug=True)
