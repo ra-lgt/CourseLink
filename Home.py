@@ -278,7 +278,7 @@ def save_profile_pic():
         print("file not found")
     file = request.files['file']
 
-    return_code=user_dataAPI.save_profile(file,cache.get('profile_data')['username'] or session['username'])
+    return_code=user_dataAPI.save_profile(file,cache.get('profile_data')['email'] or session['email'])
     
     if(return_code==True):
         result = {'message': 'Image uploaded successfully'}

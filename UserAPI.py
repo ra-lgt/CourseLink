@@ -55,7 +55,7 @@ class DataAPI:
                     user_all_data[key]=list()
                 user_all_data[key].append(value)
                 
-                if(key=="username"):
+                if(key=="email"):
                     user_all_data['profile_url'].append(self.get_profile_pic(value))
                     
                     
@@ -76,7 +76,7 @@ class DataAPI:
             data=doc
             break
         
-        data['profile_pic']=self.get_profile_pic(data['username'])
+        data['profile_pic']=self.get_profile_pic(data['email'])
         
         return data
     
