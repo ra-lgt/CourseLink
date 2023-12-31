@@ -5587,7 +5587,7 @@ button.bg-danger:focus {
   background-color: #bd2130 !important; }
 
 .bg-light {
-  background-color: #f8f9fa !important; }
+  background-color: #f8f9fa;}
 
 a.bg-light:hover, a.bg-light:focus,
 button.bg-light:hover,
@@ -8736,7 +8736,7 @@ h1, h2, h3, h4, h5,
     height: inherit !important; }
 
 .bg-light {
-  background: #FFFFFF !important; }
+  background: #FFFFFF; }
 
 .bg-primary {
   background: #4986fc; }
@@ -9623,7 +9623,8 @@ border-radius: 3px;
 
 .blog-entry {
   width: 100%;
-  margin-bottom: 40px; }
+  margin-bottom: 40px;
+      border: 1px solid #ddd; }
   @media (max-width: 767.98px) {
     .blog-entry {
       margin-bottom: 30px; } }

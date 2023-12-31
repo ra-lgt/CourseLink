@@ -19,20 +19,28 @@
   <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 </head>
 <style>
-  /* Extra */
-  
+  * {
+  box-sizing: border-box;
+}
+
+ 
 .logo {
   max-width: 200px;
 }
 
 .nav_tempbar {
   align-items: center;
-  background: #fff;
+    background: rgba(250, 240, 230, 0.79);
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: row;
   font-family: sans-serif;
   padding: 10px 50px;
+   border: 1px solid #ddd;
+}
+#primary-menu_temp {
+    font-weight: 600;
+    color:#31304D;
 }
 
 .push-left {
@@ -63,6 +71,9 @@
   left: 0;
   transition: all 0.2s ease-out;
   width: 100%;
+}
+.bg-light{
+  background: #FAF0E6;;
 }
 .hamburger:hover .hamburger-line {
   background: #777;
@@ -100,7 +111,7 @@
 }
 @media screen and (max-width: 768px) {
   .nav_temp-menu_temp {
-    background: #f0f0f0;
+    background: #fff;
     flex-direction: column;
     justify-content: center;
     opacity: 0;
@@ -111,7 +122,6 @@
     left: 0;
     transform: translatey(-100%);
     text-align: center;
-    margin-bottom: 80%;
   }
   .menu_temp-active .nav_temp-menu_temp {
     transform: translatey(0%);
@@ -127,8 +137,8 @@
   text-transform: uppercase;
 }
 .nav_temp-menu_temp .menu_temp-item a:hover {
-  color: #777777;
-  text-decoration: underline;
+  color: #81767677;
+  text-decoration: initial;
 }
 @media screen and (max-width: 768px) {
   .nav_temp-menu_temp .menu_temp-item a {
@@ -186,11 +196,7 @@
     background: #fff;
 }
 </style>
-<body >
-
-  <section class="hero-wrap hero-wrap-2">
-<div class="overlay">
-          <nav class="nav_tempbar">
+ <nav class="nav_tempbar">
   <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
   <div class="push-left">
     <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
@@ -220,6 +226,7 @@
 
   </div>
 </nav>
+<body >
 <section class="ftco-section bg-light">
 
   <div class="container">
@@ -284,8 +291,6 @@
  });
 </script>
  <!-- END nav -->
-      </div>
-      </section>
       <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
 <script src="{{url_for('static',filename='js/jquery-migrate-3.0.1.min.js')}}"></script>
 <script src="{{url_for('static',filename='js/popper.min.js')}}"></script>
@@ -303,3 +308,5 @@
 <script src="{{url_for('static',filename='js/main.js')}}"></script>
       </body>
       </html>
+
+
