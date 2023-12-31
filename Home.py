@@ -403,10 +403,7 @@ def Admin_Home():
 
 
 @app.route("/Admin",methods=['GET','POST'])
-def Admin():
-    if(session['user_id']):
-        return redirect(url_for('Admin_Home'))
-    
+def Admin():    
     if(request.method=='POST'):
         admin_email=request.form['emailAdress']
         admin_password=request.form['password']

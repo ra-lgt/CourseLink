@@ -37,47 +37,7 @@
 
 </head>
 
-<body style="background:#FFFFFF">
-     <div class="overlay navbar_overlay">
-    <nav class="nav_tempbar">
-      <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
-      <div class="push-left">
-        <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
-          <span class="hamburger-line hamburger-line-top"></span>
-          <span class="hamburger-line hamburger-line-middle"></span>
-          <span class="hamburger-line hamburger-line-bottom"></span>
-        </button>
-    
-        <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
-        <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
-          {% if session_bool %}
-          <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
-          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
-          
-          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Message</a></li>
-            <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('blog',page_no=1)}}">Blog</a></li>
-              <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('profile')}}">Profile</a></li>
-              {% else %}
-              <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('signup_login')}}">Signup/Login</a></li>
-              {% endif %}
-        </ul>
-    
-    
-      </div>
-    </nav>
-    <script>$(document).ready(function() {
-      // Toggle menu_temp on click
-      $("#menu_temp-toggler").click(function() {
-        toggleBodyClass("menu_temp-active");
-      });
-    
-      function toggleBodyClass(className) {
-        document.body.classList.toggle(className);
-      }
-    
-     });
-    </script>
-  </div>
+<body >
    
 <style>
 
@@ -87,12 +47,13 @@
 
 .nav_tempbar {
   align-items: center;
-  background: #fff;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: row;
   font-family: sans-serif;
   padding: 10px 50px;
+  background: rgba(250, 240, 230, 0.79);
+  backdrop-filter: blur(1.8px);
 }
 
 .push-left {
@@ -187,8 +148,8 @@
   text-transform: uppercase;
 }
 .nav_temp-menu_temp .menu_temp-item a:hover {
-  color: #777777;
-  text-decoration: underline;
+  color:#81767677;
+  text-decoration:initial;
 }
 @media screen and (max-width: 768px) {
   .nav_temp-menu_temp .menu_temp-item a {
@@ -228,6 +189,46 @@
 <!-- END nav -->
 
 <div class="hero-wrap js-fullheight" style="background-image: url('{{url_for('static',filename='images/bg_1.jpg')}}');">
+    <div class="overlay navbar_overlay">
+    <nav class="nav_tempbar">
+      <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
+      <div class="push-left">
+        <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
+          <span class="hamburger-line hamburger-line-top"></span>
+          <span class="hamburger-line hamburger-line-middle"></span>
+          <span class="hamburger-line hamburger-line-bottom"></span>
+        </button>
+    
+        <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
+        <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
+          {% if session_bool %}
+          <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
+          
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Message</a></li>
+            <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('blog',page_no=1)}}">Blog</a></li>
+              <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('profile')}}">Profile</a></li>
+              {% else %}
+              <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('signup_login')}}">Signup/Login</a></li>
+              {% endif %}
+        </ul>
+    
+    
+      </div>
+    </nav>
+    <script>$(document).ready(function() {
+      // Toggle menu_temp on click
+      $("#menu_temp-toggler").click(function() {
+        toggleBodyClass("menu_temp-active");
+      });
+    
+      function toggleBodyClass(className) {
+        document.body.classList.toggle(className);
+      }
+    
+     });
+    </script>
+  </div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
       <div class="col-md-7 ftco-animate">
