@@ -72,9 +72,6 @@
   transition: all 0.2s ease-out;
   width: 100%;
 }
-.bg-light{
-  background: #FAF0E6;;
-}
 .hamburger:hover .hamburger-line {
   background: #777;
 }
@@ -247,7 +244,7 @@
          <h3 class="heading"><a href="#">{{blog_posts['title'][i]}}</a></h3>
          <p>{{blog_posts['description'][i]}}</p>
          <p><a href="{{url_for('view_blog',blog_id=blog_posts['post_id'][i])}}" class="btn btn-secondary py-2 px-3">Read more</a>
-         <a href="{{url_for('delete_blog',post_id=blog_posts['post_id'][i])}}" class="btn btn-secondary py-2 px-3" style="margin-left: 30px;background-color:#FF0000;">X Delete Post</a></p>
+         <a href="{{url_for('delete_blog',post_id=blog_posts['post_id'][i])}}" class="btn btn-secondary py-2 px-3" style="margin-left:10px;background-color:#FF0000;">X Delete Post</a></p>
 
        </div>
      </div>

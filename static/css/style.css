@@ -493,8 +493,8 @@ pre {
   margin-left: -15px; }
 
 .no-gutters {
-  margin-right: 0;
-  margin-left: 0; }
+  margin-right:300px;
+  margin-left:-100px; }
   .no-gutters > .col,
   .no-gutters > [class*="col-"] {
     padding-right: 0;
@@ -8598,12 +8598,12 @@ h1, h2, h3, h4, h5,
 
   .slider-text .subheading {
     font-size: 14px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgb(128 119 119 / 80%);
     font-weight: 700;
     text-transform: uppercase; }
   .slider-text h1 {
     font-size: 50px;
-    color: #fff;
+    color:#31304D;
     line-height: 1.2;
     font-weight: 700; }
     @media (max-width: 991.98px) {
@@ -8616,7 +8616,7 @@ h1, h2, h3, h4, h5,
     font-size: 20px;
     line-height: 1.5;
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.9); }
+    color: rgb(128 119 119 / 80%) }
     .slider-text p strong {
       font-weight: 700; }
       .slider-text p strong a {
@@ -9221,7 +9221,7 @@ textarea.form-control {
   padding: 7em 0;
   position: relative;
   width: 100%; 
-    background-color: #FAF0E6}
+    background-color: #fff}
   @media (max-width: 767.98px) {
     .ftco-section {
       padding: 6em 0; } }
