@@ -20,7 +20,7 @@ Please enter this OTP on the verification page to complete the process. This OTP
 If you didn't request this OTP, please ignore this message.<br>
 
 Thank you,
-Skill-Storm
+Study Partner Finder
 '''.format(OTP)
 
 		env = Environment(loader=FileSystemLoader('./templates'))
