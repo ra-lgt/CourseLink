@@ -221,56 +221,47 @@
  });
 </script>
 
-
+<style>
+  .user-avatar {
+    border-radius: 50%; /* Makes the image rounded */
+    width: 70px; /* Adjust the width as needed */
+    height: 70px; /* Adjust the height as needed */
+  }
+  h2,p{
+    margin-left: 10px;
+    margin-right: auto; /* Push the h2 element to the left */
+  }
+  
+  
+</style>
 
 {% for i in range(count) %}
-<div class="modal " id="learnMore{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-
-      <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        </br>
-      <div class="container">
-        <p style="font-weight:bold ; padding-bottom: 20px; font-family:'Times New Roman', Times, serif; color:#e449ad; font-size: 30px ; text-align: center;">User Details</p>
-        <div style="    margin-left: 100px;" class="row">
-                    <div style="width:340" class="col-sm-8">
-            {% if all_user_data['profile_url'][i]!="" %}
-             <img height="300" width="300" src="{{all_user_data['profile_url'][i]}}" alt="">
-             {% else %}
-             <img  src="{{url_for('static',filename='images/default_profile.jpg')}}" alt="" />
-             {% endif %}
-          </div>
-
-          <div style="width: 400;" class="col-sm-4 align-self-center"> 
-            <h5 class="intro-title">Username :  {{all_user_data['username'][i]}} </h5>
-            <br>
-            <h5 class="intro-title">First Name :  {{all_user_data['first_name'][i]}} </h5>
-            <br>
-            <h5 class="intro-title">Last Name :  {{all_user_data['last_name'][i]}} </h5>
-            <br>
-            <h5 class="intro-title">Age :  {{all_user_data['Age'][i]}} </h5>
-            <br>
-
-            <h5 class="intro-title">Course :  {{all_user_data['Course'][i]}} </h5>
-            <br>
-            <h5 class="intro-title">Email :  {{all_user_data['email'][i]}} </h5>
-            <!-- <h3> TITLE </h3>
-            <p> some other content, some other, content </p> -->
-            
-          </div>          
-        </div>  
-      </div>
-      <button id='cbtn' class="{{i}}" onclick="send_request('{{ all_user_data['username'][i] }}', '{{ all_user_data['email'][i] }}')" style="background:#e449ad; margin-left: 460px;
-      background:#e449ad;       color:#ffffff; padding:5px 20px; font-size: 15;border:1px solid #ffffff;border-radius:30px;">Message</button>
+<div class="modal" data-modal="trigger-{{i}}">
+  <article class="content-wrapper">
+    <button class="close"></button>
+    <header class="modal-header">
+      <img class="user-avatar" src="{{all_user_data['profile_url'][i]}}" alt="User Avatar">
       
-      </div>
       
-
-    </div>
-  </div>
+    
+    </header>
+    <h2>{{all_user_data['username'][i]}}</h2>
+    
+      <p><b>First Name</b>: {{all_user_data['first_name'][i]}}</p>
+      <p><b>Last Name</b>: {{all_user_data['last_name'][i]}}</p>
+      <p><b>Country</b>: {{all_user_data['Country'][i]}}</p>
+      <p><b>City</b>: {{all_user_data['City'][i]}}</p>
+      <p><b>Degree/Current Study Background</b>: {{all_user_data['Degree'][i]}}</p>
+      <p><b>Course/Exam/Stream</b>: {{all_user_data['Course'][i]}}</p>
+      <p><b>Experince Level</b>: {{all_user_data['Experince_Level'][i]}}</p>
+      <p><b>Preferred Language</b>: {{all_user_data['language'][i]}}</p>
+      <p><b>Joined Date</b>: {{all_user_data['Joined_date'][i]}}</p>
+    
+    <footer class="modal-footer">
+      <button class="action" onclick="send_request('{{ all_user_data['username'][i] }}', '{{ all_user_data['email'][i] }}')">Send Message</button>
+      
+    </footer>
+  </article>
 </div>
 {% endfor %}
 <script>
@@ -443,6 +434,7 @@
         <div class="filter">
           <h3>Filter by Course</h3>
           <select id="location-filter" class="location selectlist">
+            <option selected="selected">All</option>    
             {% for i in Course %}
             
         <option selected="selected" value="{{i}}">{{i}}</option>
@@ -453,8 +445,9 @@
         <div class="filter">
           <h3>Filter by Degree</h3>
           <select id="type-filter" class="jobtypefilter selectlist">
+            <option>All</option>
        {% for i in degree %}
-        <option value="{{i}}">{{i}}</option>
+        <option selected="selected" value="{{i}}">{{i}}</option>
         {% endfor %}
       </select>
         </div>
@@ -481,7 +474,7 @@ var options = {
       "jobtypefilter",
       { attr: "href", name: "applyLink" },
       { attr: "src", name: "image" },
-      { attr: "data-target", name: "jobType" } 
+      { attr: "data-modal-trigger", name: "jobType" } 
     ],
     item:
 '<li class="ani" style="margin-bottom:40px;background-color:white;box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);">' +
@@ -493,9 +486,9 @@ var options = {
  
   '<div class="bottomBox">' +
     '<div class="left-part">' +
-      '<button type="button" class="jobType" style="margin-left=500px;" data-toggle="modal">View More' +
+      '<button type="button" class="jobType" style="margin-left=500px;" data-modal-trigger="trigger-3">View More' +
         '</button>' +
-      '<p class="jobLocation"></p>' +
+      '<p class="jobLocation jobTitle"></p>' +
     '</div>' +
     '<div class="dateBox" style="margin-right:20px">' +
       '<h5>Joined Date</h5>' +
@@ -524,7 +517,7 @@ var options = {
 
       jobTitle: "<br><img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA2ElEQVR4nL3SvUpDQRDF8V8KTRVRTJNKfQURtJA8QupgFRsr7TXocwg+gCikiVhoZe9H0mrno4SFLS7k3sQ7Qv4wxZwzc9hllxWzgRu85bpGKxrWxgfO0cl1gXdsRwLv0C/RT3AbCfxBo0RP2nck8CvoVfIZ9FYXOMF6id6MBg5xWUNfyhqe0CtovawlL8RZrqq+NlcYFPrT6HWPMcIYmwV9C8/ZSzNL2cUL7rG/YO4gz7xir2poB1Mc+TuHeScdZI5HdNWni4cy47fwinUr7c4RDfv3V1rIDGxNLyDjctveAAAAAElFTkSuQmCC'> : {{all_user_data['username'][i]}}",
       jobtypefilter:"<img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA+UlEQVR4nN3UMUoDURSF4a8x2AQjriONO4grcAXpEmzERhCZJpAmWFqFZAHuIJBKEASLgIEswUVoKQMnENSBUQcLDxx4nHffz5s7c4f/ooP41+pghHU8SvZttXEVyAX2sYc+njHB4U9BH1UL3K4Bqg2+DmiIVrKyT8fo4TQH+1n3srftZStn12F9Ai5xjxluUOA8LpLNUrP8CijBQ8KV+lpVvf1hXIYbnGCAS4xxG4+TDVKzqfqMtsBSb3jBPI/YT996WRfZK2teq66+C+zmFlPcYYHHeJFsmppuHWAjOosbUWdnVhv5ARzhKS7XjWgSN6ZyduvM79/rHdT2P19NiEnTAAAAAElFTkSuQmCC'> : {{all_user_data['Degree'][i]}}",
-      jobType:  "#learnMore{{i}}",
+      jobType:  "trigger-{{i}}",
       datePosted: "{{all_user_data['Joined_date'][i]}}",
       jobLocation:"{{all_user_data['Course'][i]}}",
       applyLink: "#",
@@ -599,5 +592,191 @@ var options = {
         $('.porpSection').removeClass('activeMob');
      $('body').removeClass('filterActive')           
   });
+  </script>
+  <style>
+
+    .pdfobject-container {
+      height: 30rem;
+      border: 1rem solid rgba(0, 0, 0, 0.1);
+    }
+    
+    .jobType {
+      margin: 0 0.75rem;
+      padding: 0.625rem 1.25rem;
+      border: none;
+      border-radius: 0.25rem;
+      box-shadow: 0 0.0625rem 0.1875rem rgba(0, 0, 0, 0.12), 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.24);
+      transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+      font-size: 0.875rem;
+      font-weight: 300;
+    }
+    .trigger i {
+      margin-right: 0.3125rem;
+    }
+    .trigger:hover {
+      box-shadow: 0 0.875rem 1.75rem rgba(0, 0, 0, 0.25), 0 0.625rem 0.625rem rgba(0, 0, 0, 0.22);
+    }
+    
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 0vh;
+      background-color: transparent;
+      overflow: hidden;
+      transition: background-color 0.25s ease;
+      z-index: 9999;
+    }
+    .modal.open {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: background-color 0.25s;
+    }
+    .modal.open > .content-wrapper {
+      transform: scale(1);
+    }
+    .modal .content-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 50%;
+      margin: 0;
+      padding: 2.5rem;
+      background-color: white;
+      border-radius: 0.3125rem;
+      box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.5);
+      transform: scale(0);
+      transition: transform 0.25s;
+      transition-delay: 0.15s;
+    }
+    .modal .content-wrapper .close {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border: none;
+      background-color: transparent;
+      font-size: 1.5rem;
+      transition: 0.25s linear;
+    }
+    .modal .content-wrapper .close:before, .modal .content-wrapper .close:after {
+      position: absolute;
+      content: "";
+      width: 1.25rem;
+      height: 0.125rem;
+      background-color: black;
+    }
+    .modal .content-wrapper .close:before {
+      transform: rotate(-45deg);
+    }
+    .modal .content-wrapper .close:after {
+      transform: rotate(45deg);
+    }
+    .modal .content-wrapper .close:hover {
+      transform: rotate(360deg);
+    }
+    .modal .content-wrapper .close:hover:before, .modal .content-wrapper .close:hover:after {
+      background-color: tomato;
+    }
+    .modal .content-wrapper .modal-header {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin: 0;
+      padding: 0 0 1.25rem;
+    }
+    .modal .content-wrapper .modal-header h2 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .modal .content-wrapper .content {
+      position: relative;
+      display: flex;
+    }
+    .modal .content-wrapper .content p {
+      font-size: 0.875rem;
+      line-height: 1.75;
+    }
+    .modal .content-wrapper .modal-footer {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+      margin: 0;
+      padding: 1.875rem 0 0;
+    }
+    .modal .content-wrapper .modal-footer .action {
+      position: relative;
+      margin-left: 0.625rem;
+      padding: 0.625rem 1.25rem;
+      border: none;
+      background-color: slategray;
+      border-radius: 0.25rem;
+      color: white;
+      font-size: 0.87rem;
+      font-weight: 300;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .modal .content-wrapper .modal-footer .action:before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.2);
+      transition: width 0.25s;
+      z-index: 0;
+    }
+    .modal .content-wrapper .modal-footer .action:first-child {
+      background-color: #2ecc71;
+    }
+    .modal .content-wrapper .modal-footer .action:last-child {
+      background-color: #2ecc71;
+    }
+    .modal .content-wrapper .modal-footer .action:hover:before {
+      width: 100%;
+    }
+  </style>
+  <script>
+    const buttons = document.querySelectorAll('.jobType[data-modal-trigger]');
+  
+  for(let button of buttons) {
+    modalEvent(button);
+  }
+  
+  function modalEvent(button) {
+    button.addEventListener('click', () => {
+      const trigger = button.getAttribute('data-modal-trigger');
+      // console.log('trigger', trigger)
+      const modal = document.querySelector(`[data-modal=${trigger}]`);
+      console.log('modal', modal)
+      const contentWrapper = modal.querySelector('.content-wrapper');
+      const close = modal.querySelector('.close');
+  
+      close.addEventListener('click', () => modal.classList.remove('open'));
+      modal.addEventListener('click', () => modal.classList.remove('open'));
+      contentWrapper.addEventListener('click', (e) => e.stopPropagation());
+  
+      modal.classList.toggle('open');
+    });
+  }
+  
   </script>
 </body>
