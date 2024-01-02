@@ -81,6 +81,7 @@ class DataAPI:
         return data
     
     def update_profile(self,updated_data,email):
+
         db = self.mongo_conn["User-Data"]
         collection=db['user_details']
         

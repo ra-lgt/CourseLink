@@ -5,6 +5,9 @@
 <title>Jolly Jolt | Profile</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
 <body>
    <nav class="nav_tempbar">
       <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
@@ -301,11 +304,15 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Preferred Language</label>
-                        <select id="input-exp" name="language" class="form-control form-control-alternative" >
-                          {% for i in languages|sort %}
-                          <option value="{{i}}">{{i}}</option>
+                        
 
-                          {% endfor %}
+                          
+
+                          <select name="skills" multiple="" class="label ui selection fluid dropdown form-control form-control-alternative" id="dropdownContainer">
+                            {% for i in languages|sort %}
+                            <option value="{{i}}">{{i}}</option>
+                            {% endfor %}
+                          
                         </select>
                       </div>
                     </div>
@@ -333,23 +340,92 @@
   </div>
 
 </body>
+
+
+<style>
+  
+  
+  @media only screen and (max-width: 767px) {
+      .ui.selection.dropdown .menu {
+  /*      max-height: 8.01428571rem; /* + 1.335714285 to 9.349999995rem */
+  /*      max-height: 9.349999995rem; /* Adds a half */
+          max-height: 16.02857142rem; /* Double size */
+      }
+  }
+  @media only screen and (min-width: 768px) {
+      .ui.selection.dropdown .menu {
+  /*         max-height: 10.68571429rem; /* + 1.3357142863 to 12.0214285763rem */
+        max-height: 12.0214285763rem;
+      }
+  }
+  @media only screen and (min-width: 992px) {
+      .ui.selection.dropdown .menu {
+        max-height: 16.02857143rem; /* + 1.3357142858 to 17.3642857158rem */
+      }
+  }
+  @media only screen and (min-width: 1920px) {
+      .ui.selection.dropdown .menu {
+          max-height: 21.37142857rem; /* + 1.3357142856 to 22.7071428556rem */
+      }
+  }
+</style>
+<script>
+  $('.label.ui.dropdown')
+  .dropdown();
+
+$('.no.label.ui.dropdown')
+  .dropdown({
+  useLabels: false
+});
+
+$('.ui.button').on('click', function () {
+  $('.ui.dropdown')
+    .dropdown('restore defaults')
+})
+
+</script>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     // Get the select element
     var selectElement = document.getElementById('input-countries');
     var exp_select = document.getElementById('input-experience');
     var lang_select = document.getElementById('language');
-    var option_language=lang_select.querySelector("option[value='{{user_specific_data['language']}}']")
 
     // Get the option to be selected
     var optionToSelect = selectElement.querySelector("option[value='{{user_specific_data['Country']}}']");
     var exp_select_option=exp_select.querySelector("option[value='{{user_specific_data['Experince_Level']}}']");
 
-    option_language.selected=true
     exp_select_option.selected=true
     // Set the selected property
     optionToSelect.selected = true;
-  });
+
+    var dropdownContainer = document.querySelector('div.form-control-alternative');
+
+    // Function to add a new <a> element
+    function addLabel(value) {
+      console.log(dropdownContainer)
+      console.log("name",value)
+        var newLabel = document.createElement('a');
+        newLabel.className = 'ui label transition visible';
+        newLabel.setAttribute('data-value', value);
+        newLabel.style.display = 'inline-block';
+
+        // Add label text
+        newLabel.textContent = value;
+
+        // Add delete icon
+        var deleteIcon = document.createElement('i');
+        deleteIcon.className = 'delete icon';
+        newLabel.appendChild(deleteIcon);
+
+        // Append the new label to the dropdown container
+        console.log(newLabel)
+        dropdownContainer.appendChild(newLabel);
+    }
+
+    // Add the <a> element with data-value="Amharic"
+    addLabel("{{user_specific_data['language']}}");
+});
 </script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
