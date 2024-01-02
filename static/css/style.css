@@ -8373,7 +8373,7 @@ h1, h2, h3, h4, h5,
   color: #4986fc !important; }
 
 .ftco-navbar-light {
-  background: transparent !important;
+  background: transparent;
   top:15px;
   left:0;
   right: 0; }
