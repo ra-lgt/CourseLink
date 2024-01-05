@@ -4,6 +4,8 @@
   <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 <title>Jolly Jolt | Profile</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -304,16 +306,12 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Preferred Language</label>
-                        
-
-                          
-
-                          <select name="skills" multiple="" class="label ui selection fluid dropdown form-control form-control-alternative" id="dropdownContainer">
-                            {% for i in languages|sort %}
-                            <option value="{{i}}">{{i}}</option>
-                            {% endfor %}
-                          
-                        </select>
+    
+                        <select id="mySelect" name="mySelect[]" multiple="multiple" style="width: 200px;">
+                          {% for i in languages|sort %}
+                          <option value="{{i}}" data-icon="https://via.placeholder.com/15">{{i}}</option>
+                          {% endfor %}
+                      </select>
                       </div>
                     </div>
                   </div>
@@ -370,6 +368,71 @@
   }
 </style>
 <script>
+  function decodeHTMLEntities(str) {
+    var doc = new DOMParser().parseFromString(str, "text/html");
+    return doc.body.textContent || "";
+  }
+
+  // Convert the string to a JavaScript array
+
+
+  // Remove HTML entities from each element in the original array
+  
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    console.log("type",typeof("{{user_specific_data['language']}}"))
+
+    let user_language=decodeHTMLEntities("{{user_specific_data['language']}}")
+    var user_all_language = JSON.parse(user_language.replace(/'/g, '"'));
+    
+    // Function to add li elements to the ul
+    function addLiElements() {
+
+      for(let i=0;i<user_all_language.length;i++){
+
+
+          // Create a reference to the ul element
+          var ulElement = document.getElementsByTagName('ul')
+          console.log(ulElement)
+  
+          // Create a new li element
+          var liElement = document.createElement('li');
+  
+          // Set li element attributes and content
+          liElement.className = 'select2-selection__choice';
+          liElement.title = 'Arabic';
+          liElement.textContent = 'Arabic';
+  
+          // Append the li element to the ul element
+          ulElement.appendChild(liElement);
+
+
+    }
+  }
+
+    // Call the function when the window reloads
+    addLiElements();
+  });
+</script>
+<script>
+  function formatState (state) {
+      if (!state.id) { return state.text; }
+      var baseUrl = "/user/pages/images/flags";
+      var $state = $(
+          '<span><img src="' + state.element.dataset.icon + '" class="img-flag" /> ' + state.text + '</span>'
+      );
+      return $state;
+  };
+
+  $(document).ready(function() {
+      $('#mySelect').select2({
+          templateResult: formatState,
+          minimumResultsForSearch: 0 // Always show the search bar
+      });
+  });
+</script>
+<script>
   $('.label.ui.dropdown')
   .dropdown();
 
@@ -384,6 +447,45 @@ $('.ui.button').on('click', function () {
 })
 
 </script>
+<style>
+        
+  .select2-container .select2-selection--multiple {
+      border: 1px solid #FAF0E6;
+      border-radius: 4px;
+  }
+  .select2-container--default .select2-selection--multiple .select2-selection__choice {
+      background-color: #FAF0E6;
+      border-color: #FAF0E6;
+      color: #000;
+      padding: 0 10px;
+      margin-top: 5px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+  }
+  .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+      color: #000;
+      margin-right: 5px;
+  }
+  .select2-dropdown {
+      border-color: #FAF0E6;
+  }
+  .select2-results__option {
+      transition: background-color 0.3s ease;
+  }
+  .select2-results__option--highlighted[aria-selected] {
+      background-color: #FAF0E6;
+      color: black;
+  }
+  @media only screen and (max-width: 600px) {
+      #mySelect {
+          width: 100%;
+      }
+      .select2-container .select2-dropdown .select2-results__option {
+          font-size: 14px;
+          padding: 10px;
+      }
+  }
+</style>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     // Get the select element
@@ -403,8 +505,7 @@ $('.ui.button').on('click', function () {
 
     // Function to add a new <a> element
     function addLabel(value) {
-      console.log(dropdownContainer)
-      console.log("name",value)
+     
         var newLabel = document.createElement('a');
         newLabel.className = 'ui label transition visible';
         newLabel.setAttribute('data-value', value);
@@ -2672,3 +2773,7 @@ p {
 
  });
 </script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>

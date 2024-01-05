@@ -605,10 +605,10 @@ def find_friends():
 @app.route('/update_profile_data',methods=['POST'])
 @login_required
 def update_profile_data():
-  
+    import pdb;pdb.set_trace()
     
     updated_data={}
-    
+    updated_data['language'] = request.form.getlist('mySelect[]')
     
     updated_data['first_name']=request.form['f_name']
     updated_data['last_name']=request.form['l_name']
@@ -622,9 +622,7 @@ def update_profile_data():
     updated_data['Course']=request.form['Course']
     updated_data['Degree']=request.form['Degree']
     updated_data['Experince_Level']=request.form['Experince_Level']
-    updated_data['language']=request.form['language']
 
-    
     # return_code=True
     return_code=user_dataAPI.update_profile(updated_data,session['email'])
     
