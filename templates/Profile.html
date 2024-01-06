@@ -4,12 +4,7 @@
   <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 <title>Jolly Jolt | Profile</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
 <body>
    <nav class="nav_tempbar">
       <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
@@ -306,15 +301,12 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Preferred Language</label>
-                        <div class="input-container">
-                          <input id="language" name="Course" readonly class="form-control form-control-alternative" type="text">
-                          <a onclick="toggle_select()"><img id="languageImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA8ElEQVR4nO2UT0pCYRTFn26hLRiNfOfcSLfQ4N37cCMZhQqOXIYjW4bbqGgoNGsYShtQzqMX6cg+nRgeuHD/wI/Ddy9flv1DTZpkeU/4qyFelKt3AMxnhK9IHwA+JP2L9H4yzBjr67y4rbuAD+U0EeZLY7wZ47nT6V1oYoiR6jSYlTcCCaCQU8JXZnGXBKu731A5XWu+71IaREzlACi6vwd5XpoxPsl4OsO2RcZ4dwGSavX/soBKhC8M/pAdBcbiUmfQbpdXh2zzRzpOo78rF9Ryf0xyVssQc8I/BK0OFr7Qmyb/JIaYVyGnFq0kyEloA3BUgaIpl75/AAAAAElFTkSuQmCC"></a>
-                      </div>
-                        <select id="mySelect" name="mySelect[]" multiple="multiple" style="width: 200px; visibility:hidden">
+                        <select id="input-exp" name="language" class="form-control form-control-alternative" >
                           {% for i in languages|sort %}
-                          <option value="{{i}}" data-icon="https://via.placeholder.com/15">{{i}}</option>
+                          <option value="{{i}}">{{i}}</option>
+
                           {% endfor %}
-                      </select>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -341,203 +333,23 @@
   </div>
 
 </body>
-
-
-<style>
-  .input-container {
-    display: flex;
-    align-items: center;
-}
-
-/* Add margin between input and image */
-.form-control {
-    margin-right: 10px;
-}
-
-/* Style for the image */
-#languageImage {
-    max-width: 30px; /* Adjust the max-width as needed */
-    height: auto;
-}
-  
-  #myselect,.select2{
-    visibility: hidden;
-  }
-  @media only screen and (max-width: 767px) {
-      .ui.selection.dropdown .menu {
-  /*      max-height: 8.01428571rem; /* + 1.335714285 to 9.349999995rem */
-  /*      max-height: 9.349999995rem; /* Adds a half */
-          max-height: 16.02857142rem; /* Double size */
-      }
-  }
-  @media only screen and (min-width: 768px) {
-      .ui.selection.dropdown .menu {
-  /*         max-height: 10.68571429rem; /* + 1.3357142863 to 12.0214285763rem */
-        max-height: 12.0214285763rem;
-      }
-  }
-  @media only screen and (min-width: 992px) {
-      .ui.selection.dropdown .menu {
-        max-height: 16.02857143rem; /* + 1.3357142858 to 17.3642857158rem */
-      }
-  }
-  @media only screen and (min-width: 1920px) {
-      .ui.selection.dropdown .menu {
-          max-height: 21.37142857rem; /* + 1.3357142856 to 22.7071428556rem */
-      }
-  }
-</style>
-<script>
-  function toggle_select(){
-    document.getElementsByClassName('input-container')[0].style.visibility='hidden'
-    document.getElementById('mySelect').style.visibility='visible'
-    document.getElementsByClassName('select2')[0].style.visibility='visible'
-  
-  }
-  
-  function decodeHTMLEntities(str) {
-    var doc = new DOMParser().parseFromString(str, "text/html");
-    return doc.body.textContent || "";
-  }
-
-  // Convert the string to a JavaScript array
-
-
-  // Remove HTML entities from each element in the original array
-  
-
-  document.addEventListener('DOMContentLoaded', function () {
-
-    console.log("type",typeof("{{user_specific_data['language']}}"))
-
-    let user_language=decodeHTMLEntities("{{user_specific_data['language']}}")
-    var user_all_language = JSON.parse(user_language.replace(/'/g, '"'));
-    var language_input=document.getElementById('language')
-
-
-    
-    // Function to add li elements to the ul
-    function addLiElements() {
-
-      language_input.value = user_all_language.join(',');
-  }
-
-    // Call the function when the window reloads
-    addLiElements();
-  });
-</script>
-<script>
-  function formatState (state) {
-      if (!state.id) { return state.text; }
-      var baseUrl = "/user/pages/images/flags";
-      var $state = $(
-          '<span><img src="' + state.element.dataset.icon + '" class="img-flag" /> ' + state.text + '</span>'
-      );
-      return $state;
-  };
-
-  $(document).ready(function() {
-      $('#mySelect').select2({
-          templateResult: formatState,
-          minimumResultsForSearch: 0 // Always show the search bar
-      });
-  });
-</script>
-<script>
-  $('.label.ui.dropdown')
-  .dropdown();
-
-$('.no.label.ui.dropdown')
-  .dropdown({
-  useLabels: false
-});
-
-$('.ui.button').on('click', function () {
-  $('.ui.dropdown')
-    .dropdown('restore defaults')
-})
-
-</script>
-<style>
-        
-  .select2-container .select2-selection--multiple {
-      border: 1px solid #FAF0E6;
-      border-radius: 4px;
-  }
-  .select2-container--default .select2-selection--multiple .select2-selection__choice {
-      background-color: #FAF0E6;
-      border-color: #FAF0E6;
-      color: #000;
-      padding: 0 10px;
-      margin-top: 5px;
-      border-radius: 20px;
-      transition: all 0.3s ease;
-  }
-  .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
-      color: #000;
-      margin-right: 5px;
-  }
-  .select2-dropdown {
-      border-color: #FAF0E6;
-  }
-  .select2-results__option {
-      transition: background-color 0.3s ease;
-  }
-  .select2-results__option--highlighted[aria-selected] {
-      background-color: #FAF0E6;
-      color: black;
-  }
-  @media only screen and (max-width: 600px) {
-      #mySelect {
-          width: 100%;
-      }
-      .select2-container .select2-dropdown .select2-results__option {
-          font-size: 14px;
-          padding: 10px;
-      }
-  }
-</style>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     // Get the select element
     var selectElement = document.getElementById('input-countries');
     var exp_select = document.getElementById('input-experience');
     var lang_select = document.getElementById('language');
+    var option_language=lang_select.querySelector("option[value='{{user_specific_data['language']}}']")
 
     // Get the option to be selected
     var optionToSelect = selectElement.querySelector("option[value='{{user_specific_data['Country']}}']");
     var exp_select_option=exp_select.querySelector("option[value='{{user_specific_data['Experince_Level']}}']");
 
+    option_language.selected=true
     exp_select_option.selected=true
     // Set the selected property
     optionToSelect.selected = true;
-
-    var dropdownContainer = document.querySelector('div.form-control-alternative');
-
-    // Function to add a new <a> element
-    function addLabel(value) {
-     
-        var newLabel = document.createElement('a');
-        newLabel.className = 'ui label transition visible';
-        newLabel.setAttribute('data-value', value);
-        newLabel.style.display = 'inline-block';
-
-        // Add label text
-        newLabel.textContent = value;
-
-        // Add delete icon
-        var deleteIcon = document.createElement('i');
-        deleteIcon.className = 'delete icon';
-        newLabel.appendChild(deleteIcon);
-
-        // Append the new label to the dropdown container
-        console.log(newLabel)
-        dropdownContainer.appendChild(newLabel);
-    }
-
-    // Add the <a> element with data-value="Amharic"
-    addLabel("{{user_specific_data['language']}}");
-});
+  });
 </script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script type="text/javascript">
@@ -979,7 +791,7 @@ a>code {
   margin-left: -15px;
   flex-wrap: wrap;
   width:100%;
-  margin-top:70px;
+  margin-top:10px;
 }
 
 .col-4,
@@ -2784,7 +2596,3 @@ p {
 
  });
 </script>
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
