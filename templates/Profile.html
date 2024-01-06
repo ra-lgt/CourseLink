@@ -12,7 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
 <body>
    <nav class="nav_tempbar">
-      <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
+    <div class="logo"><img src="{{url_for('static',filename='images/logo.png')}}" width="35%" height="35%" alt="LOGO"></div>
       <div class="push-left">
         <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
           <span class="hamburger-line hamburger-line-top"></span>
@@ -887,8 +887,9 @@ h1,
 }
 
 h3,
-.h3 {
-  font-size: 1.0625rem;
+.h3,
+h5,.h5 {
+  font-size: 1.4rem;
 }
 
 h4,
@@ -898,7 +899,7 @@ h4,
 
 h5,
 .h5 {
-  font-size: .8125rem;
+  font-size: 1.4rem;
 }
 
 h6,
@@ -2279,7 +2280,7 @@ a.text-white:focus {
 
 .card-profile-image img {
   position: absolute;
-  left: 50%;
+  left: 75%;
   max-width: 180px;
   transition: all .15s ease;
   transform: translate(-50%, -30%);

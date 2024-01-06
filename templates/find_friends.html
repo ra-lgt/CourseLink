@@ -185,8 +185,8 @@
   display: block;
 }
 </style>
-<nav_temp class="nav_tempbar">
-  <div class="logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/AS_sample_logo.png" alt="LOGO"></div>
+<nav class="nav_tempbar">
+  <div class="logo"><img src="{{url_for('static',filename='images/logo.png')}}" width="35%" height="35%" alt="LOGO"></div>
   <div class="push-left">
     <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
       <span class="hamburger-line hamburger-line-top"></span>
@@ -206,7 +206,7 @@
 
 
   </div>
-</nav_temp>
+</nav>
 
 <script>$(document).ready(function() {
   // Toggle menu_temp on click
@@ -256,6 +256,7 @@
       <p><b>Experince Level</b>: {{all_user_data['Experince_Level'][i]}}</p>
       <p><b>Preferred Language</b>: {{all_user_data['language'][i]}}</p>
       <p><b>Joined Date</b>: {{all_user_data['Joined_date'][i]}}</p>
+      <p><b>About Me :</b>{{all_user_data['About'][i]}}</p>
     
     <footer class="modal-footer">
       <button class="action" onclick="send_request('{{ all_user_data['username'][i] }}', '{{ all_user_data['email'][i] }}')">Send Message</button>
