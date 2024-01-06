@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizontal Scrollable Disabled TextInput</title>
+
+    <style>
+        /* Add CSS styles for the text input */
+        #textInput {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+    <label for="textInput">Default Values:</label>
+    <!-- Add 'readonly' attribute to make the input field disabled -->
+    <input type="text" id="textInput" readonly>
+
+    <script>
+        // Your array of values
+        var defaultValues = ["Value1", "Value2", "Value3", "Value4","Value4","Value4","Value4","Value4"];
+
+        // Get the input element
+        var inputField = document.getElementById('textInput');
+
+        // Set the input field value with each array element on a new line
+        inputField.value = defaultValues.join(',');
+    </script>
+
+</body>
+</html>

@@ -306,8 +306,11 @@
                     <div class="col-lg-4">
                       <div class="form-group">
                         <label class="form-control-label" for="input-country">Preferred Language</label>
-    
-                        <select id="mySelect" name="mySelect[]" multiple="multiple" style="width: 200px;">
+                        <div class="input-container">
+                          <input id="language" name="Course" readonly class="form-control form-control-alternative" type="text">
+                          <a onclick="toggle_select()"><img id="languageImage" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA8ElEQVR4nO2UT0pCYRTFn26hLRiNfOfcSLfQ4N37cCMZhQqOXIYjW4bbqGgoNGsYShtQzqMX6cg+nRgeuHD/wI/Ddy9flv1DTZpkeU/4qyFelKt3AMxnhK9IHwA+JP2L9H4yzBjr67y4rbuAD+U0EeZLY7wZ47nT6V1oYoiR6jSYlTcCCaCQU8JXZnGXBKu731A5XWu+71IaREzlACi6vwd5XpoxPsl4OsO2RcZ4dwGSavX/soBKhC8M/pAdBcbiUmfQbpdXh2zzRzpOo78rF9Ryf0xyVssQc8I/BK0OFr7Qmyb/JIaYVyGnFq0kyEloA3BUgaIpl75/AAAAAElFTkSuQmCC"></a>
+                      </div>
+                        <select id="mySelect" name="mySelect[]" multiple="multiple" style="width: 200px; visibility:hidden">
                           {% for i in languages|sort %}
                           <option value="{{i}}" data-icon="https://via.placeholder.com/15">{{i}}</option>
                           {% endfor %}
@@ -341,8 +344,25 @@
 
 
 <style>
+  .input-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Add margin between input and image */
+.form-control {
+    margin-right: 10px;
+}
+
+/* Style for the image */
+#languageImage {
+    max-width: 30px; /* Adjust the max-width as needed */
+    height: auto;
+}
   
-  
+  #myselect,.select2{
+    visibility: hidden;
+  }
   @media only screen and (max-width: 767px) {
       .ui.selection.dropdown .menu {
   /*      max-height: 8.01428571rem; /* + 1.335714285 to 9.349999995rem */
@@ -368,6 +388,13 @@
   }
 </style>
 <script>
+  function toggle_select(){
+    document.getElementsByClassName('input-container')[0].style.visibility='hidden'
+    document.getElementById('mySelect').style.visibility='visible'
+    document.getElementsByClassName('select2')[0].style.visibility='visible'
+  
+  }
+  
   function decodeHTMLEntities(str) {
     var doc = new DOMParser().parseFromString(str, "text/html");
     return doc.body.textContent || "";
@@ -385,30 +412,14 @@
 
     let user_language=decodeHTMLEntities("{{user_specific_data['language']}}")
     var user_all_language = JSON.parse(user_language.replace(/'/g, '"'));
+    var language_input=document.getElementById('language')
+
+
     
     // Function to add li elements to the ul
     function addLiElements() {
 
-      for(let i=0;i<user_all_language.length;i++){
-
-
-          // Create a reference to the ul element
-          var ulElement = document.getElementsByTagName('ul')
-          console.log(ulElement)
-  
-          // Create a new li element
-          var liElement = document.createElement('li');
-  
-          // Set li element attributes and content
-          liElement.className = 'select2-selection__choice';
-          liElement.title = 'Arabic';
-          liElement.textContent = 'Arabic';
-  
-          // Append the li element to the ul element
-          ulElement.appendChild(liElement);
-
-
-    }
+      language_input.value = user_all_language.join(',');
   }
 
     // Call the function when the window reloads
