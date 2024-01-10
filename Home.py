@@ -644,11 +644,17 @@ def logout():
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html')
+    session_bool=False
+    if('user_id' in session):
+        session_bool=True
+    return render_template('contact.html',session_bool=session_bool)
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    session_bool=False
+    if('user_id' in session):
+        session_bool=True
+    return render_template('about.html',session_bool=session_bool)
 
 if __name__ == '__main__':
     socketio.run(app,debug=True)
