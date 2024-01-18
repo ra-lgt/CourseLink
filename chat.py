@@ -23,11 +23,13 @@ class Chat:
         db=self.mongo_conn['ChatDB']
         collection_sender=db[sender_email]
         collection_reciever=db[reciever_email]
+        import pdb
+        pdb.set_trace()
         
         existing_document = collection_sender.find({'chat_reciever_email': reciever_email})
         
         for doc in existing_document:
-            if(len(doc.keys())<=0):
+            if(len(doc.keys())>=0):
                 return True
         
         chat_id=self.generate_chat_id(length=6)

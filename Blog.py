@@ -12,6 +12,44 @@ class Blog(DataAPI):
         self.storage=self.config.Setup_Storage()
         self.mongo_conn=self.config.create_mong_conn()
         self.current_datetime = datetime.now()
+        
+    def get_top_three_blogs(self):
+        db=self.mongo_conn['Blogs']
+        collection=db['allBlogPost']
+        
+        pipeline = [
+    {
+        '$addFields': {
+            'parsedDate': {
+                '$toDate': {
+                    '$dateToString': {
+                        'date': {
+                            '$dateFromString': {
+                                'dateString': '$date'
+                            }
+                        },
+                        'format': '%Y-%m-%d'  # Adjust the format based on your date string
+                    }
+                }
+            }
+        }
+    },
+    {
+        '$sort': {
+            'parsedDate': -1
+        }
+    },
+    {
+        '$limit': 3
+    }
+]
+        result = list(collection.aggregate(pipeline))
+        
+        for i in result:
+            del i['parsedDate']
+            
+        return result
+        
     
     def generate_post_id(self,length=6):
    

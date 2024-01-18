@@ -4,6 +4,8 @@
     <title>Study Partner Finder </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static',filename='images/logo.png')}}">
     
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
@@ -592,7 +594,7 @@
              <div class="overlay"></div>
              <h2>We Are Study Partner An Online Learning Center</h2>
              <p>We can manage your dream building A small river named Duden flows by their place</p>
-             <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Enroll Now</a></p>
+             <p class="mb-0"><a href="{{url_for('profile')}}" class="btn btn-primary px-4 py-3">Enroll Now</a></p>
          </div>
      </div>
  </div>
@@ -611,61 +613,26 @@
      </div>
  </div>
  <div class="row d-flex">
-  <div class="col-lg-4 ftco-animate">
-    <div class="blog-entry">
-      <a href="blog-single.html" class="block-20" style="background-image: url('{{url_for('static',filename='images/image_1.jpg')}}');">
-      </a>
-      <div class="text d-block">
-         <div class="meta">
-          <p>
-             <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-             <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-             <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-         </p>
-     </div>
-     <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
- </div>
-</div>
-</div>
+{% for i in top_three_blog %}
 
 <div class="col-lg-4 ftco-animate">
     <div class="blog-entry">
-      <a href="blog-single.html" class="block-20" style="background-image: url('{{url_for('static',filename='images/image_2.jpg')}}');">
+      <a href="blog-single.html" class="block-20" style="background-image: url({{i['blog_pic']}});">
       </a>
       <div class="text d-block">
          <div class="meta">
           <p>
-             <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-             <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-             <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
+             <a href="#"><span class="fa fa-calendar mr-2"></span>{{i['date']}}</a>
+             <a href="#"><span class="fa fa-user mr-2"></span>{{i['username']}}</a>
          </p>
      </div>
-     <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
+     <h3 class="heading"><a href="#">{{i['title']}}</a></h3>
+     <p>{{i['description']}}</p>
+     <p><a href="{{url_for('view_blog',blog_id=i['post_id'])}}" class="btn btn-secondary py-2 px-3">Read more</a></p>
  </div>
 </div>
 </div>
-<div class="col-lg-4 ftco-animate">
-    <div class="blog-entry">
-      <a href="blog-single.html" class="block-20" style="background-image: url('{{url_for('static',filename='images/image_3.jpg')}}');">
-      </a>
-      <div class="text d-block">
-         <div class="meta">
-          <p>
-             <a href="#"><span class="fa fa-calendar mr-2"></span>Sept. 17, 2020</a>
-             <a href="#"><span class="fa fa-user mr-2"></span>Admin</a>
-             <a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
-         </p>
-     </div>
-     <h3 class="heading"><a href="#">I'm not creative, Should I take this course?</a></h3>
-     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia...</p>
-     <p><a href="blog.html" class="btn btn-secondary py-2 px-3">Read more</a></p>
- </div>
-</div>
-</div>
+{% endfor %}
 </div>
 </div>
 </section>

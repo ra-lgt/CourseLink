@@ -1,5 +1,3 @@
-
-
 from functools import wraps
 from flask import Flask,render_template,request,jsonify,session,url_for,redirect
 import json
@@ -34,6 +32,12 @@ user_chat=Chat()
 CORS(app)
 user_blog=Blog()
 admin=Admin()
+
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
+
 
 #helping functions
 def generate_otp():
@@ -70,8 +74,11 @@ def Home():
     if('user_id' in session):
         session_bool=True
     
+    top_three=user_blog.get_top_three_blogs()
+    print(top_three)
+    print(len(top_three))
     
-    return render_template('index.html',session_bool=session_bool)
+    return render_template('index.html',session_bool=session_bool,top_three_blog=top_three,count=len(top_three))
 
 @app.route('/signup_login')
 def signup_login():
@@ -498,12 +505,12 @@ def blog(page_no):
     blog_posts=user_blog.get_all_blog_posts()
     
     
-    start=(page_no-1)*1
+    start=(page_no-1)*10
     
-    end=(page_no)*1
+    end=(page_no)*10
     
     if(start>len(blog_posts['_id'])):
-        start=(page_no-1)*1
+        start=(page_no-1)*10
     
     if(end>len(blog_posts['_id'])):
         end=len(blog_posts['_id'])
@@ -578,7 +585,12 @@ def find_friends():
         cache.set('cached_all_user_data', all_user_data, timeout=180 * 60)
     else:
         print("Cache hit")
-    
+    langauge=[]
+    for i in all_user_data['language']:
+        temp=",".join(i)
+        langauge.append(temp)
+        
+    all_user_data['language']=langauge
     Course=[]
     degree=[]
   
