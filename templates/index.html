@@ -41,7 +41,7 @@
 
 <body >
    
-<style>
+    <style>
 
 .logo {
   max-width: 200px;
@@ -123,7 +123,6 @@
 }
 @media screen and (max-width: 768px) {
   .nav_temp-menu_temp {
-    background: #f0f0f0;
     flex-direction: column;
     justify-content: center;
     opacity: 0;
@@ -132,13 +131,14 @@
     right: 0;
     bottom: 0;
     left: 0;
-    transform: translatey(-100%);
     text-align: center;
-    margin-bottom: 120%;
   }
   .menu_temp-active .nav_temp-menu_temp {
-    transform: translatey(0%);
+    transform: translatey(100%);
     opacity: 1;
+  }
+  .hero-wrap .overlay{
+    position:unset;
   }
 }
 .nav_temp-menu_temp .menu_temp-item a {
@@ -186,6 +186,19 @@
 .sub-nav_temp:hover {
   display: block;
 }
+@media (max-width: 768px) {
+    .hero-wrap {
+        background-size:100% 100%;
+    }
+}
+@media (max-width: 768px) {
+  .row.no-gutters {
+       height:500px;
+       width: 100%;
+       margin-left:0;
+  } 
+}
+
 </style>
 
 <!-- END nav -->
