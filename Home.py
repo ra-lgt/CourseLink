@@ -485,12 +485,12 @@ def user_blogs(page_no):
     blog_posts=user_blog.get_user_blogs(session['email'])
     
     
-    start=(page_no-1)*1
+    start=(page_no-1)*10
     
-    end=(page_no)*1
+    end=(page_no)*10
     
     if(start>len(blog_posts['_id'])):
-        start=(page_no-1)*1
+        start=(page_no-1)*10
     
     if(end>len(blog_posts['_id'])):
         end=len(blog_posts['_id'])
