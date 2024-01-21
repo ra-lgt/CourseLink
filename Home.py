@@ -75,8 +75,6 @@ def Home():
         session_bool=True
     
     top_three=user_blog.get_top_three_blogs()
-    print(top_three)
-    print(len(top_three))
     
     return render_template('index.html',session_bool=session_bool,top_three_blog=top_three,count=len(top_three))
 
@@ -87,7 +85,6 @@ def signup_login():
 
 
 @app.route('/success')
-@login_required
 def success():
     data=request.args.get('data')
     return render_template('success.html',data=data)
@@ -106,7 +103,6 @@ def login():
         session['username']=user_dataAPI.get_data_of_specific_user(email)['username']
   
     except Exception as e:
-        print(e)
         error_url = url_for('error', data="Invalid login", reason="Check your credentials and try again or contact us")
         return redirect(error_url)
     
@@ -249,7 +245,7 @@ def profile():
 
         
     else:
-        print("cache Hit")
+        pass
     
     if(user_specific_data['Intial_set']=='False'):
         return render_template('first_user.html')
@@ -282,7 +278,7 @@ def first_user():
 def save_profile_pic():
     
     if 'file' not in request.files:
-        print("file not found")
+        pass
     file = request.files['file']
 
     return_code=user_dataAPI.save_profile(file,cache.get('profile_data')['email'] or session['email'])
@@ -339,15 +335,6 @@ def chat_page(chat_id):
         
         history_chat=user_chat.get_specific_chat(chat_id,session['email'])
         len_chat=len(history_chat['_id'])
-        
-    
-    print(selected_chat)    
-    print("-"*10)
-    print(user_specific_chats)
-    print("-"*10)
-    print(user_specific_data)
-    print("-"*10)
-    
         
     return render_template('chat.html',user_specific_data=user_specific_data,user_specific_chats=user_specific_chats,count=len(user_specific_data),chat_id=chat_id,selected_chat=selected_chat,email=session['email'],history_chat=history_chat,len_chat=len_chat,username=session['username'])
 
@@ -426,7 +413,6 @@ def on_join(data):
     room = data['room']
     join_room(room)
     session['chat_id'] = room
-    print(room)
     
 @socketio.on('leave')
 def on_leave(data):
@@ -445,9 +431,7 @@ def handle_message(message):
     
     
     return_code = user_chat.push_data_specific_chat(message['sender_email'], message['receiver_email'], str(session['username']+':'+message['message']), message['room'])
-    print(message['sender_email'])
-    print("-" * 30)
-    print(message['receiver_email'])
+    
     
     if return_code:
         current_time = datetime.now().time()
@@ -527,8 +511,7 @@ def view_blog(blog_id):
     if(len(all_blog['_id'])<=4):
         count=len(all_blog['_id'])
     else:
-        count=4
-    print(get_all_comments)    
+        count=4   
     return render_template('blog-single.html',user_specific_blog=user_specific_blog,all_blog=all_blog,count=count,get_all_comments=get_all_comments,comment_count=len(get_all_comments['_id']))
 
 @app.route('/post_comment/<post_id>/<username>',methods=['GET','POST'])
@@ -584,7 +567,7 @@ def find_friends():
         
         cache.set('cached_all_user_data', all_user_data, timeout=180 * 60)
     else:
-        print("Cache hit")
+        pass
     langauge=[]
     for i in all_user_data['language']:
         temp=",".join(i)
@@ -605,8 +588,6 @@ def find_friends():
         count=0
     else:
         count=len(all_user_data['username'])
-    print(all_user_data)
-    print("-"*10)
     return render_template('find_friends.html',all_user_data=all_user_data,count=count,Course=Course,degree=degree)
 
 # @app.route('/send_friend_request')
@@ -660,6 +641,22 @@ def contact():
     if('user_id' in session):
         session_bool=True
     return render_template('contact.html',session_bool=session_bool)
+
+@app.route('/contact_form',methods=['POST','GET'])
+def contact_form():
+    data={}
+    if(request.method=='POST'):
+        data['name']=request.form['name']
+        data['email']=request.form['email']
+        data['subject']=request.form['subject']
+        data['message']=request.form['message']
+        
+        return_code=mail.contact_email(data)
+        if(return_code==True):
+            return redirect(url_for('success',data='Thanks For Feedback'))
+        else:
+            return redirect(url_for('error',data="Couldn't post feedback",reason='Kindly Try Again'))
+        
 
 @app.route('/about')
 def about():

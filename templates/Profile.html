@@ -1,8 +1,9 @@
+<html  lang="en" manifest="../studypartner.appcache">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
-<title>Jolly Jolt | Profile</title>
+  <title>Study Partner Finder | Profile</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static',filename='images/logo.png')}}">
@@ -21,7 +22,7 @@
         </button>
     
         <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
-        <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
+        <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp" style="font-size: 16px;">
           <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
           <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
           
@@ -2798,3 +2799,4 @@ p {
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+</html>

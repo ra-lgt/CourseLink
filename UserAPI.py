@@ -92,7 +92,6 @@ class DataAPI:
             collection.update_one(filter, update)
             return True
         except Exception as e:
-            print(e)
             return False
     
     def save_profile(self,file,username):

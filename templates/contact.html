@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  lang="en" manifest="../studypartner.appcache">
 <head>
-	<title>StudyLab - Free Bootstrap 4 Template by Colorlib</title>
+	<title>Study Partner Finder | Contact Us</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="shortcut icon" type="image/x-icon" href="{{url_for('static',filename='images/logo.png')}}">
@@ -230,28 +230,25 @@
     <div class="form">
       <h4>GET IN TOUCH</h4>
       <h2 class="form-headline">Send us a message</h2>
-      <form id="submit-form" action="">
+      <form id="submit-form" action="{{url_for('contact_form')}}" method="POST">
         <p>
-          <input id="name" class="form-input" type="text" placeholder="Your Name*">
+          <input name="name" id="name" class="form-input" type="text" placeholder="Your Name*">
           <small class="name-error"></small>
         </p>
         <p>
-          <input id="email" class="form-input" type="email" placeholder="Your Email*">
+          <input name="email" id="email" class="form-input" type="email" placeholder="Your Email*">
           <small class="name-error"></small>
         </p>
         <p class="full-width">
-          <input id="company-name" class="form-input" type="text" placeholder="Company Name*" required>
+          <input name="subject" id="company-name" class="form-input" type="text" placeholder="Subject*" required>
           <small></small>
         </p>
         <p class="full-width">
-          <textarea  minlength="20" id="message" cols="30" rows="7" placeholder="Your Message*" required></textarea>
+          <textarea name="message"  minlength="20" id="message" cols="30" rows="7" placeholder="Your Message*" required></textarea>
           <small></small>
         </p>
         <p class="full-width">
-          <input type="checkbox" id="checkbox" name="checkbox" checked> Yes, I would like to receive communications by call / email about Company's services.
-        </p>
-        <p class="full-width">
-          <input type="submit" class="submit-btn" value="Submit" onclick="checkValidations()">
+          <input type="submit" class="submit-btn" value="Submit">
         </p>
       </form>
     </div>
@@ -259,12 +256,11 @@
     <div class="contacts contact-wrapper">
 
       <ul>
-        <li>We've driven online revenues of over <span class="highlight-text-grey">$2
-            billion</span> for our clients. Ready to know
-          how we can help you?</li>
+        <li>Welcome to Study Partner Finder We're here to assist you and answer any questions you may have. Your feedback is valuable to us.</li>
         <span class="hightlight-contact-info">
-          <li class="email-info"><i class="fa fa-envelope" aria-hidden="true"></i> info@demo.com</li>
-          <li><i class="fa fa-phone" aria-hidden="true"></i> <span class="highlight-text">+91 11 1111 2900</span></li>
+          <li class="email-info"><i class="fa fa-envelope" aria-hidden="true"></i><a href="https://mail.google.com/mail/?view=cm&fs=1&to=studypartnerfinder@gmail.comsubject=Inquiry%20about%20[Your%20Platform%20Name]&body=Hello%20[Your%20Platform%20Name]%20Team,%0A%0AI'm%20interested%20in%20joining%20your%20platform%20to%20connect%20with%20students%20in%20my%20domain.%20Can%20you%20provide%20more%20information%20on%20how%20it%20works%3F%0A%0AThanks,%0A%0A[User's%20Full%20Name]%0A[User's%20Email%20Address]" style="color: white;"> studypartnerfinder@gmail.com</a></li>
+		  <br>
+          <li><i class="fa fa-phone" aria-hidden="true"></i><br><a href="tel:+917304835303"> <span class="highlight-text">+91 7304835303</span></a></li>
         </span>
       </ul>
     </div>
@@ -315,11 +311,11 @@
 		  <div class="ftco-footer-widget pt-md-5 mb-4">
 			 <h2 class="ftco-heading-2">Have a Questions?</h2>
 			 <div class="block-23 mb-3">
-			   <ul>
-				 <li><span class="icon fa fa-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-				 <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+91 7304835303</span></a></li>
-				 <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">  aayushalone1307@gmail.com</span></a></li>
-			 </ul>
+				<ul>
+					<li><span class="icon fa fa-map-marker"></span><span class="text">No 3 Painthamil Nagar Coimbatore</span></li>
+					<li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+91 7304835303</span></a></li>
+					<li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">studypartnerfinder@gmail.com</span></a></li>
+				</ul>
 		 </div>
 	  </div>
 	  </div>

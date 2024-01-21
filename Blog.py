@@ -69,8 +69,7 @@ class Blog(DataAPI):
             self.save_profile(data['bimgs'],post_id)
             blog_pic_url=self.get_profile_pic(post_id)
         else:
-            print(data['bimgs'])
-            print("*"*100)
+            pass
         
         data={
             'post_id':post_id,
