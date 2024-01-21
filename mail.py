@@ -7,7 +7,7 @@ import smtplib
 
 class send_email:
 	def send_otp(self,username,email,OTP):
-		messages='''Welcome to Skill-Storm!<br>
+		messages='''Welcome to Study Partner Finder!<br>
 
                           
 

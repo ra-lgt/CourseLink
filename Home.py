@@ -598,7 +598,6 @@ def find_friends():
 @app.route('/update_profile_data',methods=['POST'])
 @login_required
 def update_profile_data():
-    import pdb;pdb.set_trace()
     
     updated_data={}
     updated_data['language'] = request.form.getlist('mySelect[]')

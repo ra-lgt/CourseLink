@@ -435,7 +435,7 @@
         <div class="filter">
           <h3>Filter by Course</h3>
           <select id="location-filter" class="location selectlist">
-            <option selected="selected">All</option>    
+            <option disabled selected="selected">All</option>    
             {% for i in Course %}
             
         <option selected="selected" value="{{i}}">{{i}}</option>
@@ -446,7 +446,7 @@
         <div class="filter">
           <h3>Filter by Degree</h3>
           <select id="type-filter" class="jobtypefilter selectlist">
-            <option>All</option>
+            <option disabled>All</option>
        {% for i in degree %}
         <option selected="selected" value="{{i}}">{{i}}</option>
         {% endfor %}
@@ -781,67 +781,5 @@ var options = {
   
   </script>
   
-<footer class="ftco-footer ftco-no-pt" style="margin-top: 5%; padding-bottom:0">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-md pt-5">
-        <div class="ftco-footer-widget pt-md-5 mb-4">
-          <h2 class="ftco-heading-2">About</h2>
-          <p>Welcome to Study Partner Finder your go-to platform for connecting with fellow aspirants and sharing knowledge. We're dedicated to creating a supportive community for students across various academic streams</p>
-          <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-            <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-            <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-            <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
-        </ul>
-    </div>
-</div>
-<div class="col-md pt-5">
-    <div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
-      <h2 class="ftco-heading-2">Quick Links</h2>
-      <ul class="list-unstyled">
-        <li><a href="{{url_for('Home')}}" class="py-2 d-block">Home</a></li>
-        <li><a href="{{url_for('find_friends')}}" class="py-2 d-block">Find Buddy</a></li>
-        <li><a href="{{url_for('chat_page',chat_id='None')}}" class="py-2 d-block">Message</a></li>
-        <li><a href="{{url_for('profile')}}" class="py-2 d-block">Profile</a></li>
-        <li><a href="{{url_for('about')}}" class="py-2 d-block">About</a></li>
-        <li><a href="#" class="py-2 d-block">Call Us</a></li>
-    </ul>
-</div>
-</div>
-<div class="col-md pt-5">
-   <div class="ftco-footer-widget pt-md-5 mb-4">
-      <h2 class="ftco-heading-2">Stream Search</h2>
-      <ul class="list-unstyled">
-        <li><a href="{{url_for('find_friends')}}" class="py-2 d-block">Computer Engineering</a></li>
-        <li><a href="{{url_for('find_friends')}}" class="py-2 d-block">Web Design</a></li>
-        <li><a href="{{url_for('find_friends')}}" class="py-2 d-block">Business Studies</a></li>
-        <li><a href="{{url_for('find_friends')}}" class="py-2 d-block">Civil Engineering</a></li>
-        <li><a href="{{url_for('find_friends')}}" class="py-2 d-block">Computer Technician</a></li>
-        <li><a href="{{url_for('find_friends')}}" class="py-2 d-block">Web Developer</a></li>
-    </ul>
-</div>
-</div>
-<div class="col-md pt-5">
-    <div class="ftco-footer-widget pt-md-5 mb-4">
-       <h2 class="ftco-heading-2">Have a Questions?</h2>
-       <div class="block-23 mb-3">
-         <ul>
-           <li><span class="icon fa fa-map-marker"></span><span class="text">No 3 Painthamil Nagar Coimbatore</span></li>
-           <li><span class="icon fa fa-phone"></span><span class="text">+91 7304835303</span></a></li>
-           <li><span class="icon fa fa-paper-plane"></span><span class="text">studypartnerfinder@gmail.com</span></a></li>
-       </ul>
-   </div>
-</div>
-</div>
-</div>
-<div class="row">
-  <div class="col-md-12 text-center">
-
-  </div>
-</div>
-</div>
-</footer>
-
-
 </body>
 </html>
