@@ -223,99 +223,53 @@
 		</div>
 	</section>
 
-	<section class="ftco-section">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-12">
-					<div class="wrapper">
-						<div class="row no-gutters">
-							<div class="col-lg-8 col-md-7 order-md-last d-flex align-items-stretch">
-								<div class="contact-wrap w-100 p-md-5 p-4">
-									<h3 class="mb-4">Get in touch</h3>
-									<form method="POST" id="contactForm" name="contactForm" class="contactForm">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label class="label" for="name">Full Name</label>
-													<input type="text" class="form-control" name="name" id="name" placeholder="Name">
-												</div>
-											</div>
-											<div class="col-md-6"> 
-												<div class="form-group">
-													<label class="label" for="email">Email Address</label>
-													<input type="email" class="form-control" name="email" id="email" placeholder="Email">
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="label" for="subject">Subject</label>
-													<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<label class="label" for="#">Message</label>
-													<textarea name="message" class="form-control" id="message" cols="30" rows="4" placeholder="Message"></textarea>
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<input type="submit" value="Send Message" class="btn btn-primary">
-													<div class="submitting"></div>
-												</div>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-							<div class="col-lg-4 col-md-5 d-flex align-items-stretch">
-								<div class="info-wrap bg-primary w-100 p-md-5 p-4">
-									<h3>Let's get in touch</h3>
-									<p class="mb-4">We're open for any suggestion or just to have a chat</p>
-									<div class="dbox w-100 d-flex align-items-start">
-										<div class="icon d-flex align-items-center justify-content-center">
-											<span class="fa fa-map-marker"></span>
-										</div>
-										<div class="text pl-3">
-											<p><span>Address:</span> No 3 Painthamil Nagar Coimbatore</p>
-										</div>
-									</div>
-									<div class="dbox w-100 d-flex align-items-center">
-										<div class="icon d-flex align-items-center justify-content-center">
-											<span class="fa fa-phone"></span>
-										</div>
-										<div class="text pl-3">
-											<p><span>Phone:</span> <a href="tel:+91730483530">+91 7304835303</a></p>
-										</div>
-									</div>
-									<div class="dbox w-100 d-flex align-items-center">
-										<div class="icon d-flex align-items-center justify-content-center">
-											<span class="fa fa-paper-plane"></span>
-										</div>
-										<div class="text pl-3">
-											<p><span>Email:</span> <a href="https://mail.google.com/mail/?view=cm&fs=1&to=studypartnerfinder@gmail.comsubject=Inquiry%20about%20[Your%20Platform%20Name]&body=Hello%20[Your%20Platform%20Name]%20Team,%0A%0AI'm%20interested%20in%20joining%20your%20platform%20to%20connect%20with%20students%20in%20my%20domain.%20Can%20you%20provide%20more%20information%20on%20how%20it%20works%3F%0A%0AThanks,%0A%0A[User's%20Full%20Name]%0A[User's%20Email%20Address]"><br>studypartnerfinder@gmail.com</a></p>
-										</div>
-									</div>
-									<div class="dbox w-100 d-flex align-items-center">
-										<div class="icon d-flex align-items-center justify-content-center">
-											<span class="fa fa-globe"></span>
-										</div>
-										<div class="text pl-3">
-											<p><span>Website</span> <a href="#">yoursite.com</a></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+	<div class="contain">
 
-				<div class="col-md-12 mt-5">
-					<div id="map" class="bg-white"></div>
-				</div>
-			</div>
-		</div>
-	</section>
+  <div class="wrapper">
+
+    <div class="form">
+      <h4>GET IN TOUCH</h4>
+      <h2 class="form-headline">Send us a message</h2>
+      <form id="submit-form" action="">
+        <p>
+          <input id="name" class="form-input" type="text" placeholder="Your Name*">
+          <small class="name-error"></small>
+        </p>
+        <p>
+          <input id="email" class="form-input" type="email" placeholder="Your Email*">
+          <small class="name-error"></small>
+        </p>
+        <p class="full-width">
+          <input id="company-name" class="form-input" type="text" placeholder="Company Name*" required>
+          <small></small>
+        </p>
+        <p class="full-width">
+          <textarea  minlength="20" id="message" cols="30" rows="7" placeholder="Your Message*" required></textarea>
+          <small></small>
+        </p>
+        <p class="full-width">
+          <input type="checkbox" id="checkbox" name="checkbox" checked> Yes, I would like to receive communications by call / email about Company's services.
+        </p>
+        <p class="full-width">
+          <input type="submit" class="submit-btn" value="Submit" onclick="checkValidations()">
+        </p>
+      </form>
+    </div>
+
+    <div class="contacts contact-wrapper">
+
+      <ul>
+        <li>We've driven online revenues of over <span class="highlight-text-grey">$2
+            billion</span> for our clients. Ready to know
+          how we can help you?</li>
+        <span class="hightlight-contact-info">
+          <li class="email-info"><i class="fa fa-envelope" aria-hidden="true"></i> info@demo.com</li>
+          <li><i class="fa fa-phone" aria-hidden="true"></i> <span class="highlight-text">+91 11 1111 2900</span></li>
+        </span>
+      </ul>
+    </div>
+  </div>
+</div>
 
 	<footer class="ftco-footer ftco-no-pt">
 		<div class="container">
@@ -401,3 +355,179 @@
 		
 	</body>
 	</html>
+	<style>
+
+.contain {
+  background-color:#31304D;
+  max-width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom:10%;
+  margin-top:10% ;
+}
+
+div.form {
+  background-color:#ccc;
+}
+.contact-wrapper {
+  margin: auto 0;
+}
+
+.submit-btn {
+  float: left;
+}
+.reset-btn {
+  float: right;
+}
+
+.form-headline:after {
+  content: "";
+  display: block;
+  width: 10%;
+  padding-top: 10px;
+  border-bottom: 3px solid #31304D;
+}
+
+.highlight-text {
+  color: white;
+}
+
+.hightlight-contact-info {
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.5;
+}
+
+.highlight-text-grey {
+  font-weight: 500;
+}
+
+.email-info {
+  margin-top: 20px;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome */
+  font-family: "Roboto", sans-serif;
+}
+
+.required-input {
+  color: black;
+}
+@media (min-width: 600px) {
+  .contain {
+    padding: 0;
+  }
+}
+
+h3,
+ul {
+  margin: 0;
+}
+
+h3 {
+  margin-bottom: 1rem;
+}
+
+.form-input:focus,
+textarea:focus {
+  outline: 1.5px solid #31304D;
+}
+
+.form-input,
+textarea {
+  width: 100%;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+}
+
+.wrapper > * {
+  padding: 1em;
+}
+@media (min-width: 700px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+  .wrapper > * {
+    padding: 2em 2em;
+  }
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contacts {
+  color:white;
+}
+
+.form {
+  background: #fff;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+form label {
+  display: block;
+}
+form p {
+  margin: 0;
+}
+
+.full-width {
+  grid-column: 1 / 3;
+}
+
+button,
+.submit-btn,
+.form-input,
+textarea {
+  padding: 1em;
+}
+
+button,
+.submit-btn {
+  background:transparent;
+  border: 1px solid #31304D;
+  color: #31304D;
+  border-radius: 15px;
+  padding: 5px 20px;
+  text-transform: uppercase;
+}
+button:hover,
+.submit-btn:hover,
+button:focus,
+.submit-btn:focus {
+  background: #31304D;
+  outline: 0;
+  color: #eee;
+}
+.error {
+  color: #ec1c24;
+}
+p.breadcrumbs {
+    margin-left: 60%;
+}
+.slider-text .bread {
+    margin-left: 60%;
+    width:max-content;
+}
+@media screen and (max-width: 768px) {
+  p.breadcrumbs {
+    margin-left: 140%;
+    width:max-content;
+}
+}
+@media screen and (max-width: 768px) {
+  .slider-text .bread {
+    margin-left: 140%;
+    width:max-content;
+}
+}
+
+	</style>
