@@ -192,7 +192,17 @@
 <span class="hamburger-line hamburger-line-middle"></span>
 <span class="hamburger-line hamburger-line-bottom"></span>
 </button>
+{% if Admin %}
 
+
+<ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
+  <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Admin_Home')}}">User</a></li>
+  <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('Admin_Blogs',page_no=1)}}">Blogs</a></li>
+  </li>
+  <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('logout')}}">Logout</a></li>
+</ul>
+
+{% else %}
 <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
 <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp" style="font-weight:600;">
 
@@ -204,7 +214,7 @@
     <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('profile')}}">Profile</a></li>
     
 </ul>
-
+{% endif %}
 
 </div>
 </nav>
@@ -281,7 +291,7 @@ document.body.classList.toggle(className);
           
           <div class="comment-form-wrap pt-5">
             <h3 class="mb-5" style="font-size: 20px; font-weight: bold;">Leave a comment</h3>
-            <form action="{{url_for('post_comment',post_id=user_specific_blog['post_id'],username=user_specific_blog['username'])}}" method="POST" class="p-5 bg-light">
+            <form action="{{url_for('post_comment',post_id=user_specific_blog['post_id'])}}" method="POST" class="p-5 bg-light">
               
              
 

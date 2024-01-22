@@ -72,6 +72,11 @@ def Home():
     session_bool=False
     
     if('user_id' in session):
+        if(session['user_id']=="admin12345656"):
+            return redirect(url_for('Admin_Home'))
+        user_data=user_dataAPI.get_data_of_specific_user(session['email'])
+        if(user_data['Intial_set']=='False'):
+            return redirect(url_for('profile'))
         session_bool=True
     
     top_three=user_blog.get_top_three_blogs()
@@ -80,6 +85,8 @@ def Home():
 
 @app.route('/signup_login')
 def signup_login():
+    if('email' in session):
+        return redirect(url_for('Home'))
     return render_template('signup_login.html')
 
 
@@ -119,7 +126,6 @@ def signup():
     data={
         'username':session.get('username'),
         'email':session.get('email'),
-        'phone':session.get('phone'),
         'password':session.get('password'),
         
         
@@ -139,7 +145,6 @@ def signup():
     collection.insert_one({
             'username':data['username'],
             'email':data['email'],
-            'phone':data['phone'],
             'password':data['password'],
             'Age':"Not Set",
             'Course':"Not Set",
@@ -162,7 +167,6 @@ def signup():
 
     session['username']=''
     session['email']=''
-    session['phone']=''
     session['password']=''
 
 
@@ -188,7 +192,6 @@ def send_otp():
 
     session['username']=data['username'].strip()
     session['email']=data['email'].strip()
-    session['phone']=data['phone']
     
 
     if(data['password']==data['confirm_password']):
@@ -361,31 +364,39 @@ def delete_user(email):
         return "UNEXPECTED ERROR"
     
 @app.route('/Admin_Blogs/<int:page_no>')
+@login_required
 def Admin_Blogs(page_no):
     blog_posts=user_blog.get_all_blog_posts()
     
     
-    start=(page_no-1)*1
+    start=(page_no-1)*10
     
-    end=(page_no)*1
+    end=(page_no)*10
     
     if(start>len(blog_posts['_id'])):
-        start=(page_no-1)*1
+        start=(page_no-1)*10
     
     if(end>len(blog_posts['_id'])):
         end=len(blog_posts['_id'])
 
-    return render_template('Admin_Blogs.html',blog_posts=blog_posts,end=end,start=start,page_no_len=len(blog_posts['_id'])//1,page_no=page_no)
+    return render_template('Admin_Blogs.html',blog_posts=blog_posts,end=end,start=start,page_no_len=int(len(blog_posts['_id'])/10)+1,page_no=page_no)
 
 @app.route('/delete_blog/<post_id>')
+@login_required
 def delete_blog(post_id):
     user_blog.delete_blog_by_id(post_id)
-    return redirect(url_for('Admin_Blogs',page_no=1))
+    
+    if(session['user_id']=="admin12345656"):
+        return redirect(url_for('Admin_Home'))
+    return redirect(url_for('Home'))
     
 @app.route('/Admin_Home')
+@login_required
 def Admin_Home():
     user_data=None
     user_data=cache.get('All_User')
+    if('email' in session and  session['email']!="studypartnerofficial@gmail.com" and session['username']!="Admin"):
+        return redirect(url_for('Admin'))
     
     if(user_data is None):
         user_data=admin.get_all_user_data()
@@ -397,13 +408,17 @@ def Admin_Home():
 
 
 @app.route("/Admin",methods=['GET','POST'])
-def Admin():    
+def Admin():
+    if('email' in session and session['email']=="studypartnerofficial@gmail.com"):
+        return redirect(url_for('Admin_Home'))    
     if(request.method=='POST'):
         admin_email=request.form['emailAdress']
         admin_password=request.form['password']
         
-        if(admin_email=="raviajay9344@gmail.com" and admin_password=="raviajay"):
+        if(admin_email=="studypartnerofficial@gmail.com" and admin_password=="raviajay"):
             session['user_id']="admin12345656"
+            session['username']="Admin"
+            session['email']="studypartnerofficial@gmail.com"
             return redirect(url_for('Admin_Home'))
     return render_template('Admin_login.html')
     
@@ -479,7 +494,7 @@ def user_blogs(page_no):
     if(end>len(blog_posts['_id'])):
         end=len(blog_posts['_id'])
 
-    return render_template('Admin_Blogs.html',blog_posts=blog_posts,end=end,start=start,page_no_len=len(blog_posts['_id'])//1,page_no=page_no,user=True)
+    return render_template('Admin_Blogs.html',blog_posts=blog_posts,end=end,start=start,page_no_len=int(len(blog_posts['_id'])/10)+1,page_no=page_no,user=True)
 
 
 
@@ -499,10 +514,14 @@ def blog(page_no):
     if(end>len(blog_posts['_id'])):
         end=len(blog_posts['_id'])
 
-    return render_template('blog.html',blog_posts=blog_posts,end=end,start=start,page_no_len=len(blog_posts['_id'])//1,page_no=page_no)
+    return render_template('blog.html',blog_posts=blog_posts,end=end,start=start,page_no_len=int(len(blog_posts['_id'])/10)+1,page_no=page_no)
 
 @app.route('/view_blog/<blog_id>')
 def view_blog(blog_id):
+    Admin=False
+    
+    if(session['email']=="studypartnerofficial@gmail.com"):
+        Admin=True
     user_specific_blog=user_blog.get_specific_blog(blog_id)
     all_blog=user_blog.get_all_blog_posts()
     get_all_comments=user_blog.get_all_comments(blog_id)
@@ -512,12 +531,13 @@ def view_blog(blog_id):
         count=len(all_blog['_id'])
     else:
         count=4   
-    return render_template('blog-single.html',user_specific_blog=user_specific_blog,all_blog=all_blog,count=count,get_all_comments=get_all_comments,comment_count=len(get_all_comments['_id']))
+    return render_template('blog-single.html',user_specific_blog=user_specific_blog,all_blog=all_blog,count=count,get_all_comments=get_all_comments,comment_count=len(get_all_comments['_id']),Admin=Admin)
 
-@app.route('/post_comment/<post_id>/<username>',methods=['GET','POST'])
-def post_comment(post_id,username):
+@app.route('/post_comment/<post_id>',methods=['GET','POST'])
+def post_comment(post_id):
     
     if(request.method=='POST'):
+        username=session['username']
         
         message=request.form['message']
     return_code=user_blog.post_comment(post_id,username,message)
@@ -604,7 +624,6 @@ def update_profile_data():
     
     updated_data['first_name']=request.form['f_name']
     updated_data['last_name']=request.form['l_name']
-    updated_data['phone']=request.form['phone']
     updated_data['Age']=request.form['age']
     updated_data['Address']=request.form['address']
     updated_data['City']=request.form['city']

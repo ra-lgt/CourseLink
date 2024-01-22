@@ -204,22 +204,12 @@
     </button>
 
     <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
-    <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
-      {% if user %}
-      <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
-      <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
-      
-      <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Message</a></li>
-        <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('blog',page_no=1)}}">Blog</a></li>
-          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('profile')}}">Profile</a></li>
-          {% else %}
-      
-      <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Admin_Home')}}">User</a></li>
-      <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('Admin_Blogs',page_no=1)}}">Blogs</a></li>
-      </li>
-      {% endif %}
-     
-    </ul>
+        <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
+          <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Admin_Home')}}">User</a></li>
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('Admin_Blogs',page_no=1)}}">Blogs</a></li>
+          </li>
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('logout')}}">Logout</a></li>
+        </ul>
 
 
   </div>
@@ -264,18 +254,123 @@
        {% if page_no>1 %}
         <li><a href="{{url_for('blog',page_no=page_no-1)}}">&lt;</a></li>
         {% else %}
-        <li><a href="#">&lt;</a></li>
         {% endif %}
         {% for i in range(page_no_len) %}
         <li class="s" id="{{i}}"><a href="{{url_for('blog',page_no=i+1)}}"><span>{{i+1}}</span></a></li>
         {% endfor %}
+
+        {% if page_no+1 > page_no_len %}
+
+        {% else %}
         <li><a href="{{url_for('blog',page_no=page_no+1)}}">&gt;</a></li>
+
+        {% endif %}
       </ul>
     </div>
   </div>
 </div>
 </div>
 </section>
+<div class="adminActions">
+  <input type="checkbox" name="adminToggle" class="adminToggle" />
+  <a class="adminButton" href="#!"><i class="fa fa-cog"></i></a>
+  <div class="adminButtons">
+    <a href="{{url_for('create_blog')}}" title="Create Blog"><i class="fa fa-pencil fa-fw"></i></a>
+    <a href="{{url_for('user_blogs',page_no=1)}}" title="Edit Company"><i class="fa fa-eye"></i></a>
+  </div>
+</div>
+<script>
+  function check_page(){
+    console.log("{{page_no}}")
+    curr_page=document.getElementById("{{page_no-1}}").className='active'
+    
+  }
+</script>
+<style>
+.adminActions {
+  position: fixed;
+  bottom: 35px; right: 35px;
+}
+
+  .adminButton {
+    height: 60px;
+    width: 60px;
+    background-color: #992c9e;
+    border-radius: 50%;
+    display: block;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+    .adminButton i {
+      font-size: 22px;
+    }
+
+  .adminButtons {
+    position: absolute;
+    width: 100%;
+    bottom: 120%;
+    text-align: center;
+  }
+
+    .adminButtons a {
+      display: block;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      text-decoration: none;
+      margin: 10px auto 0;
+      line-height: 1.15;
+      color: #fff;
+      opacity: 0;
+      visibility: hidden;
+      position: relative;
+      box-shadow: 0 0 5px 1px rgba(51, 51, 51, .3);
+    }
+
+      .adminButtons a:hover {
+        transform: scale(1.05);
+      }
+
+      .adminButtons a:nth-child(1) {background-color: #ff5722; transition: opacity .2s ease-in-out .3s, transform .15s ease-in-out;}
+      .adminButtons a:nth-child(2) {background-color: #03a9f4; transition: opacity .2s ease-in-out .25s, transform .15s ease-in-out;}
+      .adminButtons a:nth-child(3) {background-color: #f44336; transition: opacity .2s ease-in-out .2s, transform .15s ease-in-out;}
+      .adminButtons a:nth-child(4) {background-color: #4CAF50; transition: opacity .2s ease-in-out .15s, transform .15s ease-in-out;}
+
+      .adminActions a i {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+  .adminToggle {
+    -webkit-appearance: none;
+    position: absolute;
+    border-radius: 50%;
+    top: 0; left: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    z-index: 2;
+    transition: box-shadow .2s ease-in-out;
+    box-shadow: 0 3px 5px 1px rgba(51, 51, 51, .3);
+  }
+
+    .adminToggle:hover {
+      box-shadow: 0 3px 6px 2px rgba(51, 51, 51, .3);
+    }
+
+    .adminToggle:checked ~ .adminButtons a {
+      opacity: 1;
+      visibility: visible;
+    }
+</style>
 <script>$(document).ready(function() {
   // Toggle menu_temp on click
   $("#menu_temp-toggler").click(function() {

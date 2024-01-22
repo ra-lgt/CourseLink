@@ -270,12 +270,17 @@
        {% if page_no>1 %}
         <li><a href="{{url_for('blog',page_no=page_no-1)}}">&lt;</a></li>
         {% else %}
-        <li><a href="#">&lt;</a></li>
         {% endif %}
         {% for i in range(page_no_len) %}
         <li class="s" id="{{i}}"><a href="{{url_for('blog',page_no=i+1)}}"><span>{{i+1}}</span></a></li>
         {% endfor %}
+
+        {% if page_no+1 > page_no_len %}
+
+        {% else %}
         <li><a href="{{url_for('blog',page_no=page_no+1)}}">&gt;</a></li>
+
+        {% endif %}
       </ul>
     </div>
   </div>
