@@ -395,7 +395,7 @@ def delete_blog(post_id):
 def Admin_Home():
     user_data=None
     user_data=cache.get('All_User')
-    if('email' in session and  session['email']!="studypartnerofficial@gmail.com" and session['username']!="Admin"):
+    if('email' in session and  session['email']!="studypartnerfinder@gmail.com" and session['username']!="Admin"):
         return redirect(url_for('Admin'))
     
     if(user_data is None):
@@ -409,16 +409,15 @@ def Admin_Home():
 
 @app.route("/Admin",methods=['GET','POST'])
 def Admin():
-    if('email' in session and session['email']=="studypartnerofficial@gmail.com"):
+    if('email' in session and session['email']=="studypartnerfinder@gmail.com"):
         return redirect(url_for('Admin_Home'))    
     if(request.method=='POST'):
         admin_email=request.form['emailAdress']
         admin_password=request.form['password']
-        
-        if(admin_email=="studypartnerofficial@gmail.com" and admin_password=="raviajay"):
+        if(admin_email=="studypartnerfinder@gmail.com" and admin_password=="AayushH008"):
             session['user_id']="admin12345656"
             session['username']="Admin"
-            session['email']="studypartnerofficial@gmail.com"
+            session['email']="studypartnerfinder@gmail.com"
             return redirect(url_for('Admin_Home'))
     return render_template('Admin_login.html')
     
@@ -520,7 +519,7 @@ def blog(page_no):
 def view_blog(blog_id):
     Admin=False
     
-    if(session['email']=="studypartnerofficial@gmail.com"):
+    if(session['email']=="studypartnerfinder@gmail.com"):
         Admin=True
     user_specific_blog=user_blog.get_specific_blog(blog_id)
     all_blog=user_blog.get_all_blog_posts()

@@ -67,7 +67,7 @@ class DataAPI:
         return user_all_data
     
     def get_data_of_specific_user(self,email):
-        if(email=="studypartnerofficial@gmail.com"):
+        if(email=="studypartnerfinder@gmail.com"):
             email+='.png'
         db = self.mongo_conn["User-Data"]
         collection=db['user_details']
