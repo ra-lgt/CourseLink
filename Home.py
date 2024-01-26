@@ -18,6 +18,7 @@ from firebase_admin import credentials, auth
 
 
 app = Flask(__name__)
+CORS(app)
 socketio = SocketIO(app,cors_allowed_origins="*")
 config=Configurations()
 firebase_db=config.Setup_auth()
@@ -29,7 +30,6 @@ mongo_client=config.create_mong_conn()
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 user_dataAPI=DataAPI()
 user_chat=Chat()
-CORS(app)
 user_blog=Blog()
 admin=Admin()
 
