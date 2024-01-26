@@ -18,7 +18,7 @@ from firebase_admin import credentials, auth
 
 
 app = Flask(__name__)
-socketio = SocketIO(app)
+socketio = SocketIO(app,cors_allowed_origins="*")
 config=Configurations()
 firebase_db=config.Setup_auth()
 cred = credentials.Certificate("course_link.json")
