@@ -47,14 +47,14 @@ Study Partner Finder
 		message['subject']="User Contacts"
 		message["from"]="studypartnerfinder@gmail.com"
 		# message["to"]="aayushalone1307@gmail.com"
-		message['to']="raviajay9344@gmail.com"
+		message['to']="aayushalone1307@gmail.com"
 
 		html_mail=MIMEText(output_html,'html')
 		message.attach(html_mail)
 		server=smtplib.SMTP_SSL("smtp.gmail.com",465)
 		server.login("studypartnerfinder@gmail.com","xitutavwdefrxpyv")
 		try:
-			server.sendmail("studypartnerfinder@gmail.com","raviajay9344@gmail.com",message.as_string())
+			server.sendmail("studypartnerfinder@gmail.com","aayushalone1307@gmail.com",message.as_string())
 			return True
 		except:
 			return False

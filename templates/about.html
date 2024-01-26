@@ -25,44 +25,59 @@
 <body>
  
 
-  <nav class="nav_tempbar">
-    <div class="logo"><a href="{{url_for('Home')}}"><img src="{{url_for('static',filename='images/logo.png')}}" width="35%" height="35%" alt="LOGO"></a></div>
-    <div class="push-left">
-      <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
-        <span class="hamburger-line hamburger-line-top"></span>
-        <span class="hamburger-line hamburger-line-middle"></span>
-        <span class="hamburger-line hamburger-line-bottom"></span>
-      </button>
-  
-      <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
-      <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp">
-        {% if session_bool %}
-        <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
-        <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
-        
-        <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Message</a></li>
-          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('blog',page_no=1)}}">Blog</a></li>
-            <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('profile')}}">Profile</a></li>
-            {% else %}
-            <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('signup_login')}}">Signup/Login</a></li>
-            {% endif %}
-      </ul>
-  
-
-  </nav>
-  <script>$(document).ready(function() {
-    // Toggle menu_temp on click
-    $("#menu_temp-toggler").click(function() {
-      toggleBodyClass("menu_temp-active");
-    });
-  
-    function toggleBodyClass(className) {
-      document.body.classList.toggle(className);
-    }
-  
-   });
-  </script>
-
+  <section class="hero-wrap hero-wrap-2">
+    <div class="overlay">
+              <nav class="nav_tempbar">
+                <div class="logo"><a href="{{url_for('Home')}}"><img src="{{url_for('static',filename='images/logo.png')}}" width="35%" height="35%" alt="LOGO"></a></div>
+      <div class="push-left">
+        <button id="menu_temp-toggler" data-class="menu_temp-active" class="hamburger">
+          <span class="hamburger-line hamburger-line-top"></span>
+          <span class="hamburger-line hamburger-line-middle"></span>
+          <span class="hamburger-line hamburger-line-bottom"></span>
+        </button>
+    
+        <!--  menu_temp compatible with wp_nav_temp_menu_temp  -->
+        <ul id="primary-menu_temp" class="menu_temp nav_temp-menu_temp" style="font-weight:600;">
+          
+          <li class="menu_temp-item current-menu_temp-item"><a class="nav_temp__link"  href="{{url_for('Home')}}">Home</a></li>
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('find_friends')}}">Search</a></li>
+          
+          <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('chat_page',chat_id='None')}}">Message</a></li>
+            <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('blog',page_no=1)}}">Blog</a></li>
+              <li class="menu_temp-item "><a class="nav_temp__link"  href="{{url_for('profile')}}">Profile</a></li>
+              
+        </ul>
+    
+    
+      </div>
+    </nav>
+    <script>$(document).ready(function() {
+      // Toggle menu_temp on click
+      $("#menu_temp-toggler").click(function() {
+        toggleBodyClass("menu_temp-active");
+      });
+    
+      function toggleBodyClass(className) {
+        document.body.classList.toggle(className);
+      }
+    
+     });
+    </script>
+     <!-- END nav -->
+          </div>
+      <section style="background: rgba(250, 240, 230, 0.79);">
+     
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center" style="margin-left: 27%;">
+          <div class="col-md-9 ftco-animate pb-5 text-center">
+           <p class="breadcrumbs"><span class="mr-2"><a href="{{url_for('Home')}}">Home <i class="fa fa-chevron-right"></i></a></span> <span>About Us <i class="fa fa-chevron-right"></i></span></p>
+           <h1 class="mb-0 bread">About Us</h1>
+         </div>
+       </div>
+     </div>
+    </section>
+    </section>
+    
   <style>
  
 
@@ -227,21 +242,10 @@
 </style>
  <!-- END nav -->
  
- <section class="hero-wrap hero-wrap-2" style="background-image: url({{url_for('static',filename='images/bg_2.jpg')}});">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row no-gutters slider-text align-items-end justify-content-center">
-      <div class="col-md-9 ftco-animate pb-5 text-center">
-       <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>About us <i class="fa fa-chevron-right"></i></span></p>
-       <h1 class="mb-0 bread">About Us</h1>
-     </div>
-   </div>
- </div>
-</section>
 
 
 
-<section class="ftco-section ftco-about img" style="background-color:#FAF0E6;">
+<section class="ftco-section ftco-about img">
   <div class="container">
      <div class="row d-flex">
         <div class="col-md-12 about-intro">
@@ -259,7 +263,7 @@
                  <div class="col-md-12 heading-section ftco-animate">
                     <span class="subheading">Enhanced Your Skills</span>
                     <h2 class="mb-4">Learn Anything You Want Today</h2>
-                    <p>Connect and make friends effortlessly with our app! Customize your profile, discover like-minded students, engage in meaningful conversations, and share your thoughts through blogs. Unlock premium features for enhanced visibility and tailored matches. Start your journey to meaningful connections today!</p>
+                    <p>Introducing StudyPartner Finder – your ultimate study companion! Say goodbye to solitary study sessions and hello to collaborative learning. With StudyPartner Finder, you can effortlessly connect with like-minded students who share your academic interests. Whether you're preparing for exams or working on projects, find dedicated study buddies who are passionate about the same subjects as you. Break the boundaries of traditional studying and form meaningful connections both locally and internationally. Join StudyPartner Finder today and discover a new way to study – together. Sign up now and unlock a world of study possibilities!</p>
                     <p><a href="#" class="btn btn-primary">Get in touch with us</a></p>
                 </div>
             </div>
@@ -270,50 +274,50 @@
 </div>
 </section>
 
-<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_4.jpg);">
- <div class="overlay"></div>
- <div class="container">
-  <div class="row">
-   <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-     <div class="block-18 d-flex align-items-center">
-      <div class="icon"><span class="flaticon-online"></span></div>
-      <div class="text">
-       <strong class="number" data-number="400">0</strong>
-       <span>Online Courses</span>
-     </div>
-   </div>
+<section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url('{{url_for('static',filename='images/bg_4.jpg')}}');">
+  <div class="overlay"></div>
+  <div class="container">
+     <div class="row">
+        <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+          <div class="block-18 d-flex align-items-center">
+             <div class="icon"><span class="flaticon-online"></span></div>
+             <div class="text">
+              <strong class="number" data-number="100">0</strong>
+              <span>Active Users</span>
+          </div>
+      </div>
+  </div>
+  <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+      <div class="block-18 d-flex align-items-center">
+         <div class="icon"><span class="flaticon-graduated"></span></div>
+         <div class="text">
+          <strong class="number" data-number="500">0</strong>
+          <span>Students Enrolled</span>
+      </div>
+  </div>
  </div>
  <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
-   <div class="block-18 d-flex align-items-center">
-    <div class="icon"><span class="flaticon-graduated"></span></div>
-    <div class="text">
-     <strong class="number" data-number="4500">0</strong>
-     <span>Students Enrolled</span>
-   </div>
+  <div class="block-18 d-flex align-items-center">
+     <div class="icon"><span class="flaticon-instructor"></span></div>
+     <div class="text">
+      <strong class="number" data-number="200">0</strong>
+      <span>Expert Students</span>
+  </div>
  </div>
-</div>
-<div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
- <div class="block-18 d-flex align-items-center">
-  <div class="icon"><span class="flaticon-instructor"></span></div>
-  <div class="text">
-   <strong class="number" data-number="1200">0</strong>
-   <span>Experts Instructors</span>
  </div>
-</div>
-</div>
-<div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
- <div class="block-18 d-flex align-items-center">
-  <div class="icon"><span class="flaticon-tools"></span></div>
-  <div class="text">
-   <strong class="number" data-number="300">0</strong>
-   <span>Hours Content</span>
+ <div class="col-md-3 d-flex justify-content-center counter-wrap ftco-animate">
+  <div class="block-18 d-flex align-items-center">
+     <div class="icon"><span class="flaticon-tools"></span></div>
+     <div class="text">
+      <strong class="number" data-number="30">0</strong>
+      <span>Streams</span>
+  </div>
  </div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
+ </div>
+ </div>
+ </div>
+ </section>
+ 
 
 <section class="ftco-section testimony-section bg-light">
   <div class="overlay" style="background-image: url('{{url_for('static',filename='images/bg_2.jpg')}}');"></div>
