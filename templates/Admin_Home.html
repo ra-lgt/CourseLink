@@ -548,6 +548,189 @@ body {
       </div>
     </nav>
 <body>
+  <script>$(document).ready(function() {
+      // Toggle menu_temp on click
+      $("#menu_temp-toggler").click(function() {
+        toggleBodyClass("menu_temp-active");
+      });
+    
+      function toggleBodyClass(className) {
+        document.body.classList.toggle(className);
+      }
+    
+     });
+    </script>
+    <style>
+ 
+
+    .ani{
+      transition: transform 0.10s ease-in-out;
+    }
+   .ani:hover{
+      transform: translateY(-10px);
+    }
+
+</style>
+ <style>
+
+.logo {
+  max-width: 200px;
+}
+
+.nav_tempbar {
+  align-items: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: row;
+  font-family: sans-serif;
+  padding: 10px 50px;
+  background: rgba(250, 240, 230, 0.79);
+  backdrop-filter: blur(1.8px);
+}
+
+.push-left {
+  margin-left: auto;
+}
+
+/* menu_temp */
+.hamburger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: none;
+  outline: none;
+  height: 30px;
+  position: relative;
+  width: 30px;
+  z-index: 1000;
+}
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: inline-block;
+  }
+}
+.hamburger-line {
+  background: #272727;
+  height: 3px;
+  position: absolute;
+  left: 0;
+  transition: all 0.2s ease-out;
+  width: 100%;
+}
+.hamburger:hover .hamburger-line {
+  background: #777;
+}
+.hamburger-line-top {
+  top: 3px;
+}
+.menu_temp-active .hamburger-line-top {
+  top: 50%;
+  transform: rotate(45deg) translatey(-50%);
+}
+.hamburger-line-middle {
+  top: 50%;
+  transform: translatey(-50%);
+}
+.menu_temp-active .hamburger-line-middle {
+  left: 50%;
+  opacity: 0;
+  width: 0;
+}
+.hamburger-line-bottom {
+  bottom: 3px;
+}
+.menu_temp-active .hamburger-line-bottom {
+  bottom: 50%;
+  transform: rotate(-45deg) translatey(50%);
+}
+
+.nav_temp-menu_temp {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  transition: all 0.25s ease-in;
+}
+@media screen and (max-width: 768px) {
+  .nav_temp-menu_temp {
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+  }
+  .menu_temp-active .nav_temp-menu_temp {
+    transform: translatey(100%);
+    opacity: 1;
+  }
+  .hero-wrap .overlay{
+    position:unset;
+  }
+}
+.nav_temp-menu_temp .menu_temp-item a {
+  color: #444444;
+  display: block;
+  line-height: 30px;
+  margin: 0px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.nav_temp-menu_temp .menu_temp-item a:hover {
+  color:#81767677;
+  text-decoration:initial;
+}
+@media screen and (max-width: 768px) {
+  .nav_temp-menu_temp .menu_temp-item a {
+    font-size: 20px;
+    margin: 8px;
+  }
+}
+
+.sub-nav_temp {
+  border: 1px solid #ccc;
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  padding: 5px 5px;
+  list-style: none;
+  width: 230px;
+}
+@media screen and (max-width: 768px) {
+  .sub-nav_temp {
+    position: relative;
+    width: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+  }
+}
+
+.nav_temp__link:hover + .sub-nav_temp {
+  display: block;
+}
+
+.sub-nav_temp:hover {
+  display: block;
+}
+@media (max-width: 768px) {
+    .hero-wrap {
+        background-size:100% 75%;
+        background-color: #FAF0E6;
+    }
+}
+@media (max-width: 768px) {
+  .row.no-gutters {
+       height:500px;
+       width: 100%;
+       margin-left:0;
+  } 
+}
+
+</style>
   {% for i in range(count) %}
   <div class="card is-active" data-state="#about{{i}}">
   <div class="card-header">

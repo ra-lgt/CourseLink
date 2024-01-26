@@ -631,6 +631,9 @@ var options = {
       transition: background-color 0.25s ease;
       z-index: 9999;
     }
+
+
+
     .modal.open {
       position: fixed;
       width: 100%;
@@ -656,6 +659,11 @@ var options = {
       transform: scale(0);
       transition: transform 0.25s;
       transition-delay: 0.15s;
+    }
+    @media screen and (max-width: 768px) {
+      .modal .content-wrapper{
+        width: unset;
+      }
     }
     .modal .content-wrapper .close {
       position: absolute;
