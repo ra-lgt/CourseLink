@@ -246,6 +246,7 @@
     
     </header>
     <h2>{{all_user_data['username'][i]}}</h2>
+    <p><b>About Me :</b>{{all_user_data['About'][i]}}</p>
     
       <p><b>First Name</b>: {{all_user_data['first_name'][i]}}</p>
       <p><b>Last Name</b>: {{all_user_data['last_name'][i]}}</p>
@@ -256,7 +257,7 @@
       <p><b>Experince Level</b>: {{all_user_data['Experince_Level'][i]}}</p>
       <p><b>Preferred Language</b>: {{all_user_data['language'][i]}}</p>
       <p><b>Joined Date</b>: {{all_user_data['Joined_date'][i]}}</p>
-      <p><b>About Me :</b>{{all_user_data['About'][i]}}</p>
+      
     
     <footer class="modal-footer">
       <button class="action" onclick="send_request('{{ all_user_data['username'][i] }}', '{{ all_user_data['email'][i] }}')">Send Message</button>
