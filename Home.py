@@ -85,7 +85,7 @@ def Home():
 
 @app.route('/signup_login')
 def signup_login():
-    if('email' in session):
+    if('email' in session and session['email']!=''):
         return redirect(url_for('Home'))
     return render_template('signup_login.html')
 
@@ -244,11 +244,11 @@ def profile():
     
     if(user_specific_data is None):
         user_specific_data=user_dataAPI.get_data_of_specific_user(session['email'])
-        cache.set('profile_data',user_specific_data,timeout=180*60)
+        cache.set('profile_data',user_specific_data,timeout=30*60)
 
         
     else:
-        pass
+        print("Cache Hit")
     
     if(user_specific_data['Intial_set']=='False'):
         return render_template('first_user.html')
@@ -288,6 +288,7 @@ def save_profile_pic():
     
     if(return_code==True):
         result = {'message': 'Image uploaded successfully'}
+        cache.delete('profile_data')
         return jsonify(result)
     else:
         result = {'error': 'Unexpected error occured'}
@@ -302,6 +303,7 @@ def create_chat():
     return_code=user_chat.start_chat(session['email'],data['email'])    
     
     if(return_code==True):
+        cache.delete('users_chats')
         return jsonify({'message':"Sucess",'status':200}),200
     
     return jsonify({'message':"Error",'status':404}),404
@@ -319,7 +321,9 @@ def chat_page(chat_id):
     
     if(user_specific_chats is None):
         user_specific_chats=user_chat.get_users_chat(session['email'])
-        cache.set('users_chat',user_specific_chats,timeout=180*60)  
+        cache.set('users_chat',user_specific_chats,timeout=30*60)
+    else:
+        print("Cache Hit")  
     if(len(user_specific_chats['_id'])!=0):
     
         for email in user_specific_chats['chat_reciever_email']:
@@ -366,7 +370,18 @@ def delete_user(email):
 @app.route('/Admin_Blogs/<int:page_no>')
 @login_required
 def Admin_Blogs(page_no):
-    blog_posts=user_blog.get_all_blog_posts()
+    all_blogs=None
+    blog_posts=None
+    
+    cache.get('blogs_data')
+    
+    if( all_blogs is None):
+        
+        blog_posts=user_blog.get_all_blog_posts()
+        cache.set("blogs_data",blog_posts,timeout=30*60)
+    else:
+        print("Cache Hit")
+        
     
     
     start=(page_no-1)*10
@@ -379,7 +394,7 @@ def Admin_Blogs(page_no):
     if(end>len(blog_posts['_id'])):
         end=len(blog_posts['_id'])
 
-    return render_template('Admin_Blogs.html',blog_posts=blog_posts,end=end,start=start,page_no_len=int(len(blog_posts['_id'])/10)+1,page_no=page_no)
+    return render_template('Admin_Blogs.html',blog_posts=blog_posts,end=end,start=start,page_no_len=int(len(blog_posts['_id'])/10)+1,page_no=page_no,Admin=True)
 
 @app.route('/delete_blog/<post_id>')
 @login_required
@@ -400,7 +415,7 @@ def Admin_Home():
     
     if(user_data is None):
         user_data=admin.get_all_user_data()
-        cache.set('All_User',user_data,timeout=180*30)
+        cache.set('All_User',user_data,timeout=30*30)
     
     
     return render_template('Admin_Home.html',user_data=user_data,count=len(user_data['_id']))
@@ -500,7 +515,17 @@ def user_blogs(page_no):
 @app.route('/blog/<int:page_no>')
 @login_required
 def blog(page_no):
-    blog_posts=user_blog.get_all_blog_posts()
+    all_blogs=None
+    blog_posts=None
+    
+    cache.get('blogs_data')
+    
+    if( all_blogs is None):
+        
+        blog_posts=user_blog.get_all_blog_posts()
+        cache.set("blogs_data",blog_posts,timeout=30*60)
+    else:
+        print("Cache Hit")
     
     
     start=(page_no-1)*10
@@ -568,6 +593,7 @@ def post_blog():
              }
         )
         if(return_code==True):
+            cache.delete('blogs_data')
             return redirect(url_for('success',data="Successfully Posted"))
         else:
             return redirect(url_for('error',data="Couldn't Upload",reason="Check with admin"))
@@ -577,6 +603,8 @@ def post_blog():
 @login_required
 def find_friends():
     all_user_data=None
+    Course=[]
+    degree=[]
     all_user_data = cache.get('cached_all_user_data')
     
     
@@ -584,26 +612,28 @@ def find_friends():
         
         all_user_data=user_dataAPI.get_all_user_data(session['email'])
         
-        cache.set('cached_all_user_data', all_user_data, timeout=180 * 60)
+        cache.set('cached_all_user_data', all_user_data, timeout=60 * 60)
     else:
+        print("Cache Hit")
         pass
     langauge=[]
-    for i in all_user_data['language']:
-        temp=",".join(i)
-        langauge.append(temp)
-        
-    all_user_data['language']=langauge
-    Course=[]
-    degree=[]
-  
-        
-    for i,j in zip(all_user_data['Course'],all_user_data['Degree']):
-        if(i not in Course and i!="Not Set"):
-            Course.append(i)
-        if( j not in degree and j!="Not Set"):
-            degree.append(j)
     
-    if not all_user_data:
+    if(len(all_user_data)>1):
+        for i in all_user_data['language']:
+            temp=",".join(i)
+            langauge.append(temp)
+            
+        all_user_data['language']=langauge
+
+    
+            
+        for i,j in zip(all_user_data['Course'],all_user_data['Degree']):
+            if(i not in Course and i!="Not Set"):
+                Course.append(i)
+            if( j not in degree and j!="Not Set"):
+                degree.append(j)
+    
+    if len(all_user_data)<=1:
         count=0
     else:
         count=len(all_user_data['username'])

@@ -122,7 +122,6 @@
 						</div>
 
 						<button
-							@click="step = 1"
 							class="w-40 block mx-auto focus:outline-none py-2 px-5 rounded-lg shadow-sm text-center text-gray-600 bg-white hover:bg-gray-100 font-medium border" 
 						><a href="{{url_for('Home')}}"></a>Home</button>
 					</div>
@@ -284,14 +283,14 @@
                                 <label for="email" class="font-bold mb-1 text-gray-700 block">Degree</label>
                                 <input id="degree" type="text"
                                     class="w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
-                                    placeholder="Enter your Degree... provide the short forms only eg:(CSE)" required>
+                                    placeholder="Enter your Degree... provide the short forms only eg:(Btech)" required>
                             </div>
 							
                             <div class="mb-5">
-                                <label for="email" class="font-bold mb-1 text-gray-700 block">Course Name</label>
+                                <label for="email" class="font-bold mb-1 text-gray-700 block">Course Name/Stream/Exam</label>
                                 <input id="course" type="text"
                                     class="w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium"
-                                    placeholder="Enter your Course Name..." required>
+                                    placeholder="Enter your Course Name... provide the short forms only" required>
                             </div>
                             <div class="mb-5">
                                 <label for="course" class="font-bold mb-1 text-gray-700 block">Experience Level</label>
@@ -333,6 +332,7 @@
                                 <label for="course" class="font-bold mb-1 text-gray-700 block">Prefered Language</label>
                            
 								<select id="mySelect" name="mySelect[]" multiple="multiple" style="width: 100%; visibility:hidden" class="w-full px-4 py-3 rounded-lg shadow-sm focus:outline-none focus:shadow-outline text-gray-600 font-medium">
+									
 									{% for i in languages|sort %}
 									<option value="{{i}}" data-icon='https://img.icons8.com/material-rounded/10/40C057/sphere.png'>{{i}}</option>
 									{% endfor %}
