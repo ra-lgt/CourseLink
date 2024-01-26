@@ -405,7 +405,7 @@
 
 
 <script type="text/javascript">
-    var socket = io.connect('wss://studypartnerfinder-sfw6.onrender.com');
+    var socket = io.connect('https://' + document.domain + ':' + location.port);
     const chatList = document.getElementById('chatList');
     var chat_id = "{{ chat_id }}";
      socket.emit('join', { room: chat_id });
