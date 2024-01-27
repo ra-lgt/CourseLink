@@ -710,4 +710,4 @@ def about():
     return render_template('about.html',session_bool=session_bool)
 
 if __name__ == '__main__':
-    socketio.run(app,host='0.0.0.0',port='80',debug=False)
+    socketio.run(app,host='0.0.0.0',port='443',debug=True)
