@@ -336,18 +336,11 @@
                                             <ul id="chatList">
                                                 {% for i in range(len_chat) %}
                                                 
-                                                {% if(email==history_chat['sender_email'][i]) %}
-                                                <li class="repaly">
-                                                  <p  class="text">{{history_chat['message'][i]}}</p>
-                                                  <span class="time">{{history_chat['time'][i]}}</span>
                                                 
-                                              </li>
-                                              {% else %}
-                                                <li class="sender">
+                                                <li class="repaly">
                                                     <p  class="text">{{history_chat['message'][i]}}</p>
                                                     <span class="time">{{history_chat['time'][i]}}</span>
                                                 </li>
-                                                {% endif %}
                                                 
                                                 {% endfor %}
                                                
@@ -439,15 +432,12 @@ const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString()
     socket.on('response', function(data) {
         const li = document.createElement('li');
 
-        console.log("dataaa",data)
-
-       if(data['email']==data['sender_email']){
-        li.className='repaly'
-       }
-       else{
-        li.className = 'sender';
-       }
+       
      
+        li.className = 'repaly';
+
+ 
+
         const timespan = document.createElement('span');
         timespan.className='time';
 

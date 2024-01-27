@@ -200,11 +200,7 @@ message-area
     height:100vh;
     overflow: hidden;
 }
-@media screen and (max-width: 768px) {
-  .message-area {
-    height:90%;  
-    margin-top:40% }
-}
+
 
 .chat-area {
     position: relative;
@@ -216,6 +212,14 @@ message-area
     margin-top:2%;
     min-height: calc(100% - 1rem);
 }
+@media screen and (max-width: 768px) {
+    .message-area {
+      height:90%;  
+      margin-top:40% }
+      .chat-area{
+        width: 100%;
+      }
+  }
 
 .chatlist {
     outline: 0;
