@@ -336,11 +336,18 @@
                                             <ul id="chatList">
                                                 {% for i in range(len_chat) %}
                                                 
-                                                
+                                                {% if(email==history_chat['sender_email'][i]) %}
                                                 <li class="repaly">
+                                                  <p  class="text">{{history_chat['message'][i]}}</p>
+                                                  <span class="time">{{history_chat['time'][i]}}</span>
+                                                
+                                              </li>
+                                              {% else %}
+                                                <li class="sender">
                                                     <p  class="text">{{history_chat['message'][i]}}</p>
                                                     <span class="time">{{history_chat['time'][i]}}</span>
                                                 </li>
+                                                {% endif %}
                                                 
                                                 {% endfor %}
                                                
@@ -413,7 +420,7 @@ const minutes = currentTime.getMinutes();
 const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 
 
-    var socket = io.connect('https://' + document.domain + ':' + location.port);
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
     const chatList = document.getElementById('chatList');
     var chat_id = "{{ chat_id }}";
      socket.emit('join', { room: chat_id });
@@ -432,12 +439,15 @@ const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString()
     socket.on('response', function(data) {
         const li = document.createElement('li');
 
-       
+        console.log("dataaa",data)
+
+       if(data['email']==data['sender_email']){
+        li.className='repaly'
+       }
+       else{
+        li.className = 'sender';
+       }
      
-        li.className = 'repaly';
-
- 
-
         const timespan = document.createElement('span');
         timespan.className='time';
 
