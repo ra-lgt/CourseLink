@@ -405,6 +405,14 @@
 
 
 <script type="text/javascript">
+    const currentTime = new Date();
+const hours = currentTime.getHours();
+const minutes = currentTime.getMinutes();
+
+// Format the time
+const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+
+
     var socket = io.connect('https://' + document.domain + ':' + location.port);
     const chatList = document.getElementById('chatList');
     var chat_id = "{{ chat_id }}";
@@ -459,6 +467,7 @@
             url: currentUrl,
             room:chat_id,
             sender_email:sender_email,
+            time:formattedTime,
             receiver_email:"{{selected_chat['email']}}"
             
         };

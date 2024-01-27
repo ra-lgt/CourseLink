@@ -463,9 +463,6 @@ def handle_message(message):
     
     
     if return_code:
-        current_time = datetime.now().time()
-        hours, minutes = current_time.hour, current_time.minute
-        formatted_time = "{:02d}:{:02d}".format(hours, minutes)
 
         # Emitting from within a socket event handler
         emit('response', {
@@ -473,7 +470,7 @@ def handle_message(message):
             'sender_email': message['sender_email'],
             'receiver_email': message['receiver_email'],
             'email':session['email'],
-            'time': formatted_time
+            'time': message['time']
         }, broadcast=True, room=message['room'])
 
 @app.route('/terms')
@@ -713,4 +710,4 @@ def about():
     return render_template('about.html',session_bool=session_bool)
 
 if __name__ == '__main__':
-    socketio.run(app,host='0.0.0.0',port='443',debug=True)
+    socketio.run(app,debug=False)
