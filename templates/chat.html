@@ -420,7 +420,7 @@ const minutes = currentTime.getMinutes();
 const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 
 
-    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    var socket = io.connect('https://' + document.domain + ':' + location.port);
     const chatList = document.getElementById('chatList');
     var chat_id = "{{ chat_id }}";
      socket.emit('join', { room: chat_id });
