@@ -103,3 +103,35 @@ class DataAPI:
         except Exception as e:
        
             return  False
+        
+    def save_notify_token(self,email,token):
+        db=self.mongo_conn['Notification']
+        collection=db['notify_clients']
+        try:
+            collection.insert_one({
+                'email':email,
+                'token':token
+            })
+            return True
+        except:
+            return False
+        
+    def get_notify_token(self,email):
+        db=self.mongo_conn['Notification']
+        collection=db['notify_clients']
+        
+        cursor=collection.find({'email':email})
+        
+        data={}
+        
+        for doc in cursor:
+            for key,val in doc.items():
+                if key not in data:
+                    data[key]=list()
+                data[key].append(val)
+        
+        return data or None
+        
+        
+        
+        

@@ -331,7 +331,7 @@
                                     
 
 
-                                    <div class="modal-body">
+                                    <div class="modal-body" id="body">
                                         <div class="msg-body" >
                                             <ul id="chatList">
                                                 {% for i in range(len_chat) %}
@@ -376,6 +376,8 @@
     <!-- char-area -->
     
 <script>
+  const element=document.getElementById('body')
+  element.scrollTop=element.scrollHeight
     {% if chat_id!='None' %}
     
         function detectDeviceType() {
@@ -385,7 +387,6 @@
             // You can adjust these thresholds based on your specific needs
             const mobileThreshold = 600;
             
-            console.log('helloooo')
             
             if (screenWidth <= mobileThreshold || screenHeight <= mobileThreshold) {
                 document.getElementsByClassName('chatbox')[0].className = 'chatbox showbox';
@@ -400,6 +401,82 @@
         detectDeviceType();
         {% endif %}
 </script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-messaging.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "{{firebase_config['apiKey']}}",
+    authDomain: "{{firebase_config['authDomain']}}",
+    projectId: "{{firebase_config['projectId']}}",
+    storageBucket: "{{firebase_config['storageBucket']}}",
+    messagingSenderId: "{{firebase_config['messagingSenderId']}}",
+    appId: "{{firebase_config['appId']}}"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  
+
+  const messaging = firebase.messaging();
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/firebase-messaging-sw.js')
+    .then(function(registration) {
+      
+    }).catch(function(error) {
+      console.log('Service worker registration failed:', error);
+    });
+  } else {
+    console.log('Service workers are not supported.');
+  }
+
+  if ('Notification' in window && 'PushManager' in window) {
+    if (Notification.permission === 'denied') {
+      console.log('The user has blocked notifications.');
+    } else if (Notification.permission === 'granted') {
+      console.log('Permission has already been granted.');
+    } 
+    else{
+
+    
+      messaging.requestPermission()
+      .then(function() {
+        console.log('Notification permission granted.');
+        return messaging.getToken();
+      })
+      .then(function(token) {
+        
+        fetch('/save_token',{
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json',
+
+          },
+          body:JSON.stringify({token:token})
+        })
+        .then(response => response.json())
+        .then((data) =>{
+          if(data['status']==404){
+            var url="{{url_for('error')}}" //
+          
+            window.location.href = url;
+          }
+        })
+      })
+      .catch(function(err) {
+        console.log('Unable to get permission to notify.', err);
+      });
+    }
+  }
+   else {
+    console.log('Notifications or Push APIs are not supported by the browser.');
+  }
+  console.log("completes")
+
+</script>
+
+
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
 
@@ -452,6 +529,8 @@ const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString()
         li.appendChild(timespan);
         
         chatList.appendChild(li);
+        const element=document.getElementById('body')
+        element.scrollTop=element.scrollHeight
 
     });
 

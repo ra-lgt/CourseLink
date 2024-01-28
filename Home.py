@@ -1,9 +1,11 @@
 from functools import wraps
-from flask import Flask,render_template,request,jsonify,session,url_for,redirect
+from flask import Flask,render_template,request,jsonify,session,url_for,redirect,send_from_directory
 import json
+import os
 import random
 from Config import Configurations
 from mail import send_email
+from pyfcm import FCMNotification
 from datetime import datetime
 from flask_caching import Cache
 from UserAPI import DataAPI
@@ -32,6 +34,7 @@ user_dataAPI=DataAPI()
 user_chat=Chat()
 user_blog=Blog()
 admin=Admin()
+push_service = FCMNotification(api_key="AAAADYQ7gQs:APA91bGi9fLum9wMFZeGxx7JZJfOsfdnnfIPtEpolYSDaCGpe2pwiqQqa7GKNe_xmvmtT8e-cWbdMY5OojxUpTXvx_QUUb43a7n4pvWgat2dxlkfKO6aMJbEJkZ1cNQwxpKWYkXv-brT")
 
 
 @app.errorhandler(404)
@@ -308,6 +311,15 @@ def create_chat():
     
     return jsonify({'message':"Error",'status':404}),404
 
+@app.route('/save_token',methods=['POST'])
+def save_token():
+    token=request.get_json()
+    return_code=user_dataAPI.save_notify_token(session['email'],token['token'])
+    
+    
+    if(return_code==True):
+        return jsonify({'message':"Sucess",'status':200}),200
+    return jsonify({'message':"Error",'status':404}),404   
 @app.route('/chat_page/<chat_id>')
 @login_required
 def chat_page(chat_id):
@@ -343,7 +355,18 @@ def chat_page(chat_id):
         history_chat=user_chat.get_specific_chat(chat_id,session['email'])
         len_chat=len(history_chat['_id'])
         
-    return render_template('chat.html',user_specific_data=user_specific_data,user_specific_chats=user_specific_chats,count=len(user_specific_data),chat_id=chat_id,selected_chat=selected_chat,email=session['email'],history_chat=history_chat,len_chat=len_chat,username=session['username'])
+    return render_template('chat.html',user_specific_data=user_specific_data,user_specific_chats=user_specific_chats,count=len(user_specific_data),chat_id=chat_id,selected_chat=selected_chat,email=session['email'],history_chat=history_chat,len_chat=len_chat,username=session['username'],firebase_config=config.firebaseConfig)
+
+@app.route('/firebase-messaging-sw.js', methods=['GET'])
+def serve_sw():
+    print("hello")
+    return send_from_directory(os.path.join(app.root_path, 'static/js'), 'firebase-messaging-sw.js')
+
+@app.route('/firebase-app.js', methods=['GET'])
+def firebase_app_js():
+    print("hello")
+    return send_from_directory(os.path.join(app.root_path, 'static/js'), 'firebase-app.js')
+
 
 @app.route('/change_chat/<chat_id>')
 @login_required
@@ -458,9 +481,25 @@ def handle_message(message):
     # Run the background thread
     
     
-    
     return_code = user_chat.push_data_specific_chat(message['sender_email'], message['receiver_email'], str(session['username']+':'+message['message']), message['room'])
+    notify_token=user_dataAPI.get_notify_token(message['receiver_email'])
     
+    registration_id = notify_token['token']
+    message_title = session['username']
+    message_body = message['message']
+    message_icon = "https://m3jgg9f8-5000.inc1.devtunnels.ms/static/images/Logo.png"
+    
+    if(notify_token):
+        try:
+
+            result = push_service.notify_multiple_devices(registration_ids=registration_id, message_title=message_title, message_body=message_body,message_icon=message_icon)
+            print(result)
+
+        except Exception as e:
+            print(e)
+            pass
+        
+
     
     if return_code:
 
@@ -710,4 +749,4 @@ def about():
     return render_template('about.html',session_bool=session_bool)
 
 if __name__ == '__main__':
-    socketio.run(app,host='0.0.0.0',port='443',debug=True)
+    socketio.run(app,debug=True)
