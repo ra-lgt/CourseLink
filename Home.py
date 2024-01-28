@@ -487,7 +487,7 @@ def handle_message(message):
     registration_id = notify_token['token']
     message_title = session['username']
     message_body = message['message']
-    message_icon = "https://m3jgg9f8-5000.inc1.devtunnels.ms/static/images/Logo.png"
+    message_icon = "https://studypartnerfinder-sfw6.onrender.com/static/images/Logo.png"
     
     if(notify_token):
         try:

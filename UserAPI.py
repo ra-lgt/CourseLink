@@ -68,7 +68,7 @@ class DataAPI:
     
     def get_data_of_specific_user(self,email):
         if(email=="studypartnerfinder@gmail.com"):
-            email+='.png'
+            email='logo.png'
         db = self.mongo_conn["User-Data"]
         collection=db['user_details']
         
