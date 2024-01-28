@@ -484,13 +484,14 @@ def handle_message(message):
     return_code = user_chat.push_data_specific_chat(message['sender_email'], message['receiver_email'], str(session['username']+':'+message['message']), message['room'])
     notify_token=user_dataAPI.get_notify_token(message['receiver_email'])
     
-    registration_id = notify_token['token']
-    message_title = session['username']
-    message_body = message['message']
-    message_icon = "https://studypartnerfinder-sfw6.onrender.com/static/images/Logo.png"
+    
     
     if(notify_token):
         try:
+            registration_id = notify_token['token']
+            message_title = session['username']
+            message_body = message['message']
+            message_icon = "https://studypartnerfinder-sfw6.onrender.com/static/images/Logo.png"
 
             result = push_service.notify_multiple_devices(registration_ids=registration_id, message_title=message_title, message_body=message_body,message_icon=message_icon)
             print(result)
