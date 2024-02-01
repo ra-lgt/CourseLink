@@ -491,7 +491,7 @@ def handle_message(message):
             registration_id = notify_token['token']
             message_title = session['username']
             message_body = message['message']
-            message_icon = "https://studypartnerfinder-sfw6.onrender.com/static/images/Logo.png"
+            message_icon = "https://studypartnerfinder.com/static/images/Logo.png"
 
             result = push_service.notify_multiple_devices(registration_ids=registration_id, message_title=message_title, message_body=message_body,message_icon=message_icon)
             print(result)
