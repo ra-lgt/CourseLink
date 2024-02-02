@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import Flask,render_template,request,jsonify,session,url_for,redirect,send_from_directory
+from flask import Flask,render_template,request,jsonify,session,url_for,redirect,send_from_directory,send_file
 import json
 import os
 import random
@@ -741,6 +741,11 @@ def contact_form():
         else:
             return redirect(url_for('error',data="Couldn't post feedback",reason='Kindly Try Again'))
         
+@app.route('/sitemap', methods=['GET'])
+def sitemap():
+    xml_file_path = 'sitemap.xml'
+    return send_file(xml_file_path, mimetype='application/xml')
+
 
 @app.route('/about')
 def about():
