@@ -3,6 +3,16 @@
 <head>
   <title>Study Partner Finder | About Home</title>
   <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static',filename='images/logo.png')}}">
+
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1Q67SE5571"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1Q67SE5571');
+</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 {% for i in range(count) %}
