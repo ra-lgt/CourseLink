@@ -17,6 +17,8 @@ from Blog import Blog
 from Admin import Admin
 import firebase_admin
 from firebase_admin import credentials, auth
+import threading
+import time
 
 
 app = Flask(__name__)
@@ -754,5 +756,13 @@ def about():
         session_bool=True
     return render_template('about.html',session_bool=session_bool)
 
+def run_inf():
+    while True:
+        print("running server....")
+        time.sleep(60)
+
+
 if __name__ == '__main__':
+    thread = threading.Thread(target=run_inf)
+    thread.start()
     socketio.run(app,host='0.0.0.0',port='443',debug=True)
